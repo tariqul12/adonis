@@ -1,0 +1,79 @@
+@extends('admin.master')
+@section('body')
+    <!-- PAGE-HEADER -->
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Slider Module</h1>
+        </div>
+        <div class="ms-auto pageheader-btn">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Slider</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create Slider</li>
+            </ol>
+        </div>
+    </div>
+    <!-- PAGE-HEADER END -->
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <div class="card">
+                <div class="card-header border-bottom">
+                    <h3 class="card-title">Create Slider Form</h3>
+
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">{{ session('message') }}</p>
+                    <form class="form-horizontal" action="{{ route('slider.store') }}" enctype="multipart/form-data"
+                        method="post">
+                        @csrf
+                        <div class="row mb-4">
+                            <label for="" class="col-md-3 form-label">Product</label>
+                            <div class="col-md-9">
+                                <select name="product_id" class=" form-control" id="">
+                                    <option value="">Select One</option>
+                                    @foreach ($products as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                                <span
+                                    class="text-danger">{{ $errors->has('product_id') ? $errors->first('product_id') : '' }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label for="" class="col-md-3 form-label">Slider Title</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" name="title" id="" placeholder="Slider Title"></textarea>
+                                <span class="text-danger">{{ $errors->has('title') ? $errors->first('title') : '' }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label for="" class="col-md-3 form-label">Slider Sub Title</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" name="sub_title" id="" placeholder="Slider Sub Title"></textarea>
+                                <span
+                                    class="text-danger">{{ $errors->has('sub_title') ? $errors->first('sub_title') : '' }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label for="image" class="col-md-3 form-label">Slider Image</label>
+                            <div class="col-md-9">
+                                <input class="dropify" data-height="200" name="image" id="image" type="file">
+                                <span class="text-danger">{{ $errors->has('image') ? $errors->first('image') : '' }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <label class="col-md-3 form-label">Publication Status</label>
+                            <div class="col-md-9">
+                                <label><input name="status" type="radio" checked value="1">Published</label>
+                                <label><input name="status" type="radio" value="0">Unpublished</label>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <button class="btn btn-primary" type="submit">Create New Slider</button>
+                            <a href="{{ route('slider.index') }}" class="btn btn-light ms-auto">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
