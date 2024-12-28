@@ -6,14 +6,14 @@
 
 @section('body')
     <!-- Title Banner Start -->
-    <section class="title-banner">
-        <div class="container-fluid">
+    <section class="title-banner" style="background-image: url({{ asset($pageTitleBanner->image) }});">
+        <h1 class="dark-black fw-600">Blog</h1>
+        {{-- <div class="container-fluid">
             <div class="banner-wrapper">
                 <img src="{{ asset('/') }}website/assets/media/images/bag.png" alt="" class="banner-image1">
-                <h1 class="dark-black fw-600">Blog</h1>
                 <img src="{{ asset('/') }}website/assets/media/images/saree-2.png" alt="" class="banner-image2">
             </div>
-        </div>
+        </div> --}}
     </section>
     <!-- Title Banner End -->
 

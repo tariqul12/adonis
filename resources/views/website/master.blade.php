@@ -4,10 +4,10 @@
 <head>
     @include('website.includes.meta')
 
-    <title>Store</title>
+    <title>Adonis | {{ $companyInfo->title }}</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/') }}website/assets/media/favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset($companyInfo->favicon) }}">
 
     @include('website.includes.style')
 </head>

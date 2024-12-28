@@ -13,82 +13,24 @@
                     <div id="bannerSlider" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <!-- Slider 1 -->
-                            <div class="carousel-item active">
-                                <div class="banner-right">
-                                    <div class="banner-content-right"
-                                        style="
-                background-image: url({{ asset('/') }}website/assets/media/banner/banner-4.png);
-              ">
-                                        <!-- <div class="text-box ms-5">
-                    <h6 class="color-ter mb-32 d-sm-block d-none">
-                      NEW ARRIVALS
-                    </h6>
-                    <h2 class="white fw-600 mb-8">
-                      Ultra HD <br />
-                      <span class="color-ter">Smart&nbsp;</span>TVs
-                    </h2>
-                    <h6 class="white mb-32">
-                      Hurry Up! Limited Stock.
-                    </h6>
-                    <a href="shop-list-1.html" class="cus-btn-3 sec"
-                      >Shop Now</a
-                    >
-                  </div> -->
+                            @foreach ($bannerSlider as $slider)    
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                    <div class="banner-right">
+                                        <div class="banner-content-right"
+                                            style="background-image: url({{ asset($slider->image) }});">
+                                            {{-- <div class="text-box ms-5">
+                                                <h2 class="white fw-600 mb-8">
+                                                    {{ $slider->title }}
+                                                </h2>
+                                                <h6 class="white mb-32">
+                                                    {{ $slider->sub_title }}
+                                                </h6>
+                                                <a href="#" class="cus-btn-3 sec">Shop Now</a>
+                                            </div> --}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <!-- Slider 2 -->
-                            <div class="carousel-item">
-                                <div class="banner-right">
-                                    <div class="banner-content-right"
-                                        style="
-                background-image: url({{ asset('/') }}website/assets/media/banner/banner-9.jpg);
-              ">
-                                        <!-- <div class="text-box ms-5">
-                    <h6 class="color-ter mb-32 d-sm-block d-none">
-                      TRENDING
-                    </h6>
-                    <h2 class="white fw-600 mb-8">
-                      8K OLED <br />
-                      <span class="color-ter">Premium&nbsp;</span
-                      >Experience
-                    </h2>
-                    <h6 class="white mb-32">Exclusive Deals Today!</h6>
-                    <a href="shop-list-2.html" class="cus-btn-3 sec"
-                      >Discover Now</a
-                    >
-                  </div> -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slider 3 -->
-                            <div class="carousel-item">
-                                <div class="banner-right">
-                                    <div class="banner-content-right"
-                                        style="
-                background-image: url({{ asset('/') }}website/assets/media/banner/banner-10.jpg);
-              ">
-                                        <!-- <div class="text-box ms-5">
-                    <h6 class="color-ter mb-32 d-sm-block d-none">
-                      NEW ARRIVALS
-                    </h6>
-                    <h2 class="white fw-600 mb-8">
-                      4K LCD <br />
-                      <span class="color-ter">Quantum&nbsp;</span>Vision
-                      LCD
-                    </h2>
-                    <h6 class="white mb-32">
-                      Limited Time: Online Only!
-                    </h6>
-                    <a href="shop-list-1.html" class="cus-btn-3 sec"
-                      >Shop Now</a
-                    >
-                  </div> -->
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
 
                         <!-- Carousel Controls -->
@@ -104,38 +46,20 @@
                 </div>
                 <div class="col-xl-4 col-lg-12">
                     <div class="d-xl-block d-sm-flex gap-16">
-                        <div class="banner-right mb-16">
-                            <div class="banner-content-right v-2"
-                                style="
-            background-image: url({{ asset('/') }}website/assets/media/banner/banner-7.jpg);
-          ">
-                                <div class="text-box">
-                                    <h5 class="fw-500 mb-16">
-                                        <a href="shop-detail.html" class="white">Mobile <br />
-                                            <span class="color-ter">Nexus&nbsp;</span>Mobile Pro
-                                            256GB</a>
-                                    </h5>
-                                    <p class="white fw-500">Limited Time: Online Only!</p>
-                                    <a href="shop-list-1.html" class="cus-btn-3 sec mt-2">Shop Now</a>
+                        @foreach ($bannerSides as $slider)
+                            <div class="banner-right {{ $loop->first ? 'mb-16' : '' }}">
+                                <div class="banner-content-right v-2"
+                                    style="background-image: url({{ asset($slider->image) }});">
+                                    <div class="text-box">
+                                        <h5 class="fw-500 mb-16">
+                                            <a href="#" class="text-dark">{{ $slider->title }}</a>
+                                        </h5>
+                                        <p class="text-dark fw-500">{{ $slider->sub_title }}</p>
+                                        <a href="#" class="cus-btn-3 sec mt-2">Shop Now</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="banner-right">
-                            <div class="banner-content-right v-3"
-                                style="
-            background-image: url({{ asset('/') }}website/assets/media/banner/banner-6.jpg);
-          ">
-                                <div class="text-box">
-                                    <h5 class="fw-500 mb-16">
-                                        <a href="shop-detail.html" class="white">iPadMini <br />
-                                            <span class="color-ter">10 Inch&nbsp;</span>iPad
-                                            Mini Pro</a>
-                                    </h5>
-                                    <p class="white fw-500">Limited Time: Online Only!</p>
-                                    <a href="shop-list-1.html" class="cus-btn-3 sec mt-2">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -232,17 +156,14 @@
         <div class="container-fluid">
             <div class="row row-gap-3">
                 <div class="col-xl-3">
-                    <a href="#" class="main-card text-center">
-                        <h4 class="fw-500 text-dark mb-32">Special Offer</h4>
-                        <div class="image mb-32">
-                            <img src="{{ asset('/') }}website/assets/media/products/main-image-1.png"
-                                alt="" />
-                        </div>
-                        <h5 class="fw-500 text-dark mb-20 text-center">
-                            Aero Control Pro Joysticks
-                        </h5>
-                        <h5 class="fw-500 text-dark text-center">$120.00</h5>
-                    </a>
+                    <div class="featured-item text-center">
+                        <div class="background-image" style="background-image: url('{{asset($featuredSlider->image)}}');"></div>
+                        {{-- <div class="content">
+                            <h4 class="fw-500 text-dark mb-32">Special Offer</h4> 
+                            <h5 class="fw-500 text-dark mb-20 text-center">Aero Control Pro Joysticks</h5>
+                            <a href="#" class="cus-btn-3 sec mt-2">Buy Now</a>
+                        </div> --}}
+                    </div>
                 </div>
                 <div class="col-xl-9">
                     <div class="top-bar mb-16">
@@ -1485,16 +1406,15 @@
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="laptop-pro-tab" data-bs-toggle="tab"
-                            data-bs-target="#laptop-pro" type="button" role="tab" aria-controls="laptop-pro"
-                            aria-selected="false">
+                        <button class="nav-link" id="laptop-pro-tab" data-bs-toggle="tab" data-bs-target="#laptop-pro"
+                            type="button" role="tab" aria-controls="laptop-pro" aria-selected="false">
                             Laptop
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="keyboard-pro-tab" data-bs-toggle="tab"
-                            data-bs-target="#keyboard-pro" type="button" role="tab"
-                            aria-controls="keyboard-pro" aria-selected="false">
+                            data-bs-target="#keyboard-pro" type="button" role="tab" aria-controls="keyboard-pro"
+                            aria-selected="false">
                             Keyboard
                         </button>
                     </li>
@@ -3282,8 +3202,8 @@
 
     <!-- Inner Banner Start -->
     <section class="inner-banner"
-        style="background-image: url({{ asset('/') }}website/assets/media/bg/inner-banner.jpg)">
-        <div class="container-fluid">
+        style="background-image: url({{ asset($popularSlider->image) }})">
+        {{-- <div class="container-fluid">
             <div class="inner-content">
                 <div class="inner-text">
                     <h2 class="white">
@@ -3300,7 +3220,7 @@
                     <img src="{{ asset('/') }}website/assets/media/images/banner-image-2.png" alt="" />
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     <!-- Inner Banner End -->
 
@@ -4070,8 +3990,8 @@
 
     <!-- Inner Banner Start -->
     <section class="inner-banner"
-        style="background-image: url({{ asset('/') }}website/assets/media/bg/inner-banner-3.jpg)">
-        <div class="container-fluid">
+        style="background-image: url({{ asset($footerSlider->image) }});">
+        {{-- <div class="container-fluid">
             <div class="inner-content v-2">
                 <div class="inner-text">
                     <h2 class="white">
@@ -4103,7 +4023,7 @@
                         src="{{ asset('/') }}website/assets/media/images/watch.png" alt="" />
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
     <!-- Inner Banner End -->
 @endsection

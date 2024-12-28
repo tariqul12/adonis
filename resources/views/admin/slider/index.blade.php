@@ -31,8 +31,8 @@
                                 <tr>
                                     <th class="wd-15p border-bottom-0">SL</th>
                                     <th class="wd-15p border-bottom-0">Products</th>
-                                    <th class="wd-15p border-bottom-0">Title</th>
-                                    <th class="wd-20p border-bottom-0">Sub Title</th>
+                                    <th class="wd-15p border-bottom-0">Banner Type</th>
+                                    {{-- <th class="wd-20p border-bottom-0">Sub Title</th> --}}
                                     <th class="wd-15p border-bottom-0">Image</th>
                                     <th class="wd-10p border-bottom-0">Status</th>
                                     <th class="wd-25p border-bottom-0">Action</th>
@@ -43,10 +43,36 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $slider->product->name }}</td>
-                                        <td>{{ $slider->title }}</td>
-                                        <td>{{ $slider->sub_title }}</td>
+                                        <td>
+                                            @if ($slider->banner_type == 0)
+                                                <span class="badge bg-primary-gradient my-1">Main
+                                                    Slider</span>
+                                            @elseif ($slider->banner_type == 1)
+                                                <span class="badge bg-secondary-gradient my-1">Slider
+                                                    Side</span>
+                                            @elseif ($slider->banner_type == 2)
+                                                <span class="badge bg-success-gradient my-1">Popular
+                                                    Title</span>
+                                            @elseif ($slider->banner_type == 3)
+                                                <span class="badge bg-info-gradient my-1">Feature
+                                                    Products</span>
+                                            @elseif ($slider->banner_type == 4)
+                                                <span class="badge bg-dark-gradient my-1">Page
+                                                    Title</span>
+                                            @elseif ($slider->banner_type == 5)
+                                                <span class="badge bg-light-gradient my-1">Footer
+                                                    Banner</span>
+                                            @endif
+                                        </td>
+                                        {{-- <td>{{ $slider->sub_title }}</td> --}}
                                         <td><img src="{{ asset($slider->image) }}" alt="" height="50"></td>
-                                        <td>{{ $slider->status == 1 ? 'Published' : 'Unpublished' }}</td>
+                                        <td>
+                                            @if ($slider->status == 0)
+                                                <span class="badge rounded-pill bg-danger-gradient my-1">Unpublished</span>
+                                            @else
+                                                <span class="badge rounded-pill bg-secondary-gradient my-1">Published</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a href="{{ route('slider.edit', $slider->id) }}"
                                                 class="btn btn-success btn-sm">

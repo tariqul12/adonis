@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->integer('product_id');
-            $table->string('sub_title');
+            $table->integer('banner_type');
+            $table->string('title')->nullable();
+            $table->string('sub_title')->nullable();
             $table->text('image');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

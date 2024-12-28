@@ -184,6 +184,25 @@ class ProductController extends Controller
                 $productImage->save();
             }
         }
+        ProductColor::whereProductId($product->id)->delete();
+        if ($request->color_id) {
+            foreach ($request->color_id as $color_id) {
+                $productColor = new ProductColor();
+                $productColor->product_id = $product->id;
+                $productColor->color_id = $color_id;
+                $productColor->save();
+            }
+        }
+
+        ProductSize::whereProductId($product->id)->delete();
+        if ($request->size_id) {
+            foreach ($request->size_id as $size_id) {
+                $porductSize = new ProductSize();
+                $porductSize->product_id = $product->id;
+                $porductSize->size_id = $size_id;
+                $porductSize->save();
+            }
+        }
         return redirect('/product')->with('message', "product info updated successfully");
     }
 
@@ -204,6 +223,8 @@ class ProductController extends Controller
             }
             $productImage->delete();
         }
+        ProductColor::whereProductId($product->id)->delete();
+        ProductSize::whereProductId($product->id)->delete();
         return back()->with('message', 'Product info delete successfully');
     }
 }

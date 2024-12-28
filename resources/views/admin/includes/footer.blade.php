@@ -3,9 +3,9 @@
     <div class="container">
         <div class="row align-items-center flex-row-reverse">
             <div class="col-md-12 col-sm-12 text-center">
-                Copyright © 2022 <a href="#">Noa</a>. Designed with <span class="fa fa-heart text-danger"></span> by
-                <a href="#"> Spruko </a> All rights
-                reserved
+                Copyright © 2024 <a href="#">BSDBD</a>. Designed with <span class="fa fa-heart text-danger"></span>
+                by
+                <a href="#"> Bangladesh Software Development Team</a>
             </div>
         </div>
     </div>

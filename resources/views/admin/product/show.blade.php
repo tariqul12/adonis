@@ -77,6 +77,11 @@
                         <div class="col-xl-6 col-lg-12 col-md-12">
 
                             <h3 class="mb-2 mt-xl-0 mt-4">{{ $product->name }}</h3>
+                            <p class="mb-0 text-18 mt-5">Code: </p>
+                            <p class="mb-1">
+                                <span class="text-dark text-22"> TK:{{ $product->code }}</span>
+
+                            </p>
                             <p class="mb-0 text-18 mt-5">Salling Price:</p>
                             <p class="mb-1">
                                 <span class="text-dark text-22"> TK:{{ $product->selling_price }}</span>
@@ -101,6 +106,16 @@
                                     <p>{{ $product->short_description }}</p>
                                 </div>
                             </div>
+                            <p class="mb-0 text-18 mt-5">Hit Count: </p>
+                            <p class="mb-1">
+                                <span class="text-dark text-22"> TK:{{ $product->hit_count }}</span>
+
+                            </p>
+                            <p class="mb-0 text-18 mt-5">Sales Count: </p>
+                            <p class="mb-1">
+                                <span class="text-dark text-22"> TK:{{ $product->sales_count }}</span>
+
+                            </p>
                         </div>
                     </div>
                     <div class="row mt-5">
@@ -119,10 +134,10 @@
                                                 <a class="active me-2 my-sm-0 my-1 text-body" data-bs-toggle="tab"
                                                     href="#tab1">Specifications</a>
                                             </li>
-                                            <li>
+                                            {{-- <li>
                                                 <a class="me-2 my-sm-0 my-1 text-body" data-bs-toggle="tab"
                                                     href="#tab2">Dimensions</a>
-                                            </li>
+                                            </li> --}}
                                             <li>
                                                 <a class="text-body my-sm-0 my-1" data-bs-toggle="tab"
                                                     href="#tab3">Reviews</a>
@@ -140,7 +155,7 @@
                                                         Brand
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        Sample Brand
+                                                        {{ $product->brand->name }}
                                                     </div>
                                                 </li>
                                                 <li class=" row">
@@ -148,7 +163,7 @@
                                                         Category
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        IDLYHNY1116
+                                                        {{ $product->category->name }}
                                                     </div>
                                                 </li>
                                                 <li class="p-b-20 row">
@@ -156,7 +171,7 @@
                                                         Sub Category
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        Model Sample
+                                                        {{ @$product->subCategory->name }}
                                                     </div>
                                                 </li>
                                                 <li class="p-b-20 row">
@@ -164,7 +179,7 @@
                                                         Date
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        13-10-2021
+                                                        {{ $product->created_at->format('F j, Y g:i A') }}
                                                     </div>
                                                 </li>
                                                 <li class="p-b-20 row">
@@ -172,7 +187,9 @@
                                                         Size
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        Plastic
+                                                        @foreach ($product->productSizes as $key => $size)
+                                                            {{ $size->size->name }}{{ !$loop->last ? ',' : '' }}
+                                                        @endforeach
                                                     </div>
                                                 </li>
                                                 <li class="p-b-20 row">
@@ -180,12 +197,14 @@
                                                         Color
                                                     </div>
                                                     <div class="col-sm-3">
-                                                        Pale Pink
+                                                        @foreach ($product->ProductColors as $key => $color)
+                                                            {{ $color->color->name }}{{ !$loop->last ? ',' : '' }}
+                                                        @endforeach
                                                     </div>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="tab-pane" id="tab2">
+                                        {{-- <div class="tab-pane" id="tab2">
                                             <ul class="list-unstyled mb-0">
                                                 <li class="row">
                                                     <div class="col-sm-3 text-muted">
@@ -228,7 +247,7 @@
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                         <div class="tab-pane" id="tab3">
                                             <ul class="comment-section-main">
                                                 <li>

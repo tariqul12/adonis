@@ -34,16 +34,22 @@ class SliderController extends Controller
     {
         $request->validate(
             [
-                'title'       => 'required|string',
+                'title'       => 'nullable|string|max:255',
                 'product_id'  => 'required',
-                'sub_title'   => 'required|string',
-                'image'       => 'required',
+                'banner_type' => 'required',
+                'sub_title'   => 'nullable|string',
+                'image'       => 'required|image|mimes:jpeg,png,jpg|max:2048',
             ]
         );
         $slider              = new Slider();
-        $slider->title       = $request->title;
+        if ($request->title) {
+            $slider->title = $request->title;
+        }
         $slider->product_id  = $request->product_id;
-        $slider->sub_title   = $request->sub_title;
+        $slider->banner_type = $request->banner_type;
+        if ($request->sub_title) {
+            $slider->sub_title = $request->sub_title;
+        }
         $slider->image       = getFileUrl($request->file('image'), 'uploads/slider-images/');
         $slider->status      = $request->status;
         $slider->save();
@@ -65,6 +71,7 @@ class SliderController extends Controller
     public function edit(Slider $slider)
     {
         $products = Product::whereStatus(1)->latest()->get();
+
         return view('admin.slider.edit', compact('slider', 'products'));
     }
 
@@ -73,9 +80,14 @@ class SliderController extends Controller
      */
     public function update(Request $request, Slider $slider)
     {
-        $slider->title       = $request->title;
+        if ($request->title) {
+            $slider->title       = $request->title;
+        }
         $slider->product_id  = $request->product_id;
-        $slider->sub_title   = $request->sub_title;
+        $slider->banner_type = $request->banner_type;
+        if ($request->sub_title) {
+            $slider->sub_title   = $request->sub_title;
+        }
         if ($request->hasFile('image')) {
             $slider->image       = getFileUrl($request->file('image'), 'uploads/slider-images/');
         }

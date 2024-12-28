@@ -13,17 +13,12 @@ class WebsiteController extends Controller
 {
     public function index()
     {
-        return view('website.home.index', [
-            //'categories' => Category::all(), // 'categories' added globally into AppServiceProvider.php file
-            'sliders'             => Slider::where('status', 1)->get(),
-            'categories_list'     => Category::withCount('products')->limit(5)->get(), //category list and specific category's total product count
-            'trendingProducts'    => Product::latest()->take(8)->get(),
-            'randomProducts'      => Product::inRandomOrder()->limit(6)->get(),
-            'newArrivalsProducts' => Product::latest()->limit(5)->get(),
-            'discountProducts'    => Product::inRandomOrder()->limit(3)->get(),
-            'featuredProducts'    => Product::inRandomOrder()->limit(3)->get(),
-            'sellingProducts'     => Product::inRandomOrder()->limit(3)->get(),
-        ]);
+        $bannerSlider   = Slider::where(['status' => 1, 'banner_type' => 0])->orderBy('id', 'desc')->limit(3)->get();
+        $bannerSides    = Slider::where(['status' => 1, 'banner_type' => 1])->orderBy('id', 'desc')->limit(2)->get();
+        $featuredSlider = Slider::where(['status' => 1, 'banner_type' => 3])->orderBy('id', 'desc')->first();
+        $popularSlider  = Slider::where(['status' => 1, 'banner_type' => 2])->orderBy('id', 'desc')->first();
+        $footerSlider   = Slider::where(['status' => 1, 'banner_type' => 5])->orderBy('id', 'desc')->first();
+        return view('website.home.index', compact('bannerSlider', 'bannerSides', 'featuredSlider', 'popularSlider', 'footerSlider'));
     }
 
     public function category($id)
@@ -75,6 +70,7 @@ class WebsiteController extends Controller
 
     public function about()
     {
+       
         return view('website.about.about');
     }
 
