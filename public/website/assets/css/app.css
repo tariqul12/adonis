@@ -434,7 +434,7 @@ Helpers
 }
 
 .bg-color-primary {
-    background-color: #fbf723;
+    background-color: #fec530;
 }
 
 .bg-color-sec {
@@ -1028,7 +1028,7 @@ Elements
 
 .cus-btn {
     position: relative;
-    background-color: #fbf723;
+    background-color: #fec530;
     padding: clamp(10px, 0.938vw, 24px) clamp(24px, 1.667vw, 54px);
     border-radius: 5px;
     /* border: 1px solid #ffc617; */
@@ -1166,10 +1166,10 @@ Elements
 
 .cus-btn-3 {
     position: relative;
-    background-color: #fbf723;
+    background-color: #fec530;
     padding: clamp(8px, 0.625vw, 24px) clamp(24px, 1.667vw, 54px);
     border-radius: 5px;
-    border: 1px solid #fbf723;
+    border: 1px solid #fec530;
     overflow: hidden;
     transition: 0.3s;
     z-index: 1;
@@ -1232,7 +1232,7 @@ Elements
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(5deg);
-    background: #fbf723;
+    background: #fec530;
     transition: 0.5s ease;
     display: block;
     z-index: -1;
@@ -1240,7 +1240,7 @@ Elements
 .cus-btn-3.sec:hover {
     color: #0a0a0a;
     transition: all 0.5s ease-in-out;
-    border: 1px solid #fbf723;
+    border: 1px solid #fec530;
 }
 .cus-btn-3.sec:hover::before {
     width: 105%;
@@ -3755,7 +3755,7 @@ header .header-section .mixin-container .input-field button {
 }
 .featured-product-card:hover .product-desc .product-title {
     transition: all 0.5s ease-in-out;
-    color: #006937;
+    color: #fec530;
 }
 .featured-product-card:hover .image-box .sale-label {
     opacity: 1;
@@ -3912,7 +3912,7 @@ header .header-section .mixin-container .input-field button {
 }
 .featured-product-list:hover .product-desc .product-title {
     transition: all 0.5s ease-in-out;
-    color: #006937;
+    color: #fec530;
 }
 
 .inner-banner {

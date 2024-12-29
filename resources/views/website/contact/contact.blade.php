@@ -19,15 +19,6 @@
 
     <section class="contact-section py-40">
         <div class="container-fluid">
-            <!-- Location Map -->
-            <div class="map mb-16">
-                <div class="map-wrapper">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d1534.4504599197367!2d90.41436560286989!3d23.83428278015984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d23.834024891169797!2d90.41496555520061!5e0!3m2!1sen!2sbd!4v1735035948325!5m2!1sen!2sbd"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-            <!-- Location Map -->
 
             <!-- Contact Wrapper Start -->
             <div class="contact-wrapper">
@@ -222,6 +213,15 @@
                 </div>
             </div>
             <!-- Contact Wrapper End -->
+            <!-- Location Map -->
+            <div class="map mb-16">
+                <div class="map-wrapper">
+                    <iframe src="{{ $companyInfo->google_map_api_link }}" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <!-- Location Map -->
+
         </div>
     </section>
 @endsection

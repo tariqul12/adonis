@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-header border-bottom">
                     <h3 class="card-title">Create Sub Category Form</h3>
-                    <a class="btn btn-info ms-auto" href="{{ route('sub-category.create') }}">add
+                    <a class="btn btn-info ms-auto" href="{{ route('sub-category.index') }}">All
                         Sub Category</a>
                 </div>
                 <div class="card-body">

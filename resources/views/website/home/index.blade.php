@@ -13,7 +13,7 @@
                     <div id="bannerSlider" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <!-- Slider 1 -->
-                            @foreach ($bannerSlider as $slider)    
+                            @foreach ($bannerSlider as $slider)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                     <div class="banner-right">
                                         <div class="banner-content-right"
@@ -72,79 +72,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="categories-wrapper">
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img src="{{ asset('/') }}website/assets/media/images/bag.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Bag</p>
-                        <p class="dark-gray">8 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img src="{{ asset('/') }}website/assets/media/images/watch.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Watch</p>
-                        <p class="dark-gray">4 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img height="70" width="70"
-                                src="{{ asset('/') }}website/assets/media/images/saree.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Saree</p>
-                        <p class="dark-gray">6 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img height="60" width="70"
-                                src="{{ asset('/') }}website/assets/media/images/panjabi.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Panjabi</p>
-                        <p class="dark-gray">7 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img width="70" src="{{ asset('/') }}website/assets/media/images/jackate.png"
-                                alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Jackate</p>
-                        <p class="dark-gray">8 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img src="{{ asset('/') }}website/assets/media/images/watch.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Watch</p>
-                        <p class="dark-gray">3 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img src="{{ asset('/') }}website/assets/media/images/bag.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Bag</p>
-                        <p class="dark-gray">2 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img src="{{ asset('/') }}website/assets/media/images/saree.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Saree</p>
-                        <p class="dark-gray">12 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img src="{{ asset('/') }}website/assets/media/images/watch.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Watch</p>
-                        <p class="dark-gray">4 Product</p>
-                    </a>
-                    <a href="shop-grid-sidebar-1.html" class="category-block">
-                        <div class="image-box mb-12">
-                            <img src="{{ asset('/') }}website/assets/media/images/bag.png" alt="" />
-                        </div>
-                        <p class="fw-500 mb-4p">Bag</p>
-                        <p class="dark-gray">8 Product</p>
-                    </a>
+                    @foreach ($homeCategory as $category)
+                        <a href="shop-grid-sidebar-1.html" class="category-block">
+                            <div class="image-box mb-12">
+                                <img src="{{ asset($category->image) }}" alt="" class="img-fluid rounded-circle"
+                                    width="150" height="150">
+                            </div>
+                            <p class="fw-500 mb-4p">{{ $category->name }}</p>
+                            <p class="dark-gray">8 Product</p>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -157,7 +94,8 @@
             <div class="row row-gap-3">
                 <div class="col-xl-3">
                     <div class="featured-item text-center">
-                        <div class="background-image" style="background-image: url('{{asset($featuredSlider->image)}}');"></div>
+                        <div class="background-image" style="background-image: url('{{ asset($featuredSlider->image) }}');">
+                        </div>
                         {{-- <div class="content">
                             <h4 class="fw-500 text-dark mb-32">Special Offer</h4> 
                             <h5 class="fw-500 text-dark mb-20 text-center">Aero Control Pro Joysticks</h5>
@@ -168,1221 +106,64 @@
                 <div class="col-xl-9">
                     <div class="top-bar mb-16">
                         <h5>Feature Products</h5>
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="all-tab" data-bs-toggle="tab"
-                                    data-bs-target="#all" type="button" role="tab" aria-controls="all"
-                                    aria-selected="true">
-                                    All Products
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="laptop-tab" data-bs-toggle="tab" data-bs-target="#laptop"
-                                    type="button" role="tab" aria-controls="laptop" aria-selected="false">
-                                    Laptop
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="keyboard-tab" data-bs-toggle="tab"
-                                    data-bs-target="#keyboard" type="button" role="tab" aria-controls="keyboard"
-                                    aria-selected="false">
-                                    Keyboard
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="mouse-tab" data-bs-toggle="tab" data-bs-target="#mouse"
-                                    type="button" role="tab" aria-controls="mouse" aria-selected="false">
-                                    Mouse
-                                </button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="headphone-tab" data-bs-toggle="tab"
-                                    data-bs-target="#headphone" type="button" role="tab" aria-controls="headphone"
-                                    aria-selected="false">
-                                    Headphone
-                                </button>
-                            </li>
-                        </ul>
+
                     </div>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                             <div class="row row-gap-3">
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/12.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                @foreach ($featureProducts as $product)
+                                    <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
+                                        <div class="featured-product-card bg-white br-10">
+                                            <div class="image-box mb-16">
+                                                <span class="sale-label">-12%</span>
+                                                <a href="#"><img src="{{ asset($product->image) }}"
+                                                        class="product-image" height="200" alt="" /></a>
+                                                <div class="side-icons">
+                                                    <ul class="list-unstyled">
+                                                        <li>
+                                                            <a href="#">
+                                                                <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
+                                                                    alt="" />
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="btn" data-bs-toggle="modal"
+                                                                data-bs-target="#productQuickView">
+                                                                <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
+                                                                    alt="" />
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="zui-wrapper-button"
+                                                                data-bs-toggle="modal" data-bs-target="#comparepopup">
+                                                                <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
+                                                                    alt="" />
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Elite Audio Gear</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$85.00
+                                            <div class="product-desc">
+                                                <h6 class="product-title mb-8">
+                                                    <a
+                                                        href="#">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
                                                 </h6>
+                                                <div class="text mb-12">
+                                                    <p class="light-gray">
+                                                        {{ substr($product->short_description, 0, 30) }}
+                                                    </p>
+                                                </div>
+                                                <div class="rating-star mb-16 bg-white">
+                                                    <h6>
+                                                        <span class="text-decoration-line-through light-gray">
+                                                            ${{ $product->regular_price }}</span>&nbsp;&nbsp;${{ $product->selling_price }}
+                                                    </h6>
+                                                </div>
+                                                <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                             </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Bright LCD</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/11.jpg"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Nexus Mobile Pro 256GB</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 d-xxl-block d-lg-none">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/10.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Tech Book Plus</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $1350.00</span>&nbsp;&nbsp;$$1250.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="laptop" role="tabpanel" aria-labelledby="laptop-tab">
-                            <div class="row row-gap-3">
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/12.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Elite Audio Gear</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$85.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Bright LCD</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/11.jpg"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Nexus Mobile Pro 256GB</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 d-xxl-block d-lg-none">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/10.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Tech Book Plus</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $1350.00</span>&nbsp;&nbsp;$$1250.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="keyboard" role="tabpanel" aria-labelledby="keyboard-tab">
-                            <div class="row row-gap-3">
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/12.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Elite Audio Gear</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$85.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Bright LCD</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/11.jpg"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Nexus Mobile Pro 256GB</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 d-xxl-block d-lg-none">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/10.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Tech Book Plus</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $1350.00</span>&nbsp;&nbsp;$$1250.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="mouse" role="tabpanel" aria-labelledby="mouse-tab">
-                            <div class="row row-gap-3">
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/12.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Elite Audio Gear</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$85.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Bright LCD</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/11.jpg"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Nexus Mobile Pro 256GB</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 d-xxl-block d-lg-none">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/10.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Tech Book Plus</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $1350.00</span>&nbsp;&nbsp;$$1250.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="headphone" role="tabpanel" aria-labelledby="headphone-tab">
-                            <div class="row row-gap-3">
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/product-1.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Elite Audio Gear</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$85.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/product-2.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Bright LCD</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/product-4.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Nexus Mobile Pro 256GB</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6 d-xxl-block d-lg-none">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                            <span class="sale-label">-12%</span>
-                                            <a href="shop-detail.html"><img
-                                                    src="{{ asset('/') }}website/assets/media/products/product-5b.png"
-                                                    class="product-image" alt="" /></a>
-                                            <div class="side-icons">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <a href="wishlist.html">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                                            data-bs-target="#productQuickView">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="zui-wrapper-button"
-                                                            data-bs-toggle="modal" data-bs-target="#comparepopup">
-                                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                                alt="" />
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a href="shop-detail.html">Ultra Tech Book Plus</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    Lorem ipsum dolor sit amet consectetur. Id
-                                                    viverra cursus enim risus mattis urnanullam quis
-                                                    magna. Ligula maecenas integer diam risus
-                                                    rhoncus at. Viverra a consectetur ac lobortis.
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h5 class="color-sec mb-24">
-                                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                        class="text-16 fw-400 dark-black">(80)</span>
-                                                </h5>
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        $1350.00</span>&nbsp;&nbsp;$$1250.00
-                                                </h6>
-                                            </div>
-                                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -1426,8 +207,8 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="headphone-pro-tab" data-bs-toggle="tab"
-                            data-bs-target="#headphone-pro" type="button" role="tab"
-                            aria-controls="headphone-pro" aria-selected="false">
+                            data-bs-target="#headphone-pro" type="button" role="tab" aria-controls="headphone-pro"
+                            aria-selected="false">
                             Headphone
                         </button>
                     </li>
@@ -1437,354 +218,59 @@
                 <div class="tab-pane fa de show active" id="all-product" role="tabpanel"
                     aria-labelledby="all-product-tab">
                     <div class="row row-gap-3">
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal"
-                                                    data-bs-target="#productQuickView">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                                    data-bs-target="#comparepopup">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                        </ul>
+                        @foreach ($popularProducts as $product)
+                            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
+                                <div class="featured-product-card bg-white br-10">
+                                    <div class="image-box mb-16">
+                                        <span class="sale-label">-12%</span>
+                                        <a href="#"><img src="{{ asset($product->image) }}" class="product-image"
+                                                height="200" alt="" /></a>
+                                        <div class="side-icons">
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
+                                                            alt="" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#productQuickView">
+                                                        <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
+                                                            alt="" />
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
+                                                        data-bs-target="#comparepopup">
+                                                        <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
+                                                            alt="" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Radiant View LCD</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
+                                    <div class="product-desc">
+                                        <h6 class="product-title mb-8">
+                                            <a
+                                                href="#">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
                                         </h6>
+                                        <div class="text mb-12">
+                                            <p class="light-gray">
+                                                {{ substr($product->short_description, 0, 30) }}
+                                            </p>
+                                        </div>
+                                        <div class="rating-star mb-16 bg-white">
+                                            <h6>
+                                                <span class="text-decoration-line-through light-gray">
+                                                    ${{ $product->regular_price }}</span>&nbsp;&nbsp;${{ $product->selling_price }}
+                                            </h6>
+                                        </div>
+                                        <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal"
-                                                    data-bs-target="#productQuickView">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                                    data-bs-target="#comparepopup">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Pure Bass Headphones</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/watch.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal"
-                                                    data-bs-target="#productQuickView">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                                    data-bs-target="#comparepopup">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Supreme Tech Phone</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal"
-                                                    data-bs-target="#productQuickView">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                                    data-bs-target="#comparepopup">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Aero Pro Joysticks</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal"
-                                                    data-bs-target="#productQuickView">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                                    data-bs-target="#comparepopup">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Hyper Glide Mouse</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                    <span class="sale-label">-12%</span>
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/bag.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        <ul class="list-unstyled">
-                                            <li>
-                                                <a href="wishlist.html">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="btn" data-bs-toggle="modal"
-                                                    data-bs-target="#productQuickView">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                                    data-bs-target="#comparepopup">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                        alt="" />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">iPad Standard Plus</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="tab-pane fade" id="laptop-pro" role="tabpanel" aria-labelledby="laptop-pro-tab">
@@ -3201,8 +1687,7 @@
     <!-- Popular Product End -->
 
     <!-- Inner Banner Start -->
-    <section class="inner-banner"
-        style="background-image: url({{ asset($popularSlider->image) }})">
+    <section class="inner-banner" style="background-image: url({{ asset($popularSlider->image) }})">
         {{-- <div class="container-fluid">
             <div class="inner-content">
                 <div class="inner-text">
@@ -3228,7 +1713,7 @@
     <section class="recommended-product bg-lightest-gray py-40">
         <div class="container-fluid">
             <div class="top-bar mb-16">
-                <h5>Recommended Products</h5>
+                <h5>New Arrivals Products</h5>
                 <a href="shop-grid-sidebar-1.html" class="cus-btn-arrow">
                     Show All
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
@@ -3240,354 +1725,60 @@
                 </a>
             </div>
             <div class="row row-gap-3">
-                <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                    <div class="featured-product-card bg-white br-10">
-                        <div class="image-box mb-16">
-                            <span class="sale-label">-12%</span>
-                            <a href="shop-detail.html"><img
-                                    src="{{ asset('/') }}website/assets/media/products/13.png"
-                                    class="product-image" alt="" /></a>
-                            <div class="side-icons">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="wishlist.html">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                </ul>
+                @foreach ($newarrivalsProducts as $product)
+                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
+                        <div class="featured-product-card bg-white br-10">
+                            <div class="image-box mb-16">
+                                <span class="sale-label">-12%</span>
+                                <a href="#"><img src="{{ asset($product->image) }}" class="product-image"
+                                        height="200" alt="" /></a>
+                                <div class="side-icons">
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="#">
+                                                <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
+                                                    alt="" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="btn" data-bs-toggle="modal"
+                                                data-bs-target="#productQuickView">
+                                                <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
+                                                    alt="" />
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
+                                                data-bs-target="#comparepopup">
+                                                <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
+                                                    alt="" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="product-desc">
-                            <h6 class="product-title mb-8">
-                                <a href="shop-detail.html">Radiant View LCD</a>
-                            </h6>
-                            <div class="text mb-12">
-                                <p class="light-gray">
-                                    Lorem ipsum dolor sit amet consectetur. Id viverra
-                                    cursus enim risus mattis urnanullam quis magna. Ligula
-                                    maecenas integer diam risus rhoncus at. Viverra a
-                                    consectetur ac lobortis.
-                                </p>
-                            </div>
-                            <div class="rating-star mb-16 bg-white">
-                                <h5 class="color-sec mb-24">
-                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                        class="text-16 fw-400 dark-black">(80)</span>
-                                </h5>
-                                <h6>
-                                    <span class="text-decoration-line-through light-gray">
-                                        $12.00</span>&nbsp;&nbsp;$10.00
+                            <div class="product-desc">
+                                <h6 class="product-title mb-8">
+                                    <a
+                                        href="#">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
                                 </h6>
+                                <div class="text mb-12">
+                                    <p class="light-gray">
+                                        {{ substr($product->short_description, 0, 30) }}
+                                    </p>
+                                </div>
+                                <div class="rating-star mb-16 bg-white">
+                                    <h6>
+                                        <span class="text-decoration-line-through light-gray">
+                                            ${{ $product->regular_price }}</span>&nbsp;&nbsp;${{ $product->selling_price }}
+                                    </h6>
+                                </div>
+                                <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                             </div>
-                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
                         </div>
                     </div>
-                </div>
-                <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                    <div class="featured-product-card bg-white br-10">
-                        <div class="image-box mb-16">
-                            <span class="sale-label">-12%</span>
-                            <a href="shop-detail.html"><img
-                                    src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                    class="product-image" alt="" /></a>
-                            <div class="side-icons">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="wishlist.html">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-desc">
-                            <h6 class="product-title mb-8">
-                                <a href="shop-detail.html">Pure Bass Headphones</a>
-                            </h6>
-                            <div class="text mb-12">
-                                <p class="light-gray">
-                                    Lorem ipsum dolor sit amet consectetur. Id viverra
-                                    cursus enim risus mattis urnanullam quis magna. Ligula
-                                    maecenas integer diam risus rhoncus at. Viverra a
-                                    consectetur ac lobortis.
-                                </p>
-                            </div>
-                            <div class="rating-star mb-16 bg-white">
-                                <h5 class="color-sec mb-24">
-                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                        class="text-16 fw-400 dark-black">(80)</span>
-                                </h5>
-                                <h6>
-                                    <span class="text-decoration-line-through light-gray">
-                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                </h6>
-                            </div>
-                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                    <div class="featured-product-card bg-white br-10">
-                        <div class="image-box mb-16">
-                            <span class="sale-label">-12%</span>
-                            <a href="shop-detail.html"><img
-                                    src="{{ asset('/') }}website/assets/media/products/watch.png"
-                                    class="product-image" alt="" /></a>
-                            <div class="side-icons">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="wishlist.html">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-desc">
-                            <h6 class="product-title mb-8">
-                                <a href="shop-detail.html">Supreme Tech Phone</a>
-                            </h6>
-                            <div class="text mb-12">
-                                <p class="light-gray">
-                                    Lorem ipsum dolor sit amet consectetur. Id viverra
-                                    cursus enim risus mattis urnanullam quis magna. Ligula
-                                    maecenas integer diam risus rhoncus at. Viverra a
-                                    consectetur ac lobortis.
-                                </p>
-                            </div>
-                            <div class="rating-star mb-16 bg-white">
-                                <h5 class="color-sec mb-24">
-                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                        class="text-16 fw-400 dark-black">(80)</span>
-                                </h5>
-                                <h6>
-                                    <span class="text-decoration-line-through light-gray">
-                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                </h6>
-                            </div>
-                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                    <div class="featured-product-card bg-white br-10">
-                        <div class="image-box mb-16">
-                            <span class="sale-label">-12%</span>
-                            <a href="shop-detail.html"><img
-                                    src="{{ asset('/') }}website/assets/media/products/13.png"
-                                    class="product-image" alt="" /></a>
-                            <div class="side-icons">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="wishlist.html">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-desc">
-                            <h6 class="product-title mb-8">
-                                <a href="shop-detail.html">Aero Pro Joysticks</a>
-                            </h6>
-                            <div class="text mb-12">
-                                <p class="light-gray">
-                                    Lorem ipsum dolor sit amet consectetur. Id viverra
-                                    cursus enim risus mattis urnanullam quis magna. Ligula
-                                    maecenas integer diam risus rhoncus at. Viverra a
-                                    consectetur ac lobortis.
-                                </p>
-                            </div>
-                            <div class="rating-star mb-16 bg-white">
-                                <h5 class="color-sec mb-24">
-                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                        class="text-16 fw-400 dark-black">(80)</span>
-                                </h5>
-                                <h6>
-                                    <span class="text-decoration-line-through light-gray">
-                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                </h6>
-                            </div>
-                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                    <div class="featured-product-card bg-white br-10">
-                        <div class="image-box mb-16">
-                            <span class="sale-label">-12%</span>
-                            <a href="shop-detail.html"><img
-                                    src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                    class="product-image" alt="" /></a>
-                            <div class="side-icons">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="wishlist.html">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-desc">
-                            <h6 class="product-title mb-8">
-                                <a href="shop-detail.html">Hyper Glide Mouse</a>
-                            </h6>
-                            <div class="text mb-12">
-                                <p class="light-gray">
-                                    Lorem ipsum dolor sit amet consectetur. Id viverra
-                                    cursus enim risus mattis urnanullam quis magna. Ligula
-                                    maecenas integer diam risus rhoncus at. Viverra a
-                                    consectetur ac lobortis.
-                                </p>
-                            </div>
-                            <div class="rating-star mb-16 bg-white">
-                                <h5 class="color-sec mb-24">
-                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                        class="text-16 fw-400 dark-black">(80)</span>
-                                </h5>
-                                <h6>
-                                    <span class="text-decoration-line-through light-gray">
-                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                </h6>
-                            </div>
-                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                    <div class="featured-product-card bg-white br-10">
-                        <div class="image-box mb-16">
-                            <span class="sale-label">-12%</span>
-                            <a href="shop-detail.html"><img
-                                    src="{{ asset('/') }}website/assets/media/products/bag.png"
-                                    class="product-image" alt="" /></a>
-                            <div class="side-icons">
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a href="wishlist.html">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-desc">
-                            <h6 class="product-title mb-8">
-                                <a href="shop-detail.html">iPad Standard Plus</a>
-                            </h6>
-                            <div class="text mb-12">
-                                <p class="light-gray">
-                                    Lorem ipsum dolor sit amet consectetur. Id viverra
-                                    cursus enim risus mattis urnanullam quis magna. Ligula
-                                    maecenas integer diam risus rhoncus at. Viverra a
-                                    consectetur ac lobortis.
-                                </p>
-                            </div>
-                            <div class="rating-star mb-16 bg-white">
-                                <h5 class="color-sec mb-24">
-                                    ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                        class="text-16 fw-400 dark-black">(80)</span>
-                                </h5>
-                                <h6>
-                                    <span class="text-decoration-line-through light-gray">
-                                        $12.00</span>&nbsp;&nbsp;$10.00
-                                </h6>
-                            </div>
-                            <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </div>
     </section>
@@ -3989,8 +2180,7 @@
     <!-- Blog Section End -->
 
     <!-- Inner Banner Start -->
-    <section class="inner-banner"
-        style="background-image: url({{ asset($footerSlider->image) }});">
+    <section class="inner-banner" style="background-image: url({{ asset($footerSlider->image) }});">
         {{-- <div class="container-fluid">
             <div class="inner-content v-2">
                 <div class="inner-text">

@@ -18,7 +18,11 @@ class WebsiteController extends Controller
         $featuredSlider = Slider::where(['status' => 1, 'banner_type' => 3])->orderBy('id', 'desc')->first();
         $popularSlider  = Slider::where(['status' => 1, 'banner_type' => 2])->orderBy('id', 'desc')->first();
         $footerSlider   = Slider::where(['status' => 1, 'banner_type' => 5])->orderBy('id', 'desc')->first();
-        return view('website.home.index', compact('bannerSlider', 'bannerSides', 'featuredSlider', 'popularSlider', 'footerSlider'));
+        $homeCategory   = Category::whereStatus(1)->orderBy('id','desc')->limit(10)->get();
+        $featureProducts = Product::where(['status'=> 1,'feature_status'=>1])->orderBy('id','desc')->limit(4)->get();
+        $popularProducts = Product::where(['status'=> 1,'popular_status'=>1])->orderBy('id','desc')->limit(6)->get();
+        $newarrivalsProducts = Product::where(['status'=> 1])->orderBy('id','desc')->limit(6)->get();
+        return view('website.home.index', compact('bannerSlider', 'bannerSides', 'featuredSlider', 'popularSlider', 'footerSlider', 'homeCategory', 'featureProducts','popularProducts','newarrivalsProducts'));
     }
 
     public function category($id)
@@ -52,7 +56,8 @@ class WebsiteController extends Controller
     }
     public function shop()
     {
-        return view('website.shop.index');
+        $products = Product::where('status', 1)->get();
+        return view('website.shop.index',compact('products'));
     }
 
     //ajax search

@@ -18,6 +18,8 @@
             <div class="card">
                 <div class="card-header border-bottom">
                     <h3 class="card-title">Create Unit Form</h3>
+                    <a class="btn btn-info ms-auto" href="{{ route('unit.index') }}">All
+                        Unit</a>
                 </div>
                 <div class="card-body">
                     <p class="text-muted">{{ session('message') }}</p>

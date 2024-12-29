@@ -54,13 +54,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_id'       => 'required|integer|exists:categories,id',
-            'sub_category_id'   => 'nullable|integer|exists:sub_categories,id',
-            'brand_id'          => 'nullable|integer|exists:brands,id',
-            'unit_id'           => 'required|integer|exists:units,id',
+            'category_id'       => 'required|integer',
+            'sub_category_id'   => 'nullable|integer',
+            'brand_id'          => 'nullable|integer',
+            'unit_id'           => 'required|integer',
             'name'              => 'required|string|unique:products,name',
             'code'              => 'required|string|unique:products,code',
-            'short_description' => 'nullable|string|max:255',
+            'short_description' => 'nullable|string',
             'long_description'  => 'nullable|string',
             'regular_price'     => 'required|integer|min:0',
             'selling_price'     => 'required|integer|min:0',
@@ -94,6 +94,8 @@ class ProductController extends Controller
         $product->meta_description  = $request->meta_description;
         $product->image             = getFileUrl($request->file('image'), 'uploads/product-images/');
         $product->status            = $request->status;
+        $product->feature_status    = $request->feature_status;
+        $product->popular_status    = $request->popular_status;
         $product->save();
 
         foreach ($request->file('other_image') as $image) {
@@ -162,9 +164,14 @@ class ProductController extends Controller
         $product->meta_title        = $request->meta_title;
         $product->meta_description  = $request->meta_description;
         if ($request->hasFile('image')) {
+            if(file_exists($product->image)){
+                unlink($product->image);
+            }
             $product->image         = getFileUrl($request->file('image'), 'uploads/product-images/');
         }
         $product->status            = $request->status;
+        $product->feature_status    = $request->feature_status;
+        $product->popular_status    = $request->popular_status;
         $product->save();
 
 

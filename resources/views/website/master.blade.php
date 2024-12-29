@@ -36,7 +36,7 @@
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
             <div class="logo-box">
                 <a href="index.html" aria-label="logo image"><img
-                        src="{{ asset('/') }}website/assets/media/mobile-logo.png" alt="" /></a>
+                        src="{{ asset('/') }}website/assets/media/logo-2.png" alt="" /></a>
             </div>
             <div class="mobile-nav__container"></div>
             <ul class="mobile-nav__contact list-unstyled">

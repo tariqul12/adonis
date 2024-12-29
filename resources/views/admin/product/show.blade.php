@@ -79,7 +79,7 @@
                             <h3 class="mb-2 mt-xl-0 mt-4">{{ $product->name }}</h3>
                             <p class="mb-0 text-18 mt-5">Code: </p>
                             <p class="mb-1">
-                                <span class="text-dark text-22"> TK:{{ $product->code }}</span>
+                                <span class="text-dark text-22"> {{ $product->code }}</span>
 
                             </p>
                             <p class="mb-0 text-18 mt-5">Salling Price:</p>
@@ -108,12 +108,12 @@
                             </div>
                             <p class="mb-0 text-18 mt-5">Hit Count: </p>
                             <p class="mb-1">
-                                <span class="text-dark text-22"> TK:{{ $product->hit_count }}</span>
+                                <span class="text-dark text-22">{{ $product->hit_count }}</span>
 
                             </p>
                             <p class="mb-0 text-18 mt-5">Sales Count: </p>
                             <p class="mb-1">
-                                <span class="text-dark text-22"> TK:{{ $product->sales_count }}</span>
+                                <span class="text-dark text-22">{{ $product->sales_count }}</span>
 
                             </p>
                         </div>

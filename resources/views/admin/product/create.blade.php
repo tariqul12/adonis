@@ -26,6 +26,15 @@
                     <form class="form-horizontal" action="{{ route('product.store') }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row mb-4">
@@ -262,13 +271,36 @@
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="row mb-4">
-                            <label class=" form-label">Publication Status</label>
-                            <div class="">
-                                <label><input name="status" type="radio" checked value="1">Published</label>
-                                <label><input name="status" type="radio" value="0">Unpublished</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="row mb-4">
+                                    <label class=" form-label">Publication Status</label>
+                                    <div class="">
+                                        <label><input name="status" type="radio" checked
+                                                value="1">Published</label>
+                                        <label><input name="status" type="radio" value="0">Unpublished</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row mb-4">
+                                    <label class=" form-label">Popular Status</label>
+                                    <div class="">
+                                        <label><input name="popular_status" type="radio" value="1">Yes</label>
+                                        <label><input name="popular_status" type="radio" checked
+                                                value="0">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row mb-4">
+                                    <label class=" form-label">Feature Status</label>
+                                    <div class="">
+                                        <label><input name="feature_status" type="radio" value="1">Yes</label>
+                                        <label><input name="feature_status" type="radio" checked
+                                                value="0">No</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Create New Product</button>

@@ -257,14 +257,45 @@
                             </div>
                         </div>
 
-
-                        <div class="row mb-4">
-                            <label class=" form-label">Publication Status</label>
-                            <div class="">
-                                <label><input name="status" type="radio" {{ $product->status == 1 ? 'checked' : '' }}
-                                        value="1">Published</label>
-                                <label><input name="status" type="radio" {{ $product->status == 0 ? 'checked' : '' }}
-                                        value="0">Unpublished</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="row mb-4">
+                                    <label class=" form-label">Publication Status</label>
+                                    <div class="">
+                                        <label><input name="status" type="radio"
+                                                {{ $product->status == 1 ? 'checked' : '' }}
+                                                value="1">Published</label>
+                                        <label><input name="status" type="radio"
+                                                {{ $product->status == 0 ? 'checked' : '' }}
+                                                value="0">Unpublished</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row mb-4">
+                                    <label class=" form-label">Popular Status</label>
+                                    <div class="">
+                                        <label><input name="popular_status" type="radio"
+                                                {{ $product->popular_status == 1 ? 'checked' : '' }}
+                                                value="1">Yes</label>
+                                        <label><input name="popular_status" type="radio"
+                                                {{ $product->popular_status == 0 ? 'checked' : '' }}
+                                                value="0">No</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row mb-4">
+                                    <label class=" form-label">Feature Status</label>
+                                    <div class="">
+                                        <label><input name="feature_status" type="radio"
+                                                {{ $product->feature_status == 1 ? 'checked' : '' }}
+                                                value="1">Yes</label>
+                                        <label><input name="feature_status" type="radio"
+                                                {{ $product->feature_status == 0 ? 'checked' : '' }}
+                                                value="0">No</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Update Product Info</button>

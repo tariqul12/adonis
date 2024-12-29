@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('sub_category_id')->nullable();
-            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade'); //for category delete cascade
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); //for category + subcategory delete cascade
+            $table->integer('category_id');
+            $table->integer('sub_category_id')->nullable();
             $table->integer('brand_id')->nullable();
             $table->integer('unit_id');
             $table->string('name');
@@ -31,7 +29,9 @@ return new class extends Migration
             $table->text('image');
             $table->integer('hit_count')->default(0);
             $table->integer('sales_count')->default(0);
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('feature_status')->default(0);
+            $table->tinyInteger('popular_status')->default(0);
             $table->timestamps();
         });
     }

@@ -50,11 +50,20 @@
                                         {{-- <td></td> --}}
                                         <td>
                                             @if ($product->status == 1)
-                                                <span class="badge rounded-pill bg-secondary-gradient my-1">Published</span>
+                                                <span class="badge bg-info my-1">Published</span>
                                             @else
-                                                <span class="badge rounded-pill bg-danger-gradient my-1">Unpublished</span>
+                                                <span class="badge bg-danger my-1">Unpublished</span>
                                             @endif
-
+                                            @if ($product->feature_status == 1)
+                                                <span class="badge bg-info my-1">Featured</span>
+                                            @else
+                                                <span class="badge bg-danger my-1">Not Featured</span>
+                                            @endif
+                                            @if ($product->popular_status == 1)
+                                                <span class="badge bg-info my-1">Popular</span>
+                                            @else
+                                                <span class="badge bg-danger my-1">Not Popular</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <a href="{{ route('product.show', $product->id) }}" class="btn btn-info btn-sm">
