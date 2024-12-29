@@ -44,15 +44,8 @@ class WebsiteController extends Controller
     public function product($id)
     {
         $product          = Product::find($id);
-        $related_products = Product::where('sub_category_id', $product->sub_category_id)
-            ->where('id', '!=', $id) // Exclude the current product
-            ->limit(8)
-            ->get();
-        return view('website.product.index', [
-            //'categories' => Category::all(), // 'categories' added globally into AppServiceProvider.php file
-            'product'          => $product,
-            'related_products' => $related_products
-        ]);
+        $related_products = Product::where('category_id', $product->category_id)->limit(6)->get();
+        return view('website.product.index', compact('product','related_products'));
     }
     public function shop()
     {

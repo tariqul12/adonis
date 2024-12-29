@@ -3,24 +3,25 @@
       <div class="header-section">
           <div class="header-top bg-color-primary">
               <div class="header-start d-lg-block d-none">
-                  <p class="fw-500 dark">Welcome to Worldwide Adonis</p>
-              </div>
-              <div class="header-end">
-                  <a href="contact.html" class="top-bar-links d-sm-flex d-none text-dark align-items-center gap-2">
+
+                  <a href="{{ route('contact') }}"
+                      class="top-bar-links d-sm-flex d-none text-dark align-items-center gap-2">
                       <i class="fa-solid fa-location-dot"></i>
                       <div>
-                          <p class="fw-500 text-dark">Store Locator</p>
+
+                          <p class="fw-500 text-dark">{{ $companyInfo->company_address }}</p>
                       </div>
                   </a>
-                  <a href="tracking.html" class="top-bar-links d-flex align-items-center text-dark gap-2">
-                      <i class="fa-solid fa-truck-fast"></i>
-                      <p class="fw-500 text-dark">Order Tracking</p>
+              </div>
+              <div class="header-end">
+                  <i class="fas fa-envelope"></i>
+                  <p class="fw-500 dark">{{ $companyInfo->contact_email }}</p>
+                  <a href="#" class="top-bar-links d-flex align-items-center text-dark gap-2">
+                      <i class="fas fa-phone-alt"></i>
+                      <p class="fw-500 text-dark">{{ $companyInfo->contact_phone }}</p>
                   </a>
-                  <div class="d-sm-block d-none">
-                      <a href="about.html"><span class="fw-500 top-bar-links text-dark">FAQs</span></a>
-                  </div>
                   <!-- <div class="vr-line d-sm-block d-none"></div> -->
-                  <div class="drop-container">
+                  {{-- <div class="drop-container">
                       <div class="wrapper-dropdown text-dark" id="dropdown">
                           <span class="selected-display" id="destination">English</span>
                           <svg id="drp-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -35,23 +36,7 @@
                               <li class="item dark-black">Arabic</li>
                           </ul>
                       </div>
-                  </div>
-                  <div class="drop-container">
-                      <div class="wrapper-dropdown Text-dark" id="dropdown2">
-                          <span class="selected-display" id="destination2">USD</span>
-                          <svg id="drp-arrow2" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                              xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                              <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                          </svg>
-                          <ul class="topbar-dropdown bg-lightest-gray">
-                              <li class="item dark-black">USD</li>
-                              <li class="item dark-black">AED</li>
-                              <li class="item dark-black">EUR</li>
-                              <li class="item dark-black">GBP</li>
-                          </ul>
-                      </div>
-                  </div>
+                  </div> --}}
               </div>
           </div>
           <div class="container-fluid">
@@ -111,8 +96,8 @@
                           <span class="selected-display black fw-500" id="destination4">All Categories</span>
                           <svg id="drp-arrow4" width="24" height="24" viewBox="0 0 24 24" fill="none"
                               xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                              <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5"
-                                  stroke-linecap="round" stroke-linejoin="round"></path>
+                              <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                  stroke-linejoin="round"></path>
                           </svg>
                           <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
                               @foreach ($categories as $category)
@@ -142,9 +127,21 @@
                                   </span>
                                   <span class="all-category-list list-unstyled">
                                       @foreach ($categories as $category)
-                                          <span class="all-category-list-item"><a
-                                                  href="{{ route('category', $category->id) }}"
-                                                  class="all-category-list-link">{{ $category->name }}</a></span>
+                                          <span class="all-category-list-item position-relative">
+                                              <a href="{{ route('category', $category->id) }}"
+                                                  class="all-category-list-link">
+                                                  {{ $category->name }}
+                                              </a>
+                                              @if ($category->subCategories && $category->subCategories->count())
+                                                  <span class="dropdown-menu">
+                                                      @foreach ($category->subCategories as $subCategory)
+                                                          <a href="" class="dropdown-item">
+                                                              {{ $subCategory->name }}
+                                                          </a>
+                                                      @endforeach
+                                                  </span>
+                                              @endif
+                                          </span>
                                       @endforeach
                                   </span>
                               </label>

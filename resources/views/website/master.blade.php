@@ -69,8 +69,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="quick-image-box">
-                                        <img src="{{ asset('/') }}website/assets/media/products/quick-view-image.png"
-                                            alt="" />
+                                        <img src="" alt="Product Image" id="modalProductImage" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -79,28 +78,21 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <h3 class="fw-600 mb-16">Nexus Mobile Pro 256GB</h3>
+                                        <h4 class="fw-600 mb-16" id="modalProductName"></h4>
                                         <div class="d-flex align-items-center flex-wrap gap-16 mb-24">
-                                            <h5 class="color-sec">
-                                                ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                    class="text-16 fw-400 dark-black">(02 Reviews)</span>
-                                            </h5>
+                                            <p class="light-gray">Category: <span class="color-primary"
+                                                    id="modalProductCategory"></span></p>
                                             <div class="vr-line vr-line-2"></div>
-                                            <p class="light-gray">
-                                                Brand: <span class="color-primary">Beast</span>
-                                            </p>
+                                            <p class="light-gray">Brand: <span class="color-primary"
+                                                    id="modalProductBrand"></span></p>
                                         </div>
                                         <div class="d-flex align-items-center gap-16 mb-24">
-                                            <p class="light-gray text-decoration-line-through">
-                                                $450.00
+                                            <p class="light-gray text-decoration-line-through" id="modalRegularPrice">
                                             </p>
-                                            <h5>$400.00</h5>
-                                            <span class="label white">-12%</span>
+                                            <h5 id="modalSellingPrice"></h5>
+                                            <span class="label white" id="modalDiscount"></span>
                                         </div>
-                                        <p class="light-gray mb-24">
-                                            Lorem ipsum dolor sit amet consectetur. Purus nulla nec
-                                            in ac malesuada et nisi ipsum. Massa scelerisque...
-                                        </p>
+                                        <p class="light-gray mb-24" id="modalProductDescription"></p>
                                         <div class="hr-line mb-24"></div>
                                         <div class="function-bar mb-16">
                                             <div class="quantity quantity-wrap">
@@ -116,19 +108,6 @@
                                             </div>
                                         </div>
                                         <div class="hr-line mb-24"></div>
-                                        <div class="d-flex align-items-center gap-16 mb-16">
-                                            <h6>Category:</h6>
-                                            <p class="light-gray">
-                                                Mobile Phone , Android , Flagship
-                                            </p>
-                                        </div>
-                                        <div class="d-flex align-items-center gap-16 mb-16">
-                                            <h6>Tags:</h6>
-                                            <p class="light-gray">
-                                                5G Compatible , <span>256GB Storage , </span> Student
-                                                Phone
-                                            </p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -138,6 +117,7 @@
             </div>
         </div>
     </div>
+
     <!-- Modal -->
 
     <!-- Shopping Cart Popup Start -->
@@ -353,6 +333,40 @@
     </div>
 
     @include('website.includes.script')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quickViewButtons = document.querySelectorAll('.quick-view-btn');
+
+            quickViewButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Fetch data from the button
+                    const productName = button.getAttribute('data-name');
+                    const productBrand = button.getAttribute('data-brand');
+                    const productReviews = button.getAttribute('data-reviews');
+                    const regularPrice = button.getAttribute('data-regular-price');
+                    const sellingPrice = button.getAttribute('data-selling-price');
+                    const discount = button.getAttribute('data-discount');
+                    const productDescription = button.getAttribute('data-description');
+                    const productCategory = button.getAttribute('data-category');
+                    const productTags = button.getAttribute('data-tags');
+                    const productImage = button.getAttribute('data-image');
+
+                    // Populate modal fields
+                    document.getElementById('modalProductImage').src = productImage;
+                    document.getElementById('modalProductName').textContent = productName;
+                    document.getElementById('modalProductBrand').textContent = productBrand;
+                    // document.getElementById('modalProductReviews').innerHTML =
+                    //     `★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span class="text-16 fw-400 dark-black">(${productReviews})</span>`;
+                    document.getElementById('modalRegularPrice').textContent = `TK:${regularPrice}`;
+                    document.getElementById('modalSellingPrice').textContent = `TK:${sellingPrice}`;
+                    document.getElementById('modalDiscount').textContent = discount;
+                    document.getElementById('modalProductDescription').textContent =
+                        productDescription;
+                    document.getElementById('modalProductCategory').textContent = productCategory;
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
