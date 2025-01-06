@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Session;
 
@@ -17,7 +18,8 @@ class CustomerProfileController extends Controller
 
     public function order()
     {
-        return view('customer.order');
+        $orders = Order::where('customer_id', Session::get('customer_id'))->latest()->get();
+        return view('customer.order', compact('orders'));
     }
 
     public function payment()
@@ -42,5 +44,4 @@ class CustomerProfileController extends Controller
             return back()->with('message', 'Sorry ... Password does not match');
         }
     }
-
 }

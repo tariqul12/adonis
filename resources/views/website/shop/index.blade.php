@@ -1,7 +1,7 @@
 @extends('website.master')
 
 @section('title')
-    Product Category Page
+    Products Page
 @endsection
 
 @section('body')

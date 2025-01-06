@@ -18,12 +18,11 @@ class CustomerAuthController extends Controller
 
     public function newCustomer(Request $request)
     {
-        return $request;
         $request->validate(
             [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:customers,email|max:255',
-                'password' => 'required|string|min:8',
+                'password' => 'required|string|min:6',
                 'mobile' => 'required|string|unique:customers,mobile|max:15'
             ]
         );
@@ -49,7 +48,6 @@ class CustomerAuthController extends Controller
 
     public function loginCheck(Request $request)
     {
-        //return $request;
         $this->customer = Customer::where('email', $request->email)->first();
 
         if ($this->customer) {

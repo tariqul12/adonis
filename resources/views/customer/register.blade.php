@@ -4,141 +4,124 @@
 @endsection
 
 @section('body')
-    <!-- breadcrumb area start -->
-    <section class="breadcrumb__area include-bg text-center pt-95 pb-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-xxl-12">
-                    <div class="breadcrumb__content p-relative z-index-1">
-                        <h3 class="breadcrumb__title">Register Now</h3>
-                        <div class="breadcrumb__list">
-                            <span><a href="#">Home</a></span>
-                            <span>Register</span>
-                        </div>
+    <!-- Title Banner Start -->
+    <section class="title-banner" style="background-image: url({{ asset($pageTitleBanner->image) }});">
+        <h1 class="dark-black fw-600">Register</h1>
+        {{-- <div class="container-fluid">
+    <div class="banner-wrapper">
+        <img src="{{ asset('/') }}website/assets/media/images/bag.png" alt="" class="banner-image1">
+        <img src="{{ asset('/') }}website/assets/media/images/saree-2.png" alt="" class="banner-image2">
+    </div>
+</div> --}}
+    </section>
+    <!-- Title Banner End -->
+
+    <section class="my-account py-40">
+        <div class="container-fluid">
+            <div class="row row-gap-4">
+                <div class="col-xl-8 m-auto">
+                    <div class="account">
+                        <h4 class="mb-12">Register</h4>
+                        <p class="mb-32 text-danger">{{ Session('message') }}</p>
+                        <form action="{{ route('customer.store') }}" method="post" class="">
+                            @csrf
+                            <input type="hidden" name="check_page" value="dashboard">
+                            <div class="row">
+
+                                {{-- <div class="col-sm-6">
+                                    <a href="#" class="link-btn fw-500"><img
+                                            src="{{ asset('/') }}website/assets/media/icons/google-icon.png"
+                                            alt=""> Login with Google</a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href="#" class="link-btn fw-500 mt-sm-0 mt-16"><img
+                                            src="{{ asset('/') }}website/assets/media/icons/fb-icon.png" alt="">
+                                        Login with Facebook</a>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <p class="or mb-12">Or</p>
+                                </div> --}}
+                                <div class="col-md-6">
+                                    <div class="input-block mb-16">
+                                        <input type="text" name="name" id="firstName" class="form-control" required
+                                            placeholder="First Name">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none">
+                                            <path
+                                                d="M10 0C7.09223 0 4.72656 2.36566 4.72656 5.27344C4.72656 8.18121 7.09223 10.5469 10 10.5469C12.9078 10.5469 15.2734 8.18121 15.2734 5.27344C15.2734 2.36566 12.9078 0 10 0ZM10 9.375C7.7384 9.375 5.89844 7.53504 5.89844 5.27344C5.89844 3.01184 7.7384 1.17188 10 1.17188C12.2616 1.17188 14.1016 3.01184 14.1016 5.27344C14.1016 7.53504 12.2616 9.375 10 9.375Z"
+                                                fill="#141516" />
+                                            <path
+                                                d="M16.5612 13.992C15.1174 12.5261 13.2035 11.7188 11.1719 11.7188H8.82812C6.79656 11.7188 4.88258 12.5261 3.43883 13.992C2.00215 15.4507 1.21094 17.3763 1.21094 19.4141C1.21094 19.7377 1.47328 20 1.79688 20H18.2031C18.5267 20 18.7891 19.7377 18.7891 19.4141C18.7891 17.3763 17.9979 15.4507 16.5612 13.992ZM2.40859 18.8281C2.70215 15.5045 5.46918 12.8906 8.82812 12.8906H11.1719C14.5308 12.8906 17.2979 15.5045 17.5914 18.8281H2.40859Z"
+                                                fill="#141516" />
+                                        </svg>
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-block mb-16">
+                                        <input type="email" name="email" autocomplete="off" class="form-control"
+                                            placeholder="Your Email">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none">
+                                            <path
+                                                d="M18.2422 2.96875H1.75781C0.786602 2.96875 0 3.76023 0 4.72656V15.2734C0 16.2455 0.792383 17.0312 1.75781 17.0312H18.2422C19.2053 17.0312 20 16.2488 20 15.2734V4.72656C20 3.76195 19.2165 2.96875 18.2422 2.96875ZM17.996 4.14062C17.6369 4.49785 11.4564 10.6458 11.243 10.8581C10.9109 11.1901 10.4695 11.3729 10 11.3729C9.53047 11.3729 9.08906 11.1901 8.75594 10.857C8.61242 10.7142 2.50012 4.63414 2.00398 4.14062H17.996ZM1.17188 15.0349V4.96582L6.23586 10.0031L1.17188 15.0349ZM2.00473 15.8594L7.06672 10.8296L7.9284 11.6867C8.48176 12.2401 9.21746 12.5448 10 12.5448C10.7825 12.5448 11.5182 12.2401 12.0705 11.6878L12.9333 10.8296L17.9953 15.8594H2.00473ZM18.8281 15.0349L13.7641 10.0031L18.8281 4.96582V15.0349Z"
+                                                fill="#141516" />
+                                        </svg>
+                                        @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-block mb-16">
+                                        <input type="number" name="mobile" autocomplete="off" class="form-control"
+                                            placeholder="Your Mobile number">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none">
+                                            <path
+                                                d="M15 0H5C3.34315 0 2 1.34315 2 3V17C2 18.6569 3.34315 20 5 20H15C16.6569 20 18 18.6569 18 17V3C18 1.34315 16.6569 0 15 0ZM10 18.25C9.30964 18.25 8.75 17.6904 8.75 17C8.75 16.3096 9.30964 15.75 10 15.75C10.6904 15.75 11.25 16.3096 11.25 17C11.25 17.6904 10.6904 18.25 10 18.25ZM16 15H4V3H16V15Z"
+                                                fill="#141516" />
+                                        </svg>
+                                        @error('mobile')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-block mb-16">
+                                        <input type="password" name="password" autocomplete="off" class="form-control"
+                                            placeholder="Password">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_7949_46264)">
+                                                <path
+                                                    d="M19.8898 10.3421C20.0368 10.1378 20.0368 9.86227 19.8898 9.65785C19.8451 9.5957 18.7753 8.11922 17.0388 6.62602L19.8898 10.3421ZM19.8898 10.3421C19.8451 10.4043 18.7753 11.8808 17.0388 13.374C16.0117 14.2571 14.9628 14.9625 13.9213 15.4705M19.8898 10.3421L6.33476 14.9827M2.96124 13.374L3.31779 12.9593L0.110303 10.3421C0.15499 10.4043 1.22472 11.8808 2.96124 13.374ZM2.96124 13.374L3.31781 12.9593M2.96124 13.374L3.31781 12.9593M3.31781 12.9593C3.32463 12.9652 3.33146 12.971 3.3383 12.9769C3.78259 13.3578 4.30002 13.7615 4.87535 14.1434C4.94379 14.1888 5.01304 14.2339 5.08309 14.2787L5.09608 14.287L5.10946 14.2946L5.99122 14.7983L6.16418 14.8971L6.17856 14.9054L6.19335 14.9128C6.23538 14.9339 6.27765 14.9549 6.32015 14.9756L6.07878 15.4705M3.31781 12.9593L5.73444 15.2904C5.83141 15.341 5.9444 15.3999 6.07878 15.4705M6.07878 15.4705L6.33476 14.9827M6.07878 15.4705C7.40507 16.1173 8.72437 16.4453 10 16.4453C11.2757 16.4453 12.595 16.1173 13.9213 15.4705M6.33476 14.9827C7.43018 15.5147 8.67705 15.8984 10 15.8984C11.3151 15.8984 12.56 15.5261 13.6814 14.9787L13.9213 15.4705M6.33476 14.9827L13.6814 14.9787L13.9213 15.4705M13.5053 9.93776C13.5053 11.8737 11.936 13.443 10 13.443C8.06414 13.443 6.49478 11.8737 6.49478 9.93776C6.49478 8.00186 8.06414 6.4325 10 6.4325C11.936 6.4325 13.5053 8.00186 13.5053 9.93776ZM13.9212 4.52961L13.9212 4.52972L13.9212 4.52961Z"
+                                                    stroke="#141516" stroke-width="1.25" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_7949_46576">
+                                                    <rect width="20" height="20" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                        @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <button type="submit" class="cus-btn-3 mb-16 w-25"> Sign Up</button>
+                                </div>
+                            </div>
+                            <p class="fw-500 mb-16">
+                                Already have an account? <a href="{{ route('customer.login') }}">Sign In</a>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- breadcrumb area end -->
-
-    <!-- login area start -->
-    <section class="tp-login-area pb-140 p-relative z-index-1 fix">
-        <div class="tp-login-shape">
-            <img class="tp-login-shape-1" src="{{asset('/')}}website/assets/img/login/login-shape-1.png" alt="">
-            <img class="tp-login-shape-2" src="{{asset('/')}}website/assets/img/login/login-shape-2.png" alt="">
-            <img class="tp-login-shape-3" src="{{asset('/')}}website/assets/img/login/login-shape-3.png" alt="">
-            <img class="tp-login-shape-4" src="{{asset('/')}}website/assets/img/login/login-shape-4.png" alt="">
-        </div>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-6 col-lg-8">
-                    <div class="tp-login-wrapper">
-                        <div class="tp-login-top text-center mb-30">
-                            <h3 class="tp-login-title">Sign Up Shofy.</h3>
-                            <p>Already have an account? <span><a href="{{route('customer.login')}}">Sign In</a></span>
-                            </p>
-                            <p>{{session('login-message')}}</p>
-                        </div>
-                        <div class="tp-login-option">
-                            <div class="tp-login-social mb-10 d-flex flex-wrap align-items-center justify-content-center">
-                                <div class="tp-login-option-item has-google">
-                                    <a href="#">
-                                        <img src="{{asset('/')}}website/assets/img/icon/login/google.svg" alt="">
-                                        Sign up with google
-                                    </a>
-                                </div>
-                                <div class="tp-login-option-item">
-                                    <a href="#">
-                                        <img src="{{asset('/')}}website/assets/img/icon/login/facebook.svg" alt="">
-                                    </a>
-                                </div>
-                                <div class="tp-login-option-item">
-                                    <a href="#">
-                                        <img class="apple" src="{{asset('/')}}website/assets/img/icon/login/apple.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="tp-login-mail text-center mb-40">
-                                <p>or Sign up with <a href="#">Email</a></p>
-                            </div>
-                            <form action="{{route('customer.store')}}" method="post">
-                                @csrf
-                                <div class="tp-login-input-wrapper">
-                                    <div class="tp-login-input-box">
-                                        <div class="tp-login-input">
-                                            <input id="name" name="name" type="text" placeholder="Enter Your Name">
-                                            <span class="text-danger">{{$errors->has('name') ? $errors->first('name') : ''}}</span>
-                                        </div>
-                                        <div class="tp-login-input-title">
-                                            <label for="name">Full Name</label>
-                                        </div>
-                                    </div>
-                                    <div class="tp-login-input-box">
-                                        <div class="tp-login-input">
-                                            <input id="email" name="email" type="email" placeholder="Enter Your Email">
-                                            <span class="text-danger">{{$errors->has('email') ? $errors->first('email') : ''}}</span>
-                                            <input name="check_page" type="hidden" value="dashboard">
-                                        </div>
-                                        <div class="tp-login-input-title">
-                                            <label for="email">Email Address</label>
-                                        </div>
-                                    </div>
-                                    <div class="tp-login-input-box">
-                                        <div class="tp-login-input">
-                                            <input id="mobile" name="mobile" type="number" placeholder="Enter Your Mobile Number">
-                                            <span class="text-danger">{{$errors->has('mobile') ? $errors->first('mobile') : ''}}</span>
-                                        </div>
-                                        <div class="tp-login-input-title">
-                                            <label for="mobile">Mobile </label>
-                                        </div>
-                                    </div>
-                                    <div class="tp-login-input-box">
-                                        <div class="tp-login-input">
-                                            <input id="tp_password" name="password" type="password" placeholder="Enter Your Password">
-                                            <span class="text-danger">{{$errors->has('password') ? $errors->first('password') : ''}}</span>
-                                        </div>
-                                        <div class="tp-login-input-eye" id="password-show-toggle">
-                                    <span id="open-eye" class="open-eye">
-                                       <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M1 6.77778C1 6.77778 3.90909 1 9 1C14.0909 1 17 6.77778 17 6.77778C17 6.77778 14.0909 12.5556 9 12.5556C3.90909 12.5556 1 6.77778 1 6.77778Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                                          <path d="M9.00018 8.94466C10.2052 8.94466 11.182 7.97461 11.182 6.77799C11.182 5.58138 10.2052 4.61133 9.00018 4.61133C7.79519 4.61133 6.81836 5.58138 6.81836 6.77799C6.81836 7.97461 7.79519 8.94466 9.00018 8.94466Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                                       </svg>
-                                    </span>
-                                            <span id="close-eye" class="open-close">
-                                       <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M6.8822 11.7457C6.72311 11.7457 6.56402 11.6871 6.43842 11.5615C5.7518 10.8749 5.375 9.9622 5.375 8.99926C5.375 6.99803 6.99943 5.3736 9.00066 5.3736C9.9636 5.3736 10.8763 5.7504 11.5629 6.43701C11.6801 6.55424 11.7471 6.71333 11.7471 6.8808C11.7471 7.04827 11.6801 7.20736 11.5629 7.32459L7.32599 11.5615C7.20039 11.6871 7.0413 11.7457 6.8822 11.7457ZM9.00066 6.6296C7.69442 6.6296 6.631 7.69302 6.631 8.99926C6.631 9.41793 6.73986 9.81985 6.94082 10.1715L10.1729 6.93941C9.82125 6.73845 9.41933 6.6296 9.00066 6.6296Z" fill="#1C274C"/>
-                                          <path opacity="0.5" d="M3.63816 14.4503C3.49582 14.4503 3.3451 14.4001 3.22787 14.2996C2.33192 13.5376 1.52808 12.5998 0.841463 11.5112C-0.0461127 10.1296 -0.0461127 7.87721 0.841463 6.48723C2.88456 3.28861 5.8571 1.44647 8.99711 1.44647C10.8393 1.44647 12.6563 2.08285 14.2472 3.28024C14.5235 3.48957 14.5821 3.88312 14.3728 4.15944C14.1635 4.43576 13.7699 4.49437 13.4936 4.28504C12.1204 3.24674 10.5629 2.70248 8.99711 2.70248C6.29252 2.70248 3.70515 4.32691 1.89651 7.16547C1.2685 8.14516 1.2685 9.85332 1.89651 10.833C2.52451 11.8127 3.24462 12.6584 4.04009 13.345C4.29966 13.5711 4.33315 13.9646 4.10707 14.2326C3.98984 14.3749 3.814 14.4503 3.63816 14.4503Z" fill="#1C274C"/>
-                                          <path opacity="0.5" d="M9.00382 16.552C7.89017 16.552 6.80163 16.3259 5.75496 15.8821C5.43678 15.7482 5.28606 15.3797 5.42003 15.0616C5.554 14.7434 5.92243 14.5927 6.24062 14.7266C7.12819 15.1034 8.05764 15.296 8.99545 15.296C11.7 15.296 14.2874 13.6716 16.0961 10.833C16.7241 9.85333 16.7241 8.14517 16.0961 7.16548C15.8365 6.75519 15.5518 6.36164 15.2503 5.99321C15.0326 5.72527 15.0745 5.33172 15.3425 5.10564C15.6104 4.88793 16.0039 4.92142 16.23 5.19775C16.5566 5.59967 16.8748 6.03508 17.1595 6.48724C18.047 7.86885 18.047 10.1213 17.1595 11.5113C15.1164 14.7099 12.1438 16.552 9.00382 16.552Z" fill="#1C274C"/>
-                                          <path d="M9.58061 12.5747C9.28754 12.5747 9.01959 12.3654 8.96098 12.0639C8.89399 11.7206 9.12007 11.3941 9.46338 11.3355C10.3845 11.168 11.1548 10.3976 11.3223 9.47657C11.3893 9.13327 11.7158 8.91556 12.0591 8.97417C12.4024 9.04116 12.6285 9.36772 12.5615 9.71103C12.2936 11.1596 11.1381 12.3068 9.69783 12.5747C9.65597 12.5663 9.62247 12.5747 9.58061 12.5747Z" fill="#1C274C"/>
-                                          <path d="M0.625908 18.0007C0.466815 18.0007 0.307721 17.9421 0.18212 17.8165C-0.0607068 17.5736 -0.0607068 17.1717 0.18212 16.9289L6.43702 10.674C6.67984 10.4312 7.08177 10.4312 7.32459 10.674C7.56742 10.9168 7.56742 11.3188 7.32459 11.5616L1.0697 17.8165C0.944096 17.9421 0.785002 18.0007 0.625908 18.0007Z" fill="#1C274C"/>
-                                          <path d="M11.122 7.50881C10.9629 7.50881 10.8038 7.45019 10.6782 7.32459C10.4354 7.08177 10.4354 6.67984 10.6782 6.43702L16.9331 0.182121C17.1759 -0.0607068 17.5779 -0.0607068 17.8207 0.182121C18.0635 0.424948 18.0635 0.826869 17.8207 1.0697L11.5658 7.32459C11.4402 7.45019 11.2811 7.50881 11.122 7.50881Z" fill="#1C274C"/>
-                                       </svg>
-                                    </span>
-                                        </div>
-                                        <div class="tp-login-input-title">
-                                            <label for="tp_password">Password</label>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="tp-login-suggetions d-sm-flex align-items-center justify-content-between mb-20">
-                                    <div class="tp-login-remeber">
-                                        <input id="remeber" type="checkbox">
-                                        <label for="remeber">I accept the terms of the Service & <a href="#">Privacy
-                                                Policy</a>.</label>
-                                    </div>
-                                </div>
-                                <div class="tp-login-bottom">
-                                    <button type="submit" class="tp-login-btn w-100">Sign Up</button>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- login area end -->
 @endsection

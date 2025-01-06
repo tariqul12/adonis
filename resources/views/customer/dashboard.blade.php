@@ -5,31 +5,15 @@
 
 @section('body')
     <!-- breadcrumb area start -->
-    <section class="breadcrumb__area include-bg text-center pt-95 pb-50">
+    <section class="py-3">
         <div class="container">
-            <div class="row">
-                <div class="col-xxl-12">
-                    <div class="breadcrumb__content p-relative z-index-1">
-                        <h3 class="breadcrumb__title">Dashboard</h3>
-                        <div class="breadcrumb__list">
-                            <span><a href="#">Home</a></span>
-                            <span>Dashboard</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h3 class="">My Account</h3>
         </div>
     </section>
     <!-- breadcrumb area end -->
 
     <!-- login area start -->
     <section class="tp-login-area pb-140 p-relative z-index-1 fix">
-        <div class="tp-login-shape">
-            <img class="tp-login-shape-1" src="{{asset('/')}}website/assets/img/login/login-shape-1.png" alt="">
-            <img class="tp-login-shape-2" src="{{asset('/')}}website/assets/img/login/login-shape-2.png" alt="">
-            <img class="tp-login-shape-3" src="{{asset('/')}}website/assets/img/login/login-shape-3.png" alt="">
-            <img class="tp-login-shape-4" src="{{asset('/')}}website/assets/img/login/login-shape-4.png" alt="">
-        </div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-3">
@@ -37,36 +21,33 @@
                 </div>
                 <div class="col-md-9">
                     <div class="card card-body">
-                        <h4>My Recent Order</h4>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>SL NO</th>
-                                <th>Order ID</th>
-                                <th>Order Total</th>
-                                <th>Order Date</th>
-                                <th>Order Status</th>
-                                <th>Payment Status</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($orders as $order)
-                                <tr>
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{$order->id}}</td>
-                                    <td>{{$order->order_total}}</td>
-                                    <td>{{$order->order_date}}</td>
-                                    <td>{{$order->order_status}}</td>
-                                    <td>{{$order->payment_status}}</td>
-                                    <td>
-                                        <a href="#" class="btn btn-success btn-sm">Detail</a>
-                                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        <h4>My Dashboard</h4>
+                        <div class="row py-4">
+                            <div class="col-md-4 py-3">
+                                <div class="card card-body">
+                                    <div class="text-center bg-gray">
+                                        <h5>All Order</h5>
+                                        <p> <span class="text-success">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 py-3">
+                                <div class="card card-body">
+                                    <div class="text-center bg-gray">
+                                        <h5>Completed Order</h5>
+                                        <p> <span class="text-success">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 py-3">
+                                <div class="card card-body">
+                                    <div class="text-center bg-gray">
+                                        <h5>Canceled Order</h5>
+                                        <p> <span class="text-success">0</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

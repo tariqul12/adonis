@@ -72,14 +72,27 @@
                       </form>
                   </div>
                   <div class="header-buttons">
-                      <a href="{{ route('customer.login') }}" class="button-block align-items-sm-unset align-items-end">
-                          <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
-                              class="user" />
-                          <div>
-                              <p>Login</p>
-                              <h6>Account</h6>
-                          </div>
-                      </a>
+                      @if (Session::has('customer_id'))
+                          <a href="{{ route('customer.dashboard') }}"
+                              class="button-block align-items-sm-unset align-items-end">
+                              <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
+                                  class="user" />
+                              <div>
+                                  <p>{{ Session('customer_name') }}</p>
+                                  <h6>Account</h6>
+                              </div>
+                          </a>
+                      @else
+                          <a href="{{ route('customer.login') }}"
+                              class="button-block align-items-sm-unset align-items-end">
+                              <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
+                                  class="user" />
+                              <div>
+                                  <p>Login</p>
+                                  <h6>Account</h6>
+                              </div>
+                          </a>
+                      @endif
                       <a href="#" class="button-block d-sm-flex wishlist-button">
                           <i class="fa-regular fa-heart" style="font-size: 24px;"></i>
                           <span class="badge">2</span>
