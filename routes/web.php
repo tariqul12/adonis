@@ -42,6 +42,8 @@ Route::get('/product-detail/{id}', [WebsiteController::class, 'product'])->name(
 Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index'); //cart product list showing
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
 Route::post('/cart/update/{rowId}', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/update-qty/{rowId}', [CartController::class, 'updateQuantity'])->name('cart.updateQty');
+
 Route::get('/cart/remove/{rowId}', [CartController::class, 'remove'])->name('cart.remove');
 
 //Checkout
