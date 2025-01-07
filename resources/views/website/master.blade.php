@@ -126,53 +126,67 @@
             <h6>Shopping Cart ({{ Cart::content()->count() }})</h6>
             <a href="#" class="close-button close-popup"><span class="close-icon">X</span></a>
         </div>
-        <ul class="product-list p-24">
+        <ul class="product-list p-24" style="height: calc(100vh - 500px) !important;">
             @php
-                $sum = 0;
+            $sum = 0;
             @endphp
 
             @foreach (Cart::content() as $item)
-                <li class="product-item mb-24">
-                    <span class="item-image">
-                        <img src="{{ asset($item->options->image) }}" alt="Product Photo" />
-                    </span>
-                    <div class="product-text">
-                        <div class="prod-title mb-16">
-                            <h6><a
-                                    href="{{ route('product-detail', $item->id) }}">{{ Str::limit($item->name, 15) }}</a>
-                            </h6>
-                            <a href="{{ route('cart.remove', $item->rowId) }}" class="cancel">
-                                <img src="{{ asset('/') }}website/assets/media/images/cancel.png"
-                                    alt="" />
-                            </a>
-                        </div>
-                        <div class="prod-desc">
-                            <div>
-                                <p class="fw-500 mb-8">Quantity: {{ $item->qty }}</p>
-                                <p class="fw-500">Price: {{ $item->price }} Taka</p>
-                            </div>
-                            <div class="quantity quantity-wrap d-inline-flex" id="quantity-wrap-{{ $item->id }}">
-                                <div class="input-area quantity-wrap" id="addToCart">
-                                    <input class="decrement addToCart_dec" type="button" value="-" />
-                                    <input type="text" name="quantity" value="{{ $item->qty }}"
-                                        maxlength="2" size="1" class="number"
-                                        data-row-id="{{ $item->rowId }}" />
-                                    <input class="increment addToCart_inc" type="button" value="+" />
-                                </div>
-                            </div>
-
-                        </div>
+            <li class="product-item mb-24">
+                <span class="item-image">
+                    <img src="{{ asset($item->options->image) }}" alt="Product Photo" />
+                </span>
+                <div class="product-text">
+                    <div class="prod-title mb-16">
+                        <h6><a
+                                href="{{ route('product-detail', $item->id) }}">{{ Str::limit($item->name, 15) }}</a>
+                        </h6>
+                        <a href="{{ route('cart.remove', $item->rowId) }}" class="cancel">
+                            <img src="{{ asset('/') }}website/assets/media/images/cancel.png"
+                                alt="" />
+                        </a>
                     </div>
-                </li>
-                <li class="hr-line mb-24"></li>
-                @php
-                    $sum += $item->price * $item->qty;
-                @endphp
+                    <div class="prod-desc">
+                        <div>
+                            <p class="fw-500 mb-8">Quantity: {{ $item->qty }}</p>
+                            <p class="fw-500">Price: {{ $item->price }} Taka</p>
+                        </div>
+                        <div class="quantity quantity-wrap d-inline-flex" id="quantity-wrap-{{ $item->id }}">
+                            <div class="input-area quantity-wrap" id="addToCart">
+                                <input class="decrement addToCart_dec" type="button" value="-" />
+                                <input type="text" name="quantity" value="{{ $item->qty }}"
+                                    maxlength="2" size="1" class="number"
+                                    data-row-id="{{ $item->rowId }}" />
+                                <input class="increment addToCart_inc" type="button" value="+" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            <li class="hr-line mb-24"></li>
+            @php
+            $sum += $item->price * $item->qty;
+            @endphp
             @endforeach
         </ul>
+        <div class="hr-line mb-16"></div>
         <div class="price-total p-24">
-            <span class="h5">SUBTOTAL</span>
-            <span class="h5">TK:{{ $sum }}</span>
+            <h6>Sub Total</h6>
+
+            <h6 class="light-gray">TK: {{ $sum }}</h6>
+        </div>
+        <div class="hr-line mb-16"></div>
+        <div class="price-total p-24">
+            <h6>Tax Amount (5%)</h6>
+            @php
+            $tax = ($sum * 5) / 100;
+            @endphp
+            <h6 class="light-gray">TK: {{ $tax }}</h6>
+        </div>
+        <div class="price-total p-24">
+            <span class="h5">TOTAL</span>
+            <span class="h5">TK:{{ $sum+$tax }}</span>
         </div>
         <div class=" hr-line mb-24">
         </div>

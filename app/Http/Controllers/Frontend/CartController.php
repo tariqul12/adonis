@@ -14,6 +14,7 @@ class CartController extends Controller
 
     public function index()
     {
+
         return view('website.cart.index', ['cart_products' => Cart::content()]);
     }
 
