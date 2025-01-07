@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\CourierController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\RoleController;
@@ -157,6 +158,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin-order/show-invoice/{id}', [AdminOrderController::class, 'showInvoice'])->name('admin-order.show-invoice');
     Route::get('/admin-order/download-invoice/{id}', [AdminOrderController::class, 'downloadInvoice'])->name('admin-order.download-invoice');
     Route::get('/admin-order/destroy/{id}', [AdminOrderController::class, 'destroy'])->name('admin-order.destroy');
+
+
+    //Shipping (Normal)
+    Route::get('/shipping/index', [ShippingController::class, 'index'])->name('shipping.index');
+    Route::get('/shipping/create', [ShippingController::class, 'create'])->name('shipping.create');
+    Route::post('/shipping/store', [ShippingController::class, 'store'])->name('shipping.store');
+    Route::get('/shipping/edit/{id}', [ShippingController::class, 'edit'])->name('shipping.edit');
+    Route::post('/shipping/update/{id}', [ShippingController::class, 'update'])->name('shipping.update');
+    Route::get('/shipping/destroy/{id}', [ShippingController::class, 'destroy'])->name('shipping.destroy');
 
     //Courier (Resource)
     Route::resource('courier', CourierController::class);

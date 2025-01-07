@@ -203,6 +203,8 @@
                     </a>
                     <ul class="slide-menu">
                         <li><a href="{{ route('company.index') }}" class="slide-item">Manage Company</a></li>
+                        <li><a href="{{ route('shipping.index') }}" class="slide-item">Manage Shipping Method</a>
+                        </li>
                     </ul>
                 </li>
 

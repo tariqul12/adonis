@@ -7,6 +7,7 @@ use App\Http\Controllers\SslCommerzPaymentController;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Session;
 use Cart;
@@ -21,8 +22,8 @@ class CheckoutController extends Controller
         // if (Session::get('customer_id')) {
         //     return redirect('/checkout/confirm-order');
         // }
-
-        return view('website.checkout.index');
+        $shippings = Shipping::whereStatus(1)->latest()->get();
+        return view('website.checkout.index', compact('shippings'));
     }
 
     public function confirmOrder()
@@ -62,6 +63,7 @@ class CheckoutController extends Controller
 
                 Cart::remove($item->rowId); //remove product items from cart
             }
+
             return redirect('/checkout/complete-order')->with('message', 'Order info save successfully.');
         } elseif ($request->payment_method == 'online') {
             $customer         = Customer::find(Session::get('customer_id'));
