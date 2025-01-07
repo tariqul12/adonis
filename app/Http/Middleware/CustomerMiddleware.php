@@ -16,10 +16,14 @@ class CustomerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Session::get('customer_id')) {
-            return $next($request);
-        } else {
+        if (!Session::get('customer_id')) {
+            // লগইন পেজ ছাড়া অন্য সব পেজের জন্য বর্তমান URL স্টোর করো
+            if (!$request->is('customer/login')) {
+                Session::put('redirect_url', $request->fullUrl());
+            }
             return redirect('/customer/login');
         }
+
+        return $next($request);
     }
 }

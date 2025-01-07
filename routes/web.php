@@ -48,10 +48,7 @@ Route::post('/cart/update-qty/{rowId}', [CartController::class, 'updateQuantity'
 Route::get('/cart/remove/{rowId}', [CartController::class, 'remove'])->name('cart.remove');
 
 //Checkout
-Route::get('/checkout/index', [CheckoutController::class, 'index'])->name('checkout');
-Route::get('/checkout/confirm-order', [CheckoutController::class, 'confirmOrder'])->name('checkout.confirm-order');
-Route::post('/checkout/new-order', [CheckoutController::class, 'newOrder'])->name('checkout.new-order'); //save order info using post
-Route::get('/checkout/complete-order', [CheckoutController::class, 'completeOrder'])->name('checkout.complete-order'); //Order info save successfully.- message will show
+
 
 //Customer Auth
 Route::get('/customer/register', [CustomerAuthController::class, 'register'])->name('customer.register');
@@ -68,6 +65,10 @@ Route::middleware([CustomerMiddleware::class])->group(function () {
     Route::get('/customer/payment', [CustomerProfileController::class, 'payment'])->name('customer.payment');
     Route::get('/customer/change-password', [CustomerProfileController::class, 'changePassword'])->name('customer.change-password');
     Route::post('/customer/update-password', [CustomerProfileController::class, 'updatePassword'])->name('customer.update-password');
+    Route::get('/checkout/index', [CheckoutController::class, 'index'])->name('checkout');
+    Route::get('/checkout/confirm-order', [CheckoutController::class, 'confirmOrder'])->name('checkout.confirm-order');
+    Route::post('/checkout/new-order', [CheckoutController::class, 'newOrder'])->name('checkout.new-order'); //save order info using post
+    Route::get('/checkout/complete-order', [CheckoutController::class, 'completeOrder'])->name('checkout.complete-order'); //Order info save successfully.- message will show
 });
 
 // SSLCOMMERZ Start
