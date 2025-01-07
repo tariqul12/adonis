@@ -128,55 +128,57 @@
         </div>
         <ul class="product-list p-24">
             @php
-            $sum =0;
+                $sum = 0;
             @endphp
 
             @foreach (Cart::content() as $item)
-            <li class="product-item mb-24">
-                <span class="item-image">
-                    <img src="{{ asset($item->options->image) }}" alt="Product Photo" />
-                </span>
-                <div class="product-text">
-                    <div class="prod-title mb-16">
-                        <h6><a
-                                href="{{ route('product-detail', $item->id) }}">{{ Str::limit($item->name, 15) }}</a>
-                        </h6>
-                        <a href="{{ route('cart.remove', $item->rowId) }}" class="cancel">
-                            <img src="{{ asset('/') }}website/assets/media/images/cancel.png"
-                                alt="" />
-                        </a>
-                    </div>
-                    <div class="prod-desc">
-                        <div>
-                            <p class="fw-500 mb-8">Quantity: {{ $item->qty }}</p>
-                            <p class="fw-500">Price: {{ $item->price }} Taka</p>
+                <li class="product-item mb-24">
+                    <span class="item-image">
+                        <img src="{{ asset($item->options->image) }}" alt="Product Photo" />
+                    </span>
+                    <div class="product-text">
+                        <div class="prod-title mb-16">
+                            <h6><a
+                                    href="{{ route('product-detail', $item->id) }}">{{ Str::limit($item->name, 15) }}</a>
+                            </h6>
+                            <a href="{{ route('cart.remove', $item->rowId) }}" class="cancel">
+                                <img src="{{ asset('/') }}website/assets/media/images/cancel.png"
+                                    alt="" />
+                            </a>
                         </div>
-                        <div class="quantity quantity-wrap d-inline-flex" id="quantity-wrap-{{ $item->id }}">
-                            <div class="input-area quantity-wrap" id="addToCart">
-                                <input class="decrement addToCart_dec" type="button" value="-" />
-                                <input type="text" name="quantity" value="{{ $item->qty }}" maxlength="2" size="1" class="number" data-row-id="{{ $item->rowId }}" />
-                                <input class="increment addToCart_inc" type="button" value="+" />
+                        <div class="prod-desc">
+                            <div>
+                                <p class="fw-500 mb-8">Quantity: {{ $item->qty }}</p>
+                                <p class="fw-500">Price: {{ $item->price }} Taka</p>
                             </div>
-                        </div>
+                            <div class="quantity quantity-wrap d-inline-flex" id="quantity-wrap-{{ $item->id }}">
+                                <div class="input-area quantity-wrap" id="addToCart">
+                                    <input class="decrement addToCart_dec" type="button" value="-" />
+                                    <input type="text" name="quantity" value="{{ $item->qty }}"
+                                        maxlength="2" size="1" class="number"
+                                        data-row-id="{{ $item->rowId }}" />
+                                    <input class="increment addToCart_inc" type="button" value="+" />
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="hr-line mb-24"></li>
-            @php
-            $sum += $item->price * $item->qty;
-            @endphp
+                </li>
+                <li class="hr-line mb-24"></li>
+                @php
+                    $sum += $item->price * $item->qty;
+                @endphp
             @endforeach
         </ul>
         <div class="price-total p-24">
             <span class="h5">SUBTOTAL</span>
-            <span class="h5">TK:{{$sum}}</span>
+            <span class="h5">TK:{{ $sum }}</span>
         </div>
         <div class=" hr-line mb-24">
         </div>
         <div class="action-buttons p-24">
             <a href="{{ route('cart.index') }}" class="cus-btn-2">VIEW CART</a>
-            <a href="checkout.html" class="cus-btn active-btn">CHECKOUT</a>
+            <a href="{{ route('checkout') }}" class="cus-btn active-btn">CHECKOUT</a>
         </div>
     </aside>
     <div id="sidebar-cart-curtain" class="close-popup"></div>
