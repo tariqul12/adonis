@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('order_id');
             $table->integer('customer_id');
             $table->string('first_name');
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->string('email');
             $table->string('mobile');
             $table->string('address');

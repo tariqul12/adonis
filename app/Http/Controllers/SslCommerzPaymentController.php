@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use Session;
 use Cart;
+use App\Models\ShippingAddress;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -31,31 +32,31 @@ class SslCommerzPaymentController extends Controller
         # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
 
         $post_data = array();
-        $post_data['total_amount'] = Session::get('order_total') + $request->shipping; # You cant not pay less than 10
+        $post_data['total_amount'] = $request->total; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
         $post_data['tran_id'] = uniqid(); // tran_id must be unique
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $customer->name;
         $post_data['cus_email'] = $customer->email;
-        $post_data['cus_add1'] = 'Customer Address';
+        $post_data['cus_add1'] = $request->address;
         $post_data['cus_add2'] = "";
-        $post_data['cus_city'] = "";
-        $post_data['cus_state'] = "";
+        $post_data['cus_city'] = $request->city;
+        $post_data['cus_state'] = $request->state;
         $post_data['cus_postcode'] = "";
-        $post_data['cus_country'] = "Bangladesh";
+        $post_data['cus_country'] = $request->country;
         $post_data['cus_phone'] = $customer->mobile;
         $post_data['cus_fax'] = "";
 
         # SHIPMENT INFORMATION
-        $post_data['ship_name'] = "Store Test";
-        $post_data['ship_add1'] = "Dhaka";
+        $post_data['ship_name'] = $request->first_name . " " . $request->last_name;
+        $post_data['ship_add1'] = $request->address;
         $post_data['ship_add2'] = "Dhaka";
-        $post_data['ship_city'] = "Dhaka";
-        $post_data['ship_state'] = "Dhaka";
+        $post_data['ship_city'] = $request->city;
+        $post_data['ship_state'] = $request->state;
         $post_data['ship_postcode'] = "1000";
-        $post_data['ship_phone'] = "";
-        $post_data['ship_country'] = "Bangladesh";
+        $post_data['ship_phone'] = $request->mobile;
+        $post_data['ship_country'] = $request->country;
 
         $post_data['shipping_method'] = "NO";
         $post_data['product_name'] = "Computer";
@@ -73,12 +74,12 @@ class SslCommerzPaymentController extends Controller
             ->where('transaction_id', $post_data['tran_id'])
             ->updateOrInsert([
                 'customer_id' => $customer->id,
-                'order_total' => $post_data['total_amount'],
-                'tax_amount' => Session::get('tax_amount'),
-                'shipping_amount' => $request->shipping, // Session::get('shipping_amount'),
+                'order_total' => $request->total,
+                'tax_amount' => $request->tax,
+                'shipping_amount' => $request->shipping_amount, // Session::get('shipping_amount'),
                 'order_date' => date('Y-m-d'),
                 'order_timestamp' => strtotime(date('Y-m-d')),
-                'delivery_address' => $request->delivery_address,
+                'delivery_address' => $request->address,
                 'payment_method' => $request->payment_method,
                 'transaction_id' => $post_data['tran_id'],
                 'currency' => $post_data['currency']
@@ -86,15 +87,30 @@ class SslCommerzPaymentController extends Controller
 
         $orderId = Order::orderBy('id', 'desc')->first()->id;
         foreach (Cart::content() as $item) {
-            $this->orderDetail = new OrderDetail();
-            $this->orderDetail->order_id = $orderId;
-            $this->orderDetail->product_id = $item->id;
-            $this->orderDetail->product_name = $item->name;
-            $this->orderDetail->product_price = $item->price;
-            $this->orderDetail->product_qty = $item->qty;
-            $this->orderDetail->save();
+            $orderDetail = new OrderDetail();
+            $orderDetail->order_id = $orderId;
+            $orderDetail->product_id = $item->id;
+            $orderDetail->product_name = $item->name;
+            $orderDetail->product_price = $item->price;
+            $orderDetail->product_qty = $item->qty;
+            $orderDetail->save();
             Cart::remove($item->rowId);
         }
+
+        $shippingAddress = new ShippingAddress();
+        $shippingAddress->order_id   = $orderId;
+        $shippingAddress->customer_id = Session::get('customer_id');
+        $shippingAddress->first_name = $request->first_name;
+        $shippingAddress->last_name  = $request->last_name;
+        $shippingAddress->email      = $request->email;
+        $shippingAddress->mobile     = $request->mobile;
+        $shippingAddress->address    = $request->address;
+        $shippingAddress->city       = $request->city;
+        $shippingAddress->country    = $request->country;
+        $shippingAddress->state      = $request->state;
+        $shippingAddress->note       = $request->note;
+        $shippingAddress->save();
+
 
 
         $sslc = new SslCommerzNotification();

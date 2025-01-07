@@ -17,7 +17,7 @@
     <!-- Title Banner End -->
 
     <!-- Customer Container Start -->
-    <div class="customer-container py-40">
+    {{-- <div class="customer-container py-40">
         <div class="container-fluid">
             <div class="customer-wrapper">
                 <div class="title-box">
@@ -74,19 +74,30 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Customer Container End -->
 
     <!-- Billing Details Start -->
     <section class="billing-detail pb-40">
-        <div class="container-fluid">
-            <div class="row row-gap-4">
-                <div class="col-xl-8">
-                    <div class="title-row title-row-2 bg-white mb-16">
-                        <h5>Shipping Details</h5>
-                    </div>
-                    <div class="billing-wrapper p-24 bg-white br-10 mb-40">
-                        <form action="#" method="post" class="contact-form">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('checkout.new-order') }}" method="post">
+            @csrf
+            <div class="container-fluid">
+                <div class="row row-gap-4">
+                    <div class="col-xl-8">
+                        <div class="title-row title-row-2 bg-white mb-16">
+                            <h5>Shipping Details</h5>
+                        </div>
+                        <div class="billing-wrapper p-24 bg-white br-10 mb-40">
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="input-block mb-16">
@@ -218,143 +229,197 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <!-- Shipping Method -->
-                    <div class="title-row title-row-2 bg-white mb-16">
-                        <h5>Shipping Methods</h5>
-                    </div>
-                    <div class="shipping-radio-container bg-white mb-40">
-                        <div class="plans mb-16">
-                            @foreach ($shippings as $key => $shipping)
-                                <label class="plan basic-plan" for="basic{{ $key }}">
-                                    <input checked type="radio" name="shipping" id="basic{{ $key }}">
-                                    <span class="plan-content">
-                                        <span class="plan-details">
-                                            <span class="h6 fw-500 dark-black">{{ $shipping->title }}</span>
-                                            <span class="light-gray d-block">Delivery</span>
-                                        </span>
-                                        <span class="fw-500 dark-black">${{ $shipping->cost }}</span>
-                                    </span>
-                                </label>
-                            @endforeach
-                        </div>
-                    </div>
-                    <!-- Shipping Method -->
 
-                    <!-- Payment Method -->
-                    <div class="title-row title-row-2 bg-white mb-16">
-                        <h5>Payments Methods</h5>
-                    </div>
-                    <div class="shipping-radio-container bg-white">
-                        <form action="" method="post">
-                            <div class="plans mb-40">
-                                <label class="plan basic-plan" for="bank">
-                                    <input type="radio" name="plan" id="bank">
-                                    <span class="plan-content content-2">
-                                        <img width="60px"
-                                            src="{{ asset('/') }}website/assets/media/icons/sslcsommerz1.png"
-                                            alt="">
-                                        <span class="plan-details">
-                                            <span class="h6 fw-500 dark-black"> SSL Commerz Payment </span>
+                        </div>
+                        <!-- Shipping Method -->
+                        <div class="title-row title-row-2 bg-white mb-16">
+                            <h5>Shipping Methods</h5>
+                        </div>
+                        <div class="shipping-radio-container bg-white mb-40">
+                            <div class="plans mb-16">
+                                @foreach ($shippings as $key => $shipping)
+                                    <label class="plan basic-plan" for="basic{{ $key }}">
+                                        <input @if ($key == 0) checked @endif type="radio"
+                                            name="shipping" id="basic{{ $key }}">
+                                        <span class="plan-content">
+                                            <input type="hidden" id="shipping_id" value="{{ $shipping->cost }}">
+                                            <span class="plan-details">
+                                                <span class="h6 fw-500 dark-black">{{ $shipping->title }}</span>
+                                                <span class="light-gray d-block">Delivery</span>
+                                            </span>
+                                            <span class="fw-500 dark-black">${{ $shipping->cost }}</span>
                                         </span>
-                                    </span>
-                                </label>
-                                <label class="plan basic-plan" for="cod">
-                                    <input checked type="radio" name="plan" id="cod">
-                                    <span class="plan-content content-2">
-                                        <img src="{{ asset('/') }}website/assets/media/icons/payment-card-4.png"
-                                            alt="">
-                                        <span class="plan-details">
-                                            <span class="h6 fw-500 dark-black">Cash on Delivery</span>
-                                        </span>
-                                    </span>
-                                </label>
+                                    </label>
+                                @endforeach
                             </div>
-                        </form>
+                        </div>
+                        <!-- Shipping Method -->
+
+                        <!-- Payment Method -->
+                        <div class="title-row title-row-2 bg-white mb-16">
+                            <h5>Payments Methods</h5>
+                        </div>
+                        <div class="shipping-radio-container bg-white">
+                            <form action="" method="post">
+                                <div class="plans mb-40">
+                                    <label class="plan basic-plan" for="bank">
+                                        <input type="radio" name="payment_method" value="ssl_commerz" id="bank">
+                                        <span class="plan-content content-2">
+                                            <img width="60px"
+                                                src="{{ asset('/') }}website/assets/media/icons/sslcsommerz1.png"
+                                                alt="">
+                                            <span class="plan-details">
+                                                <span class="h6 fw-500 dark-black"> SSL Commerz Payment </span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="plan basic-plan" for="cod">
+                                        <input checked type="radio" name="payment_method" value="cash"
+                                            id="cod">
+                                        <span class="plan-content content-2">
+                                            <img src="{{ asset('/') }}website/assets/media/icons/payment-card-4.png"
+                                                alt="">
+                                            <span class="plan-details">
+                                                <span class="h6 fw-500 dark-black">Cash on Delivery</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Payment Method -->
                     </div>
-                    <!-- Payment Method -->
-                </div>
-                <div class="col-xl-4">
-                    <div class="title-row title-row-2 mb-16">
-                        <h5>Order Summary</h5>
-                    </div>
-                    <div class="summary-container bg-white">
-                        @php
-                            $sum = 0;
-                        @endphp
-                        @foreach (Cart::content() as $item)
-                            <div class="item-container mb-16">
-                                <div class="left-box d-flex align-items-center gap-16">
-                                    <div class="icon-box">
-                                        <img src="{{ asset($item->options->image) }}" alt="">
+                    <div class="col-xl-4">
+                        <div class="title-row title-row-2 mb-16">
+                            <h5>Order Summary</h5>
+                        </div>
+                        <div class="summary-container bg-white">
+                            @php
+                                $sum = 0;
+                            @endphp
+                            @foreach (Cart::content() as $item)
+                                <div class="item-container mb-16">
+                                    <div class="left-box d-flex align-items-center gap-16">
+                                        <div class="icon-box">
+                                            <img src="{{ asset($item->options->image) }}" alt="">
+                                        </div>
+                                        <a href="#" class="h6">{{ Str::limit($item->name, 20) }} x
+                                            {{ $item->qty }}</a>
                                     </div>
-                                    <a href="#" class="h6">{{ Str::limit($item->name, 20) }} x
-                                        {{ $item->qty }}</a>
+                                    <div class="right-box">
+                                        <h6 class="light-gray">TK:{{ $item->price * $item->qty }}</h6>
+                                    </div>
                                 </div>
-                                <div class="right-box">
-                                    <h6 class="light-gray">TK:{{ $item->price * $item->qty }}</h6>
-                                </div>
+                                <div class="hr-line mb-16"></div>
+                                @php
+                                    $sum += $item->price * $item->qty;
+                                @endphp
+                            @endforeach
+
+                            <div class="input-block d-flex justify-content-between py-32">
+                                <input type="text" name="copon_code" class="form-control" id="codeCp"
+                                    placeholder="Coupon Code">
+                                <button type="button" class="cus-btn">Apply Now</button>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between mb-16">
+                                <h6>Subtotal</h6>
+                                <h6 class="light-gray">TK:{{ $sum }}</h6>
+                            </div>
+
+                            <div class="hr-line mb-16"></div>
+                            <div class="d-flex align-items-center justify-content-between mb-16">
+                                <h6>Delivery Charge</h6>
+                                <h6 class="light-gray" id="shipping-cost"></h6>
                             </div>
                             <div class="hr-line mb-16"></div>
-                            @php
-                                $sum += $item->price * $item->qty;
-                            @endphp
-                        @endforeach
-
-                        <div class="input-block d-flex justify-content-between py-32">
-                            <input type="text" name="cp-Code" class="form-control" id="codeCp"
-                                placeholder="Coupon Code">
-                            <button type="button" class="cus-btn">Apply Now</button>
-                        </div>
-
-                        <div class="d-flex align-items-center justify-content-between mb-16">
-                            <h6>Subtotal</h6>
-                            <h6 class="light-gray">TK:{{ $sum }}</h6>
-                        </div>
-
-                        <div class="hr-line mb-16"></div>
-                        <div class="d-flex align-items-center justify-content-between mb-16">
-                            <h6>Standard Delivery</h6>
-                            <h6 class="light-gray">${{ $shipping_amount = 100 }}</h6>
-                        </div>
-                        <div class="hr-line mb-16"></div>
-                        <div class="d-flex align-items-center justify-content-between mb-16">
-                            <h6>Tax Amount (5%)</h6>
-                            @php
-                                $tax = ($sum * 5) / 100;
-                            @endphp
-                            <h6 class="light-gray">${{ $tax }}</h6>
-                        </div>
-                        <div class="hr-line mb-16"></div>
-                        <div class="d-flex align-items-center justify-content-between mb-16">
-                            <h6>Coupon Discount</h6>
-                            <h6 class="light-gray">{{ $coupon_discount = 0 }}</h6>
-                        </div>
-                        <div class="hr-line mb-16"></div>
-                        <div class="d-flex align-items-center justify-content-between mb-16">
-                            <h5 class="color-primary">TOTAL</h5>
-                            <h5 class="color-primary">TK:{{ $sum + $shipping_amount + $tax + $coupon_discount }}</h5>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="cus-checkBox mb-32">
-                                <input type="checkbox" id="terms">
-                                <label for="terms">I have read and agree to the website terms and conditions</label>
+                            <div class="d-flex align-items-center justify-content-between mb-16">
+                                <h6>Tax Amount (5%)</h6>
+                                @php
+                                    $tax = ($sum * 5) / 100;
+                                @endphp
+                                <h6 class="light-gray">${{ $tax }}</h6>
                             </div>
-                        </div>
-                        <input type="hidden" name="subtotal" value="{{ $sum }}">
-                        <input type="hidden" name="shipping_amount" value="{{ $shipping_amount }}">
-                        <input type="hidden" name="tax" value="{{ $tax }}">
-                        <input type="hidden" name="coupon_discount" value="{{ $coupon_discount }}">
-                        <input type="hidden" name="total"
-                            value="{{ $sum + $shipping_amount + $tax + $coupon_discount }}">
+                            <div class="hr-line mb-16"></div>
+                            <div class="d-flex align-items-center justify-content-between mb-16">
+                                <h6>Coupon Discount</h6>
+                                <h6 class="light-gray">{{ $coupon_discount = 0 }}</h6>
+                            </div>
+                            <div class="hr-line mb-16"></div>
+                            <div class="d-flex align-items-center justify-content-between mb-16">
+                                <h5 class="color-primary">TOTAL</h5>
+                                <h5 class="color-primary" id="total-cost"></h5>
+                            </div>
 
-                        <a href="#" class="cus-btn active-btn">Proceed to Checkout</a>
+                            <div class="col-md-12">
+                                <div class="cus-checkBox mb-32">
+                                    <input type="checkbox" id="terms">
+                                    <label for="terms">I have read and agree to the website terms and conditions</label>
+                                </div>
+                            </div>
+                            <input type="hidden" name="subtotal" value="{{ $sum }}">
+                            <input type="hidden" name="shipping_amount" id="delivery-cost" value="0">
+                            <input type="hidden" name="tax" value="{{ $tax }}">
+                            <input type="hidden" name="coupon_discount" value="{{ $coupon_discount }}">
+                            <input type="hidden" name="total" id="total"
+                                value="{{ $sum + $tax + $coupon_discount }}">
+
+                            <button type="submit" class="cus-btn active-btn">Proceed to Checkout</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
     <!-- Billing Details End -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to handle the selected shipping option
+            function handleShippingSelection(shippingId, shippingCost) {
+                // Get the required DOM elements
+                const shippingCostElement = document.getElementById('shipping-cost');
+                const deliveryCostElement = document.getElementById('delivery-cost');
+                const totalElement = document.getElementById('total');
+                const totalCostElement = document.getElementById('total-cost');
+
+                // Update the shipping cost displayed
+                shippingCostElement.textContent = shippingCost;
+
+                // Set the delivery cost value
+                deliveryCostElement.value = shippingCost;
+
+                // Parse total and delivery cost values
+                const tCost = parseInt(totalElement.value) || 0; // Default to 0 if NaN
+                const dCost = parseInt(shippingCost) || 0; // Default to 0 if NaN
+
+                // Calculate total
+                const total = tCost + dCost;
+
+                // Update total value and displayed cost
+                totalElement.value = total;
+                totalCostElement.textContent = total;
+            }
+
+            // Trigger selection handling for the default checked radio button
+            var defaultSelected = document.querySelector('input[name="shipping"]:checked');
+            if (defaultSelected) {
+                var shippingId = defaultSelected.value;
+                var shippingCost = defaultSelected.closest('label').querySelector('#shipping_id').value;
+                parseInt(shippingCost);
+                handleShippingSelection(shippingId, shippingCost);
+            }
+
+            // Listen for changes on radio buttons and handle selection
+            var radioButtons = document.querySelectorAll('input[name="shipping"]');
+            radioButtons.forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    var selectedShippingId = radio.value;
+                    var selectedShippingCost = radio.closest('label').querySelector('#shipping_id')
+                        .value;
+                    parseInt(selectedShippingCost);
+                    handleShippingSelection(selectedShippingId, selectedShippingCost);
+                });
+            });
+        });
+    </script>
 @endsection
