@@ -39,6 +39,9 @@ Route::get('/product-category/{id}', [WebsiteController::class, 'category'])->na
 Route::get('/product-sub-category/{id}', [WebsiteController::class, 'subCategory'])->name('sub-category');
 Route::get('/product-detail/{id}', [WebsiteController::class, 'product'])->name('product-detail');
 
+// Product Filter
+Route::get('/fetch-products', [WebsiteController::class, 'fetchProducts'])->name('fetch-products');
+
 //Cart
 Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index'); //cart product list showing
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');

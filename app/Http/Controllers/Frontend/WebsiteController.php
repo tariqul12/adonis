@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductSize;
+use App\Models\ProductColor;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use function Monolog\alert;
@@ -60,6 +62,7 @@ class WebsiteController extends Controller
     public function shop()
     {
         $products = Product::where('status', 1)->get();
+
         return view('website.shop.index', compact('products'));
     }
 
@@ -70,6 +73,49 @@ class WebsiteController extends Controller
         $products = Product::where('name', 'like', '%' . $search . '%')->latest()->get();
         return response()->json($products);
     }
+    public function fetchProducts(Request $request)
+    {
+        // Validate the incoming category IDs and search query
+        $categoryIds = $request->input('category_ids');
+        $searchQuery = $request->input('search', ''); // Default empty string if no search query is provided
+        $minPrice = $request->input('min_price', 0); // Default 0 if no min price is provided
+        $maxPrice = $request->input('max_price', 999999); // Default a large number if no max price is provided
+
+        // Start the query builder for products
+        $query = Product::query();
+
+        // Filter by categories if category IDs are provided
+        if (!empty($categoryIds)) {
+            $query->whereIn('category_id', $categoryIds);
+        }
+
+        // Filter by search query if provided
+        if (!empty($searchQuery)) {
+            $query->where('name', 'like', '%' . $searchQuery . '%')
+                ->orWhere('short_description', 'like', '%' . $searchQuery . '%');
+        }
+
+
+        if (!empty($minPrice) && !empty($maxPrice)) {
+            $query->whereBetween('selling_price', [$minPrice, $maxPrice]);
+        }
+
+        // Fetch the products based on the filters
+        $products = $query->get();
+
+        // Add product sizes and colors to each product
+        foreach ($products as $product) {
+            $product->productSizes = ProductSize::where('product_id', $product->id)->get();
+            $product->productColors = ProductColor::where('product_id', $product->id)->get();
+        }
+
+        // Return the products as a JSON response
+        return response()->json([
+            'status' => 'success',
+            'data' => $products
+        ]);
+    }
+
 
     public function blog()
     {
