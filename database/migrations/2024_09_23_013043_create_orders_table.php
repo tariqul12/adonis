@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('payment_status')->default('Pending');
             $table->string('transaction_id')->nullable();
             $table->string('currency')->default('BDT');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

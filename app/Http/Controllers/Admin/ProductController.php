@@ -101,7 +101,7 @@ class ProductController extends Controller
         foreach ($request->file('other_image') as $image) {
             $productImage             = new ProductImage();
             $productImage->product_id = $product->id;
-            $productImage->image      = getFileUrl($image, 'uploads/product-images/');
+            $productImage->image      = getFileUrl($image, 'uploads/thumbnail-images/');
             $productImage->save();
         }
         if ($request->color_id) {
@@ -164,7 +164,7 @@ class ProductController extends Controller
         $product->meta_title        = $request->meta_title;
         $product->meta_description  = $request->meta_description;
         if ($request->hasFile('image')) {
-            if(file_exists($product->image)){
+            if (file_exists($product->image)) {
                 unlink($product->image);
             }
             $product->image         = getFileUrl($request->file('image'), 'uploads/product-images/');

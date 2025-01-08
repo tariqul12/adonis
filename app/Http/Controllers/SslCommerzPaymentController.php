@@ -80,6 +80,7 @@ class SslCommerzPaymentController extends Controller
                 'order_date' => date('Y-m-d'),
                 'order_timestamp' => strtotime(date('Y-m-d')),
                 'delivery_address' => $request->address,
+                'note' => $request->note,
                 'payment_method' => $request->payment_method,
                 'transaction_id' => $post_data['tran_id'],
                 'currency' => $post_data['currency']
@@ -93,6 +94,8 @@ class SslCommerzPaymentController extends Controller
             $orderDetail->product_name = $item->name;
             $orderDetail->product_price = $item->price;
             $orderDetail->product_qty = $item->qty;
+            $orderDetail->product_color_id = $item->options->color;
+            $orderDetail->product_size_id  = $item->options->size;
             $orderDetail->save();
             Cart::remove($item->rowId);
         }
@@ -228,14 +231,14 @@ class SslCommerzPaymentController extends Controller
                     ->update(['order_status' => 'Processing']);
 
                 echo "<br >Transaction is successfully Completed";
-                return redirect('/checkout/complete-order')->with('message', 'Order info save successfully.');
+                return redirect('/checkout/complete-order')->with('message', 'Your order is completed!');
             }
         } else if ($order_details->order_status == 'Processing' || $order_details->order_status == 'Complete') {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
             echo "Transaction is successfully Completed";
-            return redirect('/checkout/complete-order')->with('message', 'Order info save successfully.');
+            return redirect('/checkout/complete-order')->with('message', 'Your order is completed!');
         } else {
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";

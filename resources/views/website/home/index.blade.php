@@ -318,13 +318,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -348,7 +347,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Radiant View LCD</a>
+                                        <a href="#">Radiant View LCD</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -368,7 +367,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -376,13 +375,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -406,7 +405,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Pure Bass Headphones</a>
+                                        <a href="#">Pure Bass Headphones</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -426,7 +425,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -434,13 +433,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/watch.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -464,7 +463,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Supreme Tech Phone</a>
+                                        <a href="#">Supreme Tech Phone</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -484,7 +483,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -492,13 +491,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -522,7 +520,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Aero Pro Joysticks</a>
+                                        <a href="#">Aero Pro Joysticks</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -542,7 +540,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -550,13 +548,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -580,7 +578,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Hyper Glide Mouse</a>
+                                        <a href="#">Hyper Glide Mouse</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -600,7 +598,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -608,13 +606,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/bag.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/bag.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -638,7 +635,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">iPad Standard Plus</a>
+                                        <a href="#">iPad Standard Plus</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -658,7 +655,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -670,13 +667,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -700,7 +696,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Radiant View LCD</a>
+                                        <a href="#">Radiant View LCD</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -720,7 +716,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -728,13 +724,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -758,7 +754,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Pure Bass Headphones</a>
+                                        <a href="#">Pure Bass Headphones</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -778,7 +774,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -786,13 +782,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/watch.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -816,7 +812,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Supreme Tech Phone</a>
+                                        <a href="#">Supreme Tech Phone</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -836,7 +832,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -844,13 +840,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -874,7 +869,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Aero Pro Joysticks</a>
+                                        <a href="#">Aero Pro Joysticks</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -894,7 +889,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -902,13 +897,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -932,7 +927,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Hyper Glide Mouse</a>
+                                        <a href="#">Hyper Glide Mouse</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -952,7 +947,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -960,13 +955,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/bag.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/bag.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -990,7 +984,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">iPad Standard Plus</a>
+                                        <a href="#">iPad Standard Plus</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1010,7 +1004,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1022,13 +1016,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1052,7 +1045,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Radiant View LCD</a>
+                                        <a href="#">Radiant View LCD</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1072,7 +1065,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1080,13 +1073,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1110,7 +1103,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Pure Bass Headphones</a>
+                                        <a href="#">Pure Bass Headphones</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1130,7 +1123,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1138,13 +1131,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/watch.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1168,7 +1161,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Supreme Tech Phone</a>
+                                        <a href="#">Supreme Tech Phone</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1188,7 +1181,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1196,13 +1189,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1226,7 +1218,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Aero Pro Joysticks</a>
+                                        <a href="#">Aero Pro Joysticks</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1246,7 +1238,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1254,13 +1246,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1284,7 +1276,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Hyper Glide Mouse</a>
+                                        <a href="#">Hyper Glide Mouse</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1304,7 +1296,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1312,13 +1304,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/bag.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/bag.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1342,7 +1333,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">iPad Standard Plus</a>
+                                        <a href="#">iPad Standard Plus</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1362,7 +1353,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1374,13 +1365,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1404,7 +1394,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Radiant View LCD</a>
+                                        <a href="#">Radiant View LCD</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1424,7 +1414,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1432,13 +1422,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1462,7 +1452,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Pure Bass Headphones</a>
+                                        <a href="#">Pure Bass Headphones</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1482,7 +1472,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1490,13 +1480,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/watch.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1520,7 +1510,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Supreme Tech Phone</a>
+                                        <a href="#">Supreme Tech Phone</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1540,7 +1530,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1548,13 +1538,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/13.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1578,7 +1567,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Aero Pro Joysticks</a>
+                                        <a href="#">Aero Pro Joysticks</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1598,7 +1587,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1606,13 +1595,13 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
+                                    <a href="#"><img
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1636,7 +1625,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">Hyper Glide Mouse</a>
+                                        <a href="#">Hyper Glide Mouse</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1656,7 +1645,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1664,13 +1653,12 @@
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
 
-                                    <a href="shop-detail.html"><img
-                                            src="{{ asset('/') }}website/assets/media/products/bag.png"
+                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/bag.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
                                         {{-- <ul class="list-unstyled">
                                             <li>
-                                                <a href="wishlist.html">
+                                                <a href="#">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
                                                         alt="" />
                                                 </a>
@@ -1694,7 +1682,7 @@
                                 </div>
                                 <div class="product-desc">
                                     <h6 class="product-title mb-8">
-                                        <a href="shop-detail.html">iPad Standard Plus</a>
+                                        <a href="#">iPad Standard Plus</a>
                                     </h6>
                                     <div class="text mb-12">
                                         <p class="light-gray">
@@ -1714,7 +1702,7 @@
                                                 $12.00</span>&nbsp;&nbsp;$10.00
                                         </h6>
                                     </div>
-                                    <a href="cart.html" class="cus-btn-2 w-100">Add to Cart</a>
+                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -1753,7 +1741,7 @@
         <div class="container-fluid">
             <div class="top-bar mb-16">
                 <h5>New Arrivals Products</h5>
-                <a href="shop-grid-sidebar-1.html" class="cus-btn-arrow">
+                <a href="{{ route('shop') }}" class="cus-btn-arrow">
                     Show All
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
                         fill="none">
@@ -1907,7 +1895,7 @@
                 </div>
             </div>
             <div class="blog-slider" data-parent="blog-slider">
-                <a href="blog-detail.html" class="blog-block bg-white">
+                <a href="#" class="blog-block bg-white">
                     <div class="blog-image">
                         <img src="{{ asset('/') }}website/assets/media/blogs/blog-1.png" alt="" />
                     </div>
@@ -1947,7 +1935,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="blog-block bg-white">
+                <a href="#" class="blog-block bg-white">
                     <div class="blog-image">
                         <img src="{{ asset('/') }}website/assets/media/blogs/blog-2.png" alt="" />
                     </div>
@@ -1987,7 +1975,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="blog-block bg-white">
+                <a href="#" class="blog-block bg-white">
                     <div class="blog-image">
                         <img src="{{ asset('/') }}website/assets/media/blogs/blog-3.png" alt="" />
                     </div>
@@ -2028,7 +2016,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="blog-block bg-white">
+                <a href="#" class="blog-block bg-white">
                     <div class="blog-image">
                         <img src="{{ asset('/') }}website/assets/media/blogs/blog-4.png" alt="" />
                     </div>
@@ -2068,7 +2056,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="blog-block bg-white">
+                <a href="#" class="blog-block bg-white">
                     <div class="blog-image">
                         <img src="{{ asset('/') }}website/assets/media/blogs/blog-1.png" alt="" />
                     </div>
@@ -2108,7 +2096,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="blog-block bg-white">
+                <a href="#" class="blog-block bg-white">
                     <div class="blog-image">
                         <img src="{{ asset('/') }}website/assets/media/blogs/blog-2.png" alt="" />
                     </div>
@@ -2148,7 +2136,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="blog-block bg-white">
+                <a href="#" class="blog-block bg-white">
                     <div class="blog-image">
                         <img src="{{ asset('/') }}website/assets/media/blogs/blog-3.png" alt="" />
                     </div>
@@ -2189,7 +2177,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="blog-detail.html" class="blog-block bg-white">
+                <a href="#" class="blog-block bg-white">
                     <div class="blog-image">
                         <img src="{{ asset('/') }}website/assets/media/blogs/blog-4.png" alt="" />
                     </div>

@@ -31,7 +31,7 @@ class CartController extends Controller
             [
                 'image' => $this->product->image,
                 'code'  => $this->product->code,
-                'size'  => $request->size,
+                'size'  => isset($request->size) ? $request->size : 'standard',
                 'color' => isset($request->color) ? $request->color : 'standard'
             ],
         ]);
