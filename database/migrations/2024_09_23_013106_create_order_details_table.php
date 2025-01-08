@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('product_name');
             $table->integer('product_price');
             $table->integer('product_qty');
+            $table->integer('product_color_id');
+            $table->integer('product_size_id');
             $table->timestamps();
         });
     }

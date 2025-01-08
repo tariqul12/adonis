@@ -57,15 +57,18 @@ class CheckoutController extends Controller
             $this->order->order_timestamp   = strtotime(date('Y-m-d')); //convert into number
             $this->order->delivery_address  = $request->address;
             $this->order->payment_method    = $request->payment_method;
+            $this->order->note              = $request->note;
             $this->order->save();
 
             foreach (Cart::content() as $item) {
-                $this->orderDetail                = new OrderDetail();
-                $this->orderDetail->order_id      = $this->order->id; //getting from order table
-                $this->orderDetail->product_id    = $item->id;
-                $this->orderDetail->product_name  = $item->name;
-                $this->orderDetail->product_price = $item->price;
-                $this->orderDetail->product_qty   = $item->qty;
+                $this->orderDetail                   = new OrderDetail();
+                $this->orderDetail->order_id         = $this->order->id; //getting from order table
+                $this->orderDetail->product_id       = $item->id;
+                $this->orderDetail->product_name     = $item->name;
+                $this->orderDetail->product_price    = $item->price;
+                $this->orderDetail->product_qty      = $item->qty;
+                $this->orderDetail->product_color_id = $item->options->color;
+                $this->orderDetail->product_size_id  = $item->options->size;
                 $this->orderDetail->save();
 
                 Cart::remove($item->rowId); //remove product items from cart
@@ -84,7 +87,7 @@ class CheckoutController extends Controller
             $shippingAddress->state      = $request->state;
             $shippingAddress->note       = $request->note;
             $shippingAddress->save();
-            return redirect('/checkout/complete-order')->with('message', 'Order info save successfully.');
+            return redirect('/checkout/complete-order')->with('message', 'Your order is completed!');
         } elseif ($request->payment_method == 'ssl_commerz') {
             $customer = Customer::find(Session::get('customer_id'));
             $this->sslCommerz = new SslCommerzPaymentController();

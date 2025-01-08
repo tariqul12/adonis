@@ -119,10 +119,11 @@
                             <div class="col-md-6">
 
                                 <div class="row mb-4">
-                                    <label for="categoryName" class=" form-label">Product Code</label>
-                                    <div class="">
-                                        <input class="form-control" name="code" id="categoryName"
-                                            placeholder="Product Code" type="text">
+                                    <label for="productCode" class=" form-label">Product Code <span class="text-info"
+                                            id="genarateCode" style="cursor: pointer;">Generate Code</span></label>
+                                    <div>
+                                        <input class="form-control" name="code" id="productCode"
+                                            placeholder="Product Code" type="text" readonly>
                                         <span
                                             class="text-danger">{{ $errors->has('code') ? $errors->first('code') : '' }}</span>
                                     </div>
@@ -314,4 +315,23 @@
 @push('scripts')
     <!-- FORM ELEMENTS JS -->
     <script src="{{ asset('/') }}admin/assets/js/formelementadvnced.js"></script>
+    <script>
+        // Function to generate a random code
+        function generateRandomCode() {
+            // Example: Generate a random alphanumeric code with 8 characters
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let code = '';
+            for (let i = 0; i < 8; i++) {
+                code += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return code;
+        }
+
+        // Add event listener to the "Generate Code" span
+        document.getElementById('genarateCode').addEventListener('click', function() {
+            // Generate a code and set it as the value of the input field
+            const code = generateRandomCode();
+            document.getElementById('productCode').value = code;
+        });
+    </script>
 @endpush
