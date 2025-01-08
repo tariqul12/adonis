@@ -6,6 +6,12 @@ Products Page
 
 @section('body')
 <!-- Title Banner Start -->
+<style>
+    .pagination-link.active {
+        background-color: #006937 !important;
+        color: white;
+    }
+</style>
 <section class="title-banner" style="background-image: url({{ asset($pageTitleBanner->image) }});">
     <h1 class="dark-black fw-600">All Products</h1>
     {{-- <div class="container-fluid">
@@ -162,42 +168,20 @@ Products Page
                             </span>
                         </div>
                         <div class="content-block">
-                            <a href="shop-list-1.html" class="d-flex gap-24 align-items-center mb-24">
+                            @foreach ($featureProducts as $product)
+                            <a href="{{ route('product-detail', $product->id) }}" class="d-flex gap-24 align-items-center mb-24">
                                 <div class="image-box d-flex flex-shrink-0">
-                                    <img src="{{ asset('/') }}website/assets/media/images/sidebar-1.png"
-                                        alt="">
+                                    <img src="{{ asset($product->image) }}" height="100px" width="100px" alt="">
                                 </div>
                                 <div>
-                                    <p class="mb-8">Samsung Galaxy S20 FE 8GB/256GB Blue</p>
+                                    <p class="mb-8">{{ $product->name }}</p>
                                     <p class="color-primary"><span
-                                            class="light-gray text-decoration-line-through">$700.00</span>&nbsp;$650.00
+                                            class="light-gray text-decoration-line-through">TK: {{ $product->regular_price }}</span>&nbsp;TK: {{ $product->selling_price }}
                                     </p>
                                 </div>
                             </a>
                             <div class="hr-line mb-24"></div>
-                            <a href="shop-list-1.html" class="d-flex gap-24 align-items-center mb-24">
-                                <div class="image-box d-flex flex-shrink-0">
-                                    <img src="{{ asset('/') }}website/assets/media/images/sidebar-2.png"
-                                        alt="">
-                                </div>
-                                <div>
-                                    <p class="mb-8">Beats Studio Wireless Noise Cancelling Over-Ear</p>
-                                    <p class="color-primary">$650.00</p>
-                                </div>
-                            </a>
-                            <div class="hr-line mb-24"></div>
-                            <a href="shop-list-1.html" class="d-flex gap-24 align-items-center">
-                                <div class="image-box d-flex flex-shrink-0">
-                                    <img src="{{ asset('/') }}website/assets/media/images/sidebar-3.png"
-                                        alt="">
-                                </div>
-                                <div>
-                                    <p class="mb-8">Logitech F710 Wireless Gamepad - 940-000119</p>
-                                    <p class="color-primary"><span
-                                            class="light-gray text-decoration-line-through">$700.00</span>&nbsp;$650.00
-                                    </p>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
 
@@ -286,142 +270,19 @@ Products Page
                 </div>
                 <div class="pagination pt-40">
                     <ul id="border-pagination">
-                        <li><a href="#" class="active">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li>
-                            <a href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32"
-                                    viewBox="0 0 33 32" fill="none">
-                                    <path
-                                        d="M20.1953 22.9995C20.1953 19.9995 22.9953 15.9995 26.1953 15.9995M26.1953 15.9995C24.362 15.9995 20.1953 14.9995 20.1953 8.99951M26.1953 15.9995H7.19531"
-                                        stroke="#282525" stroke-width="2" />
-                                </svg>
-                            </a>
-                        </li>
+                        <!-- Pagination links will be injected here -->
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>
 </section>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <script>
-    $(document).ready(function() {
-        // When a checkbox is changed (checked or unchecked)
-        $('.sub-check-box').on('change', function() {
-            // Collect all checked category IDs
-            var selectedCategoryIds = [];
-
-            $('.sub-check-box:checked').each(function() {
-                selectedCategoryIds.push($(this).data('category-id'));
-            });
-
-            // Check if there are any checked categories
-            if (selectedCategoryIds.length > 0) {
-                // Send AJAX request with the selected category IDs
-                $.ajax({
-                    url: '/fetch-products', // The URL to handle the request
-                    type: 'GET',
-                    data: {
-                        category_ids: selectedCategoryIds, // Send the selected category IDs
-                    },
-                    success: function(response) {
-                        // Handle the response and update the UI with the products
-                        if (response.status === 'success') {
-                            let productList = document.getElementById('product-list');
-                            productList.innerHTML = '';
-                            if (response.data.length > 0) {
-                                response.data.forEach(function(product) {
-                                    let productHtml = '';
-                                    response.data.forEach(function(product) {
-                                        productHtml += `
-                                <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <form action="/cart/add/${product.id}" method="post">
-                                            <input type="hidden" name="qty" value="1">
-                                            <input type="hidden" name="size" value="${product.productSizes[0].size_id}">
-                                            <input type="hidden" name="color" value="${product.productColors[0].color_id}">
-                                            <div class="image-box mb-16">
-                                                <a href="/product-detail/${product.id}">
-                                                    <img src="${product.image}" class="product-image" height="200" alt="" />
-                                                </a>
-                                                <div class="side-icons"></div>
-                                            </div>
-                                            <div class="product-desc">
-                                                <h6 class="product-title mb-8">
-                                                    <a href="/product-detail/${product.id}">${product.name.substring(0, 14)} ...</a>
-                                                </h6>
-                                                <div class="text mb-12">
-                                                    <p class="light-gray">${product.short_description.substring(0, 30)}</p>
-                                                </div>
-                                                <div class="rating-star mb-16 bg-white">
-                                                    <h6>
-                                                        <span class="text-decoration-line-through light-gray">TK:${product.regular_price}</span>&nbsp;&nbsp;TK:${product.selling_price}
-                                                    </h6>
-                                                </div>
-                                                <button type="submit" class="cus-btn-2 w-100">Add to Cart</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>`;
-                                    });
-                                    // Update the product list
-                                    productList.innerHTML = productHtml;
-                                });
-                            } else {
-                                productList.innerHTML = `
-                                 <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
-                                    <div class="featured-product-card bg-white br-10">
-                                        <div class="image-box mb-16">
-                                        <p>No products found.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                `;
-                            }
-                        }
-                    },
-                    error: function() {
-                        alert('Something went wrong!');
-                    }
-                });
-            } else {
-                // If no categories are selected, clear the product list
-                $('#product-list').html('');
-            }
-        });
-    });
-</script> -->
 <script>
     $(document).ready(function() {
         // Function to fetch products with selected category IDs and search query
-        // Synchronize the input fields with the range sliders
-        $('.range-min').on('input', function() {
-            var minValue = $(this).val();
-            $('#priceMin').val(minValue); // Update the "Low" input value
-            fetchProducts(); // Trigger product fetch
-        });
-
-        $('.range-max').on('input', function() {
-            var maxValue = $(this).val();
-            $('#priceMax').val(maxValue); // Update the "High" input value
-            fetchProducts(); // Trigger product fetch
-        });
-
-        $('#priceMin').on('input', function() {
-            var minValue = $(this).val();
-            $('.range-min').val(minValue); // Update the "Low" slider value
-            fetchProducts(); // Trigger product fetch
-        });
-
-        $('#priceMax').on('input', function() {
-            var maxValue = $(this).val();
-            $('.range-max').val(maxValue); // Update the "High" slider value
-            fetchProducts(); // Trigger product fetch
-        });
-
-        function fetchProducts() {
+        function fetchProducts(page = 1) {
             var selectedCategoryIds = [];
             var searchQuery = $('#searchBar').val(); // Get the search query from the input
             var priceMin = $('#priceMin').val(); // Get the minimum price from the input
@@ -438,7 +299,8 @@ Products Page
                     category_ids: selectedCategoryIds, // Send selected category IDs
                     search: searchQuery, // Send the search query
                     min_price: priceMin, // Send the minimum price value
-                    max_price: priceMax // Send the maximum price value
+                    max_price: priceMax, // Send the maximum price value
+                    page: page // Send the current page
                 },
                 success: function(response) {
                     if (response.status === 'success') {
@@ -481,29 +343,31 @@ Products Page
                             });
 
                             // Update the product list with the new products
-                            // $('#product-list').html(productHtml);
                             productList.innerHTML = productHtml;
+
+                            // Render pagination
+                            renderPagination(response.pagination);
                         } else {
                             productList.innerHTML = `
-                       <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-                                <p>No products found.</p>
+                            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+                                <div class="featured-product-card bg-white br-10">
+                                    <div class="image-box mb-16">
+                                        <p>No products found.</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         `;
                         }
                     } else {
                         productList.innerHTML = `
-                       <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
                             <div class="featured-product-card bg-white br-10">
                                 <div class="image-box mb-16">
-                                <p>No products found.</p>
+                                    <p>No products found.</p>
                                 </div>
                             </div>
                         </div>
-                        `;
+                    `;
                     }
                 },
                 error: function() {
@@ -511,6 +375,45 @@ Products Page
                 }
             });
         }
+
+        // Function to render pagination
+        function renderPagination(pagination) {
+            var paginationHtml = '';
+
+            // Previous Button
+            if (pagination.previous_page_url) {
+                paginationHtml += `
+                <li><a href="#" class="pagination-link" data-page="${pagination.current_page - 1}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32" fill="none">
+                                    <path d="M12.8057 23C12.8057 20 10.0057 16 6.80566 16M6.80566 16C8.639 16 12.8057 15 12.8057 9M6.80566 16H25.8057" stroke="#1B1918" stroke-width="2"></path>
+                                </svg>
+                </a></li>
+            `;
+            }
+
+            // Page Links
+            for (var i = 1; i <= pagination.last_page; i++) {
+                paginationHtml += `
+                <li><a href="#" class="pagination-link ${pagination.current_page === i ? 'active' : ''}" data-page="${i}" >${i}</a></li>`;
+            }
+
+            // Next Button
+            if (pagination.next_page_url) {
+                paginationHtml += `
+                <li><a href="#" class="pagination-link" data-page="${pagination.current_page + 1}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32"
+                                    viewBox="0 0 33 32" fill="none">
+                                    <path
+                                        d="M20.1953 22.9995C20.1953 19.9995 22.9953 15.9995 26.1953 15.9995M26.1953 15.9995C24.362 15.9995 20.1953 14.9995 20.1953 8.99951M26.1953 15.9995H7.19531"
+                                        stroke="#282525" stroke-width="2" />
+                                </svg>
+                </a></li>
+            `;
+            }
+
+            $('#border-pagination').html(paginationHtml);
+        }
+
 
         // Trigger product fetch when a checkbox is changed or search input is typed
         $('.sub-check-box').on('change', function() {
@@ -520,6 +423,16 @@ Products Page
         $('#searchBar').on('input', function() {
             fetchProducts(); // Call the function to fetch products
         });
+
+        // Pagination click
+        $(document).on('click', '.pagination-link', function(e) {
+            e.preventDefault();
+            var page = $(this).data('page');
+            fetchProducts(page);
+        });
+
+        // Initial fetch
+        fetchProducts();
     });
 </script>
 <!-- Featured Product End -->

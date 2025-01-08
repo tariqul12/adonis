@@ -62,8 +62,9 @@ class WebsiteController extends Controller
     public function shop()
     {
         $products = Product::where('status', 1)->get();
+        $featureProducts = Product::where(['status' => 1, 'feature_status' => 1])->orderBy('id', 'desc')->limit(4)->get();
 
-        return view('website.shop.index', compact('products'));
+        return view('website.shop.index', compact('products', 'featureProducts'));
     }
 
     //ajax search
@@ -80,6 +81,7 @@ class WebsiteController extends Controller
         $searchQuery = $request->input('search', ''); // Default empty string if no search query is provided
         $minPrice = $request->input('min_price', 0); // Default 0 if no min price is provided
         $maxPrice = $request->input('max_price', 999999); // Default a large number if no max price is provided
+        $page = $request->input('page', 1);
 
         // Start the query builder for products
         $query = Product::query();
@@ -101,7 +103,7 @@ class WebsiteController extends Controller
         }
 
         // Fetch the products based on the filters
-        $products = $query->get();
+        $products = $query->paginate(12);
 
         // Add product sizes and colors to each product
         foreach ($products as $product) {
@@ -112,7 +114,14 @@ class WebsiteController extends Controller
         // Return the products as a JSON response
         return response()->json([
             'status' => 'success',
-            'data' => $products
+            'data' => $products->items(),
+            'pagination' => [
+                'current_page' => $products->currentPage(),
+                'last_page' => $products->lastPage(),
+                'total' => $products->total(),
+                'previous_page_url' => $products->previousPageUrl(),
+                'next_page_url' => $products->nextPageUrl(),
+            ]
         ]);
     }
 
