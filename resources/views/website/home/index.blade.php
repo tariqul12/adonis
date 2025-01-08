@@ -56,7 +56,8 @@
                                             <a href="#" class="text-dark">{{ $slider->title }}</a>
                                         </h5>
                                         <p class="text-dark fw-500">{{ $slider->sub_title }}</p>
-                                        <a href="#" class="cus-btn-3 sec mt-2">Shop Now</a>
+                                        <a href="{{ route('product-detail', $slider->product_id) }}"
+                                            class="cus-btn-3 sec mt-2">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +96,8 @@
             <div class="row row-gap-3">
                 <div class="col-xl-3">
                     <div class="featured-item text-center">
-                        <div class="background-image" style="background-image: url('{{ asset($featuredSlider->image) }}');">
+                        <div class="background-image"
+                            style="background-image: url('{{ asset($featuredSlider->image) }}');">
                         </div>
                         {{-- <div class="content">
                             <h4 class="fw-500 text-dark mb-32">Special Offer</h4> 
@@ -115,12 +117,19 @@
                                 @foreach ($featureProducts as $product)
                                     <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
                                         <div class="featured-product-card bg-white br-10">
-                                            <div class="image-box mb-16">
-                                                <a href="{{ route('product-detail', $product->id) }}"><img
-                                                        src="{{ asset($product->image) }}" class="product-image"
-                                                        height="200" alt="" /></a>
-                                                <div class="side-icons">
-                                                    <ul class="list-unstyled">
+                                            <form action="{{ route('cart.add', $product->id) }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="qty" value="1">
+                                                <input type="hidden" name="size"
+                                                    value="{{ $product->productSizes[0]->size->id }}">
+                                                <input type="hidden" name="color"
+                                                    value="{{ $product->productColors[0]->color->id }}">
+                                                <div class="image-box mb-16">
+                                                    <a href="{{ route('product-detail', $product->id) }}"><img
+                                                            src="{{ asset($product->image) }}" class="product-image"
+                                                            height="200" alt="" /></a>
+                                                    <div class="side-icons">
+                                                        {{-- <ul class="list-unstyled">
                                                         <li>
                                                             <a href="#">
                                                                 <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -151,27 +160,28 @@
                                                                     alt="" />
                                                             </a>
                                                         </li>
-                                                    </ul>
+                                                    </ul> --}}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="product-desc">
-                                                <h6 class="product-title mb-8">
-                                                    <a
-                                                        href="{{ route('product-detail', $product->id) }}">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
-                                                </h6>
-                                                <div class="text mb-12">
-                                                    <p class="light-gray">
-                                                        {{ substr($product->short_description, 0, 30) }}
-                                                    </p>
-                                                </div>
-                                                <div class="rating-star mb-16 bg-white">
-                                                    <h6>
-                                                        <span class="text-decoration-line-through light-gray">
-                                                            TK:{{ $product->regular_price }}</span>&nbsp;&nbsp;TK:{{ $product->selling_price }}
+                                                <div class="product-desc">
+                                                    <h6 class="product-title mb-8">
+                                                        <a
+                                                            href="{{ route('product-detail', $product->id) }}">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
                                                     </h6>
+                                                    <div class="text mb-12">
+                                                        <p class="light-gray">
+                                                            {{ substr($product->short_description, 0, 30) }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="rating-star mb-16 bg-white">
+                                                        <h6>
+                                                            <span class="text-decoration-line-through light-gray">
+                                                                TK:{{ $product->regular_price }}</span>&nbsp;&nbsp;TK:{{ $product->selling_price }}
+                                                        </h6>
+                                                    </div>
+                                                    <button type="submit" class="cus-btn-2 w-100">Add to Cart</button>
                                                 </div>
-                                                <a href="" class="cus-btn-2 w-100">Add to Cart</a>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 @endforeach
@@ -232,13 +242,20 @@
                         @foreach ($popularProducts as $product)
                             <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
                                 <div class="featured-product-card bg-white br-10">
-                                    <div class="image-box mb-16">
+                                    <form action="{{ route('cart.add', $product->id) }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="qty" value="1">
+                                        <input type="hidden" name="size"
+                                            value="{{ $product->productSizes[0]->size->id }}">
+                                        <input type="hidden" name="color"
+                                            value="{{ $product->productColors[0]->color->id }}">
+                                        <div class="image-box mb-16">
 
-                                        <a href="{{ route('product-detail', $product->id) }}"><img
-                                                src="{{ asset($product->image) }}" class="product-image" height="200"
-                                                alt="" /></a>
-                                        <div class="side-icons">
-                                            <ul class="list-unstyled">
+                                            <a href="{{ route('product-detail', $product->id) }}"><img
+                                                    src="{{ asset($product->image) }}" class="product-image"
+                                                    height="200" alt="" /></a>
+                                            <div class="side-icons">
+                                                {{-- <ul class="list-unstyled">
                                                 <li>
                                                     <a href="#">
                                                         <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -268,27 +285,28 @@
                                                             alt="" />
                                                     </a>
                                                 </li>
-                                            </ul>
+                                            </ul> --}}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="product-desc">
-                                        <h6 class="product-title mb-8">
-                                            <a
-                                                href="{{ route('product-detail', $product->id) }}">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
-                                        </h6>
-                                        <div class="text mb-12">
-                                            <p class="light-gray">
-                                                {{ substr($product->short_description, 0, 30) }}
-                                            </p>
-                                        </div>
-                                        <div class="rating-star mb-16 bg-white">
-                                            <h6>
-                                                <span class="text-decoration-line-through light-gray">
-                                                    TK:{{ $product->regular_price }}</span>&nbsp;&nbsp;TK:{{ $product->selling_price }}
+                                        <div class="product-desc">
+                                            <h6 class="product-title mb-8">
+                                                <a
+                                                    href="{{ route('product-detail', $product->id) }}">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
                                             </h6>
+                                            <div class="text mb-12">
+                                                <p class="light-gray">
+                                                    {{ substr($product->short_description, 0, 30) }}
+                                                </p>
+                                            </div>
+                                            <div class="rating-star mb-16 bg-white">
+                                                <h6>
+                                                    <span class="text-decoration-line-through light-gray">
+                                                        TK:{{ $product->regular_price }}</span>&nbsp;&nbsp;TK:{{ $product->selling_price }}
+                                                </h6>
+                                            </div>
+                                            <button type="submit" class="cus-btn-2 w-100">Add to Cart</button>
                                         </div>
-                                        <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         @endforeach
@@ -304,7 +322,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -325,7 +343,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}} --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -362,7 +380,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -383,7 +401,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -420,7 +438,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/watch.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -441,7 +459,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -478,7 +496,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -499,7 +517,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -536,7 +554,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -557,7 +575,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -594,7 +612,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/bag.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -615,7 +633,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -656,7 +674,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -677,7 +695,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -714,7 +732,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -735,7 +753,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -772,7 +790,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/watch.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -793,7 +811,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -830,7 +848,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -851,7 +869,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -888,7 +906,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -909,7 +927,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -946,7 +964,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/bag.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -967,7 +985,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1008,7 +1026,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1029,7 +1047,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1066,7 +1084,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1087,7 +1105,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1124,7 +1142,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/watch.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1145,7 +1163,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1182,7 +1200,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1203,7 +1221,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1240,7 +1258,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1261,7 +1279,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1298,7 +1316,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/bag.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1319,7 +1337,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1360,7 +1378,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1381,7 +1399,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1418,7 +1436,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1439,7 +1457,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1476,7 +1494,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/watch.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1497,7 +1515,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1534,7 +1552,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/13.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1555,7 +1573,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1592,7 +1610,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/saree.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1613,7 +1631,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1650,7 +1668,7 @@
                                             src="{{ asset('/') }}website/assets/media/products/bag.png"
                                             class="product-image" alt="" /></a>
                                     <div class="side-icons">
-                                        <ul class="list-unstyled">
+                                        {{-- <ul class="list-unstyled">
                                             <li>
                                                 <a href="wishlist.html">
                                                     <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1671,7 +1689,7 @@
                                                         alt="" />
                                                 </a>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                     </div>
                                 </div>
                                 <div class="product-desc">
@@ -1749,13 +1767,19 @@
                 @foreach ($newarrivalsProducts as $product)
                     <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
                         <div class="featured-product-card bg-white br-10">
-                            <div class="image-box mb-16">
+                            <form action="{{ route('cart.add', $product->id) }}" method="post">
+                                @csrf
+                                <input type="hidden" name="qty" value="1">
+                                <input type="hidden" name="size" value="{{ $product->productSizes[0]->size->id }}">
+                                <input type="hidden" name="color"
+                                    value="{{ $product->productColors[0]->color->id }}">
+                                <div class="image-box mb-16">
 
-                                <a href="{{ route('product-detail', $product->id) }}"><img
-                                        src="{{ asset($product->image) }}" class="product-image" height="200"
-                                        alt="" /></a>
-                                <div class="side-icons">
-                                    <ul class="list-unstyled">
+                                    <a href="{{ route('product-detail', $product->id) }}"><img
+                                            src="{{ asset($product->image) }}" class="product-image" height="200"
+                                            alt="" /></a>
+                                    <div class="side-icons">
+                                        {{-- <ul class="list-unstyled">
                                         <li>
                                             <a href="#">
                                                 <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
@@ -1763,13 +1787,12 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" class="btn quick-view-btn"
-                                                data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                            <a href="#" class="btn quick-view-btn" data-id="{{ $product->id }}"
+                                                data-name="{{ $product->name }}"
                                                 data-brand="{{ $product->brand->name ?? 'Unknown' }}"
                                                 data-reviews="02 Reviews"
                                                 data-regular-price="{{ $product->regular_price }}"
-                                                data-selling-price="{{ $product->selling_price }}"
-                                                data-discount="-12%"
+                                                data-selling-price="{{ $product->selling_price }}" data-discount="-12%"
                                                 data-description="{{ strlen($product->short_description) > 150 ? substr($product->short_description, 0, 150) . ' ...' : $product->short_description }}"
                                                 data-category={{ $product->category->name ?? 'Unknown' }}
                                                 data-image="{{ asset($product->image) }}" data-bs-toggle="modal"
@@ -1785,27 +1808,28 @@
                                                     alt="" />
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> --}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-desc">
-                                <h6 class="product-title mb-8">
-                                    <a
-                                        href="{{ route('product-detail', $product->id) }}">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
-                                </h6>
-                                <div class="text mb-12">
-                                    <p class="light-gray">
-                                        {{ substr($product->short_description, 0, 30) }}
-                                    </p>
-                                </div>
-                                <div class="rating-star mb-16 bg-white">
-                                    <h6>
-                                        <span class="text-decoration-line-through light-gray">
-                                            TK:{{ $product->regular_price }}</span>&nbsp;&nbsp;TK:{{ $product->selling_price }}
+                                <div class="product-desc">
+                                    <h6 class="product-title mb-8">
+                                        <a
+                                            href="{{ route('product-detail', $product->id) }}">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
                                     </h6>
+                                    <div class="text mb-12">
+                                        <p class="light-gray">
+                                            {{ substr($product->short_description, 0, 30) }}
+                                        </p>
+                                    </div>
+                                    <div class="rating-star mb-16 bg-white">
+                                        <h6>
+                                            <span class="text-decoration-line-through light-gray">
+                                                TK:{{ $product->regular_price }}</span>&nbsp;&nbsp;TK:{{ $product->selling_price }}
+                                        </h6>
+                                    </div>
+                                    <button type="submit" class="cus-btn-2 w-100">Add to Cart</button>
                                 </div>
-                                <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 @endforeach
@@ -1914,8 +1938,8 @@
                         </p>
                         <div class="cus-btn-arrow">
                             Read More
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
-                                viewBox="0 0 20 15" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                fill="none">
                                 <path
                                     d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
                                     stroke="#0C0C0D" stroke-width="2" />
@@ -1954,8 +1978,8 @@
                         </p>
                         <div class="cus-btn-arrow">
                             Read More
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
-                                viewBox="0 0 20 15" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                fill="none">
                                 <path
                                     d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
                                     stroke="#0C0C0D" stroke-width="2" />
@@ -1995,8 +2019,8 @@
                         </p>
                         <div class="cus-btn-arrow">
                             Read More
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
-                                viewBox="0 0 20 15" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                fill="none">
                                 <path
                                     d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
                                     stroke="#0C0C0D" stroke-width="2" />
@@ -2035,8 +2059,8 @@
                         </p>
                         <div class="cus-btn-arrow">
                             Read More
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
-                                viewBox="0 0 20 15" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                fill="none">
                                 <path
                                     d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
                                     stroke="#0C0C0D" stroke-width="2" />
@@ -2075,8 +2099,8 @@
                         </p>
                         <div class="cus-btn-arrow">
                             Read More
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
-                                viewBox="0 0 20 15" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                fill="none">
                                 <path
                                     d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
                                     stroke="#0C0C0D" stroke-width="2" />
@@ -2115,8 +2139,8 @@
                         </p>
                         <div class="cus-btn-arrow">
                             Read More
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
-                                viewBox="0 0 20 15" fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                fill="none">
                                 <path
                                     d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
                                     stroke="#0C0C0D" stroke-width="2" />
