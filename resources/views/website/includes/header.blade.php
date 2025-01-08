@@ -55,9 +55,9 @@
                               </svg>
                               <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
                                   @foreach ($categories as $category)
-                                      <li class="item dark-gray"><a
-                                              href="{{ route('category', ['id' => $category->id]) }}">{{ $category->name }}</a>
-                                      </li>
+                                  <li class="item dark-gray"><a
+                                          href="{{ route('category', ['id' => $category->id]) }}">{{ $category->name }}</a>
+                                  </li>
                                   @endforeach
                               </ul>
                           </div>
@@ -73,25 +73,25 @@
                   </div>
                   <div class="header-buttons">
                       @if (Session::has('customer_id'))
-                          <a href="{{ route('customer.dashboard') }}"
-                              class="button-block align-items-sm-unset align-items-end">
-                              <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
-                                  class="user" />
-                              <div>
-                                  <p>{{ Session('customer_name') }}</p>
-                                  <h6>Account</h6>
-                              </div>
-                          </a>
+                      <a href="{{ route('customer.dashboard') }}"
+                          class="button-block align-items-sm-unset align-items-end">
+                          <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
+                              class="user" />
+                          <div>
+                              <p>{{ Session('customer_name') }}</p>
+                              <h6>Account</h6>
+                          </div>
+                      </a>
                       @else
-                          <a href="{{ route('customer.login') }}"
-                              class="button-block align-items-sm-unset align-items-end">
-                              <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
-                                  class="user" />
-                              <div>
-                                  <p>Login</p>
-                                  <h6>Account</h6>
-                              </div>
-                          </a>
+                      <a href="{{ route('customer.login') }}"
+                          class="button-block align-items-sm-unset align-items-end">
+                          <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
+                              class="user" />
+                          <div>
+                              <p>Login</p>
+                              <h6>Account</h6>
+                          </div>
+                      </a>
                       @endif
                       <a href="#" class="button-block d-sm-flex wishlist-button">
                           <i class="fa-regular fa-heart" style="font-size: 24px;"></i>
@@ -114,9 +114,9 @@
                           </svg>
                           <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
                               @foreach ($categories as $category)
-                                  <li class="item dark-black"><a
-                                          href="{{ route('category', ['id' => $category->id]) }}">{{ $category->name }}</a>
-                                  </li>
+                              <li class="item dark-black"><a
+                                      href="{{ route('category', ['id' => $category->id]) }}">{{ $category->name }}</a>
+                              </li>
                               @endforeach
                           </ul>
                       </div>
@@ -142,22 +142,22 @@
                                   </span>
                                   <span class="all-category-list list-unstyled">
                                       @foreach ($categories as $category)
-                                          <span class="all-category-list-item position-relative">
-                                              <a href="{{ route('category', $category->id) }}"
-                                                  class="all-category-list-link">
-                                                  {{ $category->name }}
+                                      <span class="all-category-list-item position-relative">
+                                          <a href="{{ route('category', $category->id) }}"
+                                              class="all-category-list-link">
+                                              {{ $category->name }}
+                                          </a>
+                                          @if ($category->subCategories && $category->subCategories->count())
+                                          <span class="dropdown-menu">
+                                              @foreach ($category->subCategories as $subCategory)
+                                              <a href="{{ route('sub-category', $subCategory->id) }}"
+                                                  class="dropdown-item">
+                                                  {{ $subCategory->name }}
                                               </a>
-                                              @if ($category->subCategories && $category->subCategories->count())
-                                                  <span class="dropdown-menu">
-                                                      @foreach ($category->subCategories as $subCategory)
-                                                          <a href="{{ route('sub-category', $subCategory->id) }}"
-                                                              class="dropdown-item">
-                                                              {{ $subCategory->name }}
-                                                          </a>
-                                                      @endforeach
-                                                  </span>
-                                              @endif
+                                              @endforeach
                                           </span>
+                                          @endif
+                                      </span>
                                       @endforeach
                                   </span>
                               </label>
@@ -181,10 +181,10 @@
                                       <a href="{{ route('shop') }}"
                                           class="{{ Route::currentRouteName() == 'shop' ? 'active' : '' }}">Shop</a>
                                   </li>
-                                  <li>
+                                  <!-- <li>
                                       <a href="{{ route('blog') }}"
                                           class="{{ Route::currentRouteName() == 'blog' ? 'active' : '' }}">Blogs</a>
-                                  </li>
+                                  </li> -->
                                   <li>
                                       <a href="{{ route('contact') }}"
                                           class="{{ Route::currentRouteName() == 'contact' ? 'active' : '' }}">Contact

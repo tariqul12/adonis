@@ -29,8 +29,10 @@ class WebsiteController extends Controller
 
     public function category($id)
     {
+
         $products = Product::where('category_id', $id)->latest()->get();
-        return view('website.category.index', compact('products'));
+        $featureProducts = Product::where(['status' => 1, 'feature_status' => 1])->orderBy('id', 'desc')->limit(4)->get();
+        return view('website.category.index', compact('products', 'featureProducts'));
     }
 
     public function subCategory($id)

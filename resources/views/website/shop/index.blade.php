@@ -53,7 +53,7 @@ Products Page
                                             <!-- Use loop index to make checkbox ID unique -->
                                             <input type="checkbox" id="cable-check-{{ $loop->index }}" class="sub-check-box" data-category-id="{{ $category->id }}">
                                             <label for="cable-check-{{ $loop->index }}">
-                                                <a href="{{ route('category', $category->id) }}">{{ $category->name }}</a>
+                                                {{ $category->name }}
                                             </label>
                                         </div>
                                     </div>
@@ -282,6 +282,30 @@ Products Page
 <script>
     $(document).ready(function() {
         // Function to fetch products with selected category IDs and search query
+        $('.range-min').on('input', function() {
+            var minValue = $(this).val();
+            $('#priceMin').val(minValue); // Update the "Low" input value
+            fetchProducts(); // Trigger product fetch
+        });
+
+        $('.range-max').on('input', function() {
+            var maxValue = $(this).val();
+            $('#priceMax').val(maxValue); // Update the "High" input value
+            fetchProducts(); // Trigger product fetch
+        });
+
+        $('#priceMin').on('input', function() {
+            var minValue = $(this).val();
+            $('.range-min').val(minValue); // Update the "Low" slider value
+            fetchProducts(); // Trigger product fetch
+        });
+
+        $('#priceMax').on('input', function() {
+            var maxValue = $(this).val();
+            $('.range-max').val(maxValue); // Update the "High" slider value
+            fetchProducts(); // Trigger product fetch
+        });
+
         function fetchProducts(page = 1) {
             var selectedCategoryIds = [];
             var searchQuery = $('#searchBar').val(); // Get the search query from the input
