@@ -21,12 +21,12 @@
                                             <div class="text-box ms-5">
                                                 {{-- <h2 class="white fw-600 mb-8">
                                                     {{ $slider->title }}
-                                                </h2>
-                                                <h6 class="white mb-32">
-                                                    {{ $slider->sub_title }}
-                                                </h6>
+                                        </h2>
+                                        <h6 class="white mb-32">
+                                            {{ $slider->sub_title }}
+                                        </h6>
 
-                                                <a href="#" class="cus-btn-3 sec">Shop Now</a> --}}
+                                        <a href="#" class="cus-btn-3 sec">Shop Now</a> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -1738,13 +1738,13 @@
                 </div>
                 <div class="inner-image">
                     <img height="200" width="200" src="{{ asset('/') }}website/assets/media/images/bag.png"
-                        alt="" />
-                </div>
-                <div class="inner-image-2">
-                    <img src="{{ asset('/') }}website/assets/media/images/banner-image-2.png" alt="" />
-                </div>
-            </div>
-        </div> --}}
+    alt="" />
+    </div>
+    <div class="inner-image-2">
+        <img src="{{ asset('/') }}website/assets/media/images/banner-image-2.png" alt="" />
+    </div>
+    </div>
+    </div> --}}
     </section>
     <!-- Inner Banner End -->
 
@@ -2266,9 +2266,9 @@
                 <div class="inner-image-2">
                     <img height="200" width="200"
                         src="{{ asset('/') }}website/assets/media/images/watch.png" alt="" />
-                </div>
-            </div>
-        </div> --}}
+    </div>
+    </div>
+    </div> --}}
     </section>
     <!-- Inner Banner End -->
 @endsection

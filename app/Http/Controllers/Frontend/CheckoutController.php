@@ -34,7 +34,7 @@ class CheckoutController extends Controller
 
     public function newOrder(Request $request)
     {
-        return $request;
+        // return $request;
         $request->validate([
             'first_name'    => 'required|string|max:50',
             'last_name'     => 'nullable',
