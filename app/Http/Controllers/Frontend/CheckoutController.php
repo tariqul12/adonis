@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Shipping;
+use App\Models\ShippingAddress;
 use Illuminate\Http\Request;
 use Session;
 use Cart;
@@ -33,23 +34,29 @@ class CheckoutController extends Controller
 
     public function newOrder(Request $request)
     {
-        //         return $request;
-        $request->validate(
-            [
-                'delivery_address' => 'required'
-            ]
-        );
+        // return $request;
+        $request->validate([
+            'first_name'    => 'required|string|max:50',
+            'last_name'     => 'nullable',
+            'email'         => 'required|email|',
+            'mobile'        => 'required',
+            'address'       => 'required|string|max:255',
+            'city'          => 'required|string|max:100',
+            'country'       => 'required|string|max:100',
+            'note'          => 'nullable|string|max:500',
+        ]);
+        // dd($request->payment_method);
+
         if ($request->payment_method == 'cash') {
-            $this->order              = new Order();
-            $this->order->customer_id = Session::get('customer_id');
-            $this->order->order_total = Session::get('order_total') + $request->shipping; //as shipping amount is passed hidden
-            $this->order->tax_amount  = Session::get('tax_amount');
-            // $this->order->shipping_amount  = Session::get('shipping_amount');
-            $this->order->shipping_amount  = $request->shipping;
-            $this->order->order_date       = date('Y-m-d'); //today date
-            $this->order->order_timestamp  = strtotime(date('Y-m-d')); //convert into number
-            $this->order->delivery_address = $request->delivery_address;
-            $this->order->payment_method   = $request->payment_method;
+            $this->order                    = new Order();
+            $this->order->customer_id       = Session::get('customer_id');
+            $this->order->order_total       = $request->total;
+            $this->order->tax_amount        = $request->tax;
+            $this->order->shipping_amount   = $request->shipping_amount;
+            $this->order->order_date        = date('Y-m-d'); //today date
+            $this->order->order_timestamp   = strtotime(date('Y-m-d')); //convert into number
+            $this->order->delivery_address  = $request->address;
+            $this->order->payment_method    = $request->payment_method;
             $this->order->save();
 
             foreach (Cart::content() as $item) {
@@ -64,9 +71,22 @@ class CheckoutController extends Controller
                 Cart::remove($item->rowId); //remove product items from cart
             }
 
+            $shippingAddress = new ShippingAddress();
+            $shippingAddress->order_id   = $this->order->id;
+            $shippingAddress->customer_id = Session::get('customer_id');
+            $shippingAddress->first_name = $request->first_name;
+            $shippingAddress->last_name  = $request->last_name;
+            $shippingAddress->email      = $request->email;
+            $shippingAddress->mobile     = $request->mobile;
+            $shippingAddress->address    = $request->address;
+            $shippingAddress->city       = $request->city;
+            $shippingAddress->country    = $request->country;
+            $shippingAddress->state      = $request->state;
+            $shippingAddress->note       = $request->note;
+            $shippingAddress->save();
             return redirect('/checkout/complete-order')->with('message', 'Order info save successfully.');
-        } elseif ($request->payment_method == 'online') {
-            $customer         = Customer::find(Session::get('customer_id'));
+        } elseif ($request->payment_method == 'ssl_commerz') {
+            $customer = Customer::find(Session::get('customer_id'));
             $this->sslCommerz = new SslCommerzPaymentController();
             $this->sslCommerz->index($request, $customer);
         }
