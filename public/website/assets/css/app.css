@@ -3159,7 +3159,7 @@ header .header-section .mixin-container {
     gap: 12px;
     border: 1px solid #6d6d6d;
     border-radius: clamp(6px, 0.521vw, 20px);
-    width: 49.8%;
+    /* width: 49.8%; */
 }
 @media (max-width: 1699px) {
     header .header-section .mixin-container {
