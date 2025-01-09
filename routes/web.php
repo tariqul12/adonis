@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Aboutcontroller;
 use App\Http\Middleware\CustomerMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ use App\Http\Controllers\Admin\ShippingController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Admin\ContctController;
 
 //Website Route list
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
@@ -34,6 +36,7 @@ Route::get('/about-us', [WebsiteController::class, 'about'])->name('about');
 Route::get('/shop', [WebsiteController::class, 'shop'])->name('shop');
 Route::get('/blog', [WebsiteController::class, 'blog'])->name('blog');
 Route::get('/contact-us', [WebsiteController::class, 'contact'])->name('contact');
+Route::post('/contact/store', [WebsiteController::class, 'contactStore'])->name('contact.store');
 Route::get('/ajax-search', [WebsiteController::class, 'ajaxSearch'])->name('ajax-search'); //ajax product search
 Route::get('/product-category/{id}', [WebsiteController::class, 'category'])->name('category');
 Route::get('/product-sub-category/{id}', [WebsiteController::class, 'subCategory'])->name('sub-category');
@@ -156,6 +159,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('company/index', [CompanyController::class, 'index'])->name('company.index');
     Route::post('company/update/{id}', [CompanyController::class, 'update'])->name('company.update');
     Route::post('company/destroy/{id}', [CompanyController::class, 'destroy'])->name('company.destroy');
+
+    //About Module
+    Route::get('about/create', [Aboutcontroller::class, 'create'])->name('about.create');
+    Route::post('about/store', [Aboutcontroller::class, 'store'])->name('about.store');
+    Route::get('about/index', [Aboutcontroller::class, 'index'])->name('about.index');
+    Route::post('about/update/{id}', [Aboutcontroller::class, 'update'])->name('about.update');
+
+
+    //contact Module
+    Route::get('contact/index', [ContctController::class, 'index'])->name('contact.index');
 
     //Admin Order
     Route::get('/admin-order/index', [AdminOrderController::class, 'index'])->name('admin-order.index');

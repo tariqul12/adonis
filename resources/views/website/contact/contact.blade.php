@@ -27,11 +27,9 @@
                         <div class="form-container">
                             <form action="{{ route('contact.store') }}" method="post">
                                 @csrf
-                                class="contact-form">
                                 <h3 class="mb-12">Customer Support</h3>
                                 <p class="light-gray mb-24">
-                                    Your email address is safe with us. Required fields are
-                                    noted with *
+                                    {{ session('message') }}
                                 </p>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -91,12 +89,6 @@
                                     <div class="col-md-12">
                                         <div class="input-block mb-16">
                                             <textarea name="message" id="comments" class="form-control" placeholder="Write Your Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="cus-checkBox mb-32">
-                                            <input type="checkbox" id="remember" />
-                                            <label for="remember">Remember my details for future comments.</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

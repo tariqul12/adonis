@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Product;
 use App\Models\ProductSize;
 use App\Models\ProductColor;
@@ -158,5 +159,16 @@ class WebsiteController extends Controller
         }
         $subscriber->save();
         return back()->with('message', 'Subscribe Successfully');
+    }
+    public function contactStore(Request $request)
+    {
+        $contact = new Contact();
+        $contact->first_name = $request->first_name;
+        $contact->last_name = $request->last_name;
+        $contact->email = $request->email;
+        $contact->mobile = $request->mobile;
+        $contact->message = $request->message;
+        $contact->save();
+        return back()->with('message', 'Contact Us Successfully');
     }
 }

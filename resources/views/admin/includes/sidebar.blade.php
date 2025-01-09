@@ -51,8 +51,8 @@
                         </svg>
                         <span class="side-menu__label">Order Module</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
-                        <li><a href="{{ route('admin-order.index') }}" class="slide-item">Manage
-                                Order</a></li>
+                        <li><a href="{{ route('admin-order.index') }}" class="slide-item">Manage Order</a></li>
+                        <li><a href="{{ route('contact.index') }}" class="slide-item">Manage Contact</a></li>
                     </ul>
                 </li>
                 <li>
@@ -199,6 +199,7 @@
                     </a>
                     <ul class="slide-menu">
                         <li><a href="{{ route('company.index') }}" class="slide-item">Manage Company</a></li>
+                        <li><a href="{{ route('about.index') }}" class="slide-item">Manage About</a></li>
                         <li><a href="{{ route('shipping.index') }}" class="slide-item">Manage Shipping Method</a>
                         </li>
                     </ul>
