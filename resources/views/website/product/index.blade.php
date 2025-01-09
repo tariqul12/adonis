@@ -93,7 +93,7 @@ Product Detail Page
                                 <div class="quantity quantity-wrap">
                                     <div class="input-area quantity-wrap">
                                         <input class="decrement" type="button" value="-">
-                                        <input type="text" name="qty" value="1" maxlength="2"
+                                        <input type="text" id="qty" name="qty" value="1" maxlength="2"
                                             size="1" class="number">
                                         <input class="increment" type="button" value="+">
                                     </div>
@@ -142,7 +142,7 @@ Product Detail Page
                                 </div>
                             </div>
                         </form>
-                        <a href="checkout.html" class="cus-btn-3 w-100 mb-24">Buy Now</a>
+                        <a href="#" id="buyNow" data-id="{{ $product->id }}" class="cus-btn-3 w-100 mb-24">Buy Now</a>
                         <div class="hr-line mb-24"></div>
                         <div class="d-flex align-items-center gap-16 mb-16">
                             <h6>Category:</h6>
@@ -466,5 +466,39 @@ Product Detail Page
         </div>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#buyNow").click(function() {
+            // Get values for size, color, qty, and id
+            const size = $("#productSizes option:selected").val(); // Product size
+            const color = $("input[name='color']:checked").val(); // Selected color
+            const qty = $("#qty").val(); // Quantity input value
+            const id = $("#buyNow").data("id"); // Product ID, from the button's data-id attribute
+            const action = "buyNow"; // Action, if required
+
+            // Perform the AJAX request
+            $.ajax({
+                url: "/cart/add/" + id, // Your route for adding the item
+                method: "POST",
+                data: {
+                    id: id,
+                    size: size,
+                    color: color,
+                    qty: qty,
+                    action: action,
+                    _token: "{{csrf_token()}}"
+                },
+                success: function(data) {
+                    // Redirect to cart page, as the backend will handle the response
+                    window.location.href = "/checkout/index"; // Update the URL as per your cart route
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText); // Log any error response from the server
+                }
+            });
+        });
+    });
+</script>
 <!-- Recommended Product End -->
 @endsection
