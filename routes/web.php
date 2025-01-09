@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Admin\ContctController;
+use App\Http\Controllers\Admin\FrequentController;
 
 //Website Route list
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
@@ -41,6 +42,9 @@ Route::get('/ajax-search', [WebsiteController::class, 'ajaxSearch'])->name('ajax
 Route::get('/product-category/{id}', [WebsiteController::class, 'category'])->name('category');
 Route::get('/product-sub-category/{id}', [WebsiteController::class, 'subCategory'])->name('sub-category');
 Route::get('/product-detail/{id}', [WebsiteController::class, 'product'])->name('product-detail');
+// Popular Products 
+Route::get('/popular-products', [WebsiteController::class, 'popularProducts'])->name('popular.products');
+
 
 // Product Filter
 Route::get('/fetch-products', [WebsiteController::class, 'fetchProducts'])->name('fetch-products');
@@ -179,6 +183,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/admin-order/download-invoice/{id}', [AdminOrderController::class, 'downloadInvoice'])->name('admin-order.download-invoice');
     Route::get('/admin-order/destroy/{id}', [AdminOrderController::class, 'destroy'])->name('admin-order.destroy');
 
+    //frequent (Normal)
+    Route::get('/frequent/index', [FrequentController::class, 'index'])->name('frequent.index');
+    Route::get('/frequent/create', [FrequentController::class, 'create'])->name('frequent.create');
+    Route::post('/frequent/store', [FrequentController::class, 'store'])->name('frequent.store');
+    Route::get('/frequent/edit/{id}', [FrequentController::class, 'edit'])->name('frequent.edit');
+    Route::post('/frequent/update/{id}', [FrequentController::class, 'update'])->name('frequent.update');
+    Route::get('/frequent/destroy/{id}', [FrequentController::class, 'destroy'])->name('frequent.destroy');
 
     //Shipping (Normal)
     Route::get('/shipping/index', [ShippingController::class, 'index'])->name('shipping.index');

@@ -20,102 +20,22 @@
 
     <!-- About Section Start -->
     <section class="about-section py-40">
-        <div class="container-fluid">
+        <div class="container">
             <div class="about-wrapper bg-white">
                 <div class="about-block mb-24">
                     <div class="row align-items-center row-gap-4">
-                        <div class="col-xl-6 col-lg-7 order-sm-1 order-2">
+                        <div class="col-xl-12 text-center order-sm-1 order-2">
                             <div class="about-content">
-                                <h3 class="mb-24">Discover Our Story</h3>
+                                <h3 class="mb-24">{{ $about->title }}</h3>
                                 <p class="light-gray mb-12">
-                                    Welcome to
-                                    <span class="dark-black fw-500">
-                                        Gadgetize - Electronics Accessories Store,
-                                    </span>
-                                    your number one source for all things electronics
-                                    accessories. We're dedicated to providing you the very
-                                    best of chargers, headphones, cables, and more, with an
-                                    emphasis on quality, affordability, and customer
-                                    satisfaction.
+                                    {!! $about->description !!}
                                 </p>
-                                <p class="light-gray">
-                                    Founded in 2010 by Founder's
-                                    <span class="dark-black fw-500"> John Smith,</span>
-                                    Gadgetize has come a long way from its beginnings in New
-                                    York, USA. When John Smith first started out, their
-                                    passion for technology and electronics drove them to
-                                    start their own business. Their goal was simple: to
-                                    offer high-quality products that were not only reliable
-                                    but also affordable.
-                                </p>
+
                             </div>
                         </div>
-                        <div class="col-xl-6 col-lg-5 order-sm-2 order-1">
+                        <div class="col-xl-12 text-center order-sm-2 order-1 py-5">
                             <div class="about-image">
-                                <img src="{{ asset('/') }}website/assets/media/about/about-1.png" alt=""
-                                    class="br-20" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-block mb-24">
-                    <div class="row align-items-center row-gap-4">
-                        <div class="col-xl-6 col-lg-5">
-                            <div class="about-image">
-                                <img src="{{ asset('/') }}website/assets/media/about/about-2.png" alt=""
-                                    class="br-20" />
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-7">
-                            <div class="about-content">
-                                <h3 class="mb-24">Our Mission and Values</h3>
-                                <p class="light-gray mb-24">
-                                    At
-                                    <span class="dark-black fw-500">
-                                        Gadgetize - Electronics Accessories Store,
-                                    </span>
-                                    your number one source for all things electronics
-                                    accessories. We're dedicated to providing you the very
-                                    best of chargers, headphones, cables, and more, with an
-                                    emphasis on quality, affordability, and customer
-                                    satisfaction.
-                                </p>
-                                <ul>
-                                    <li class="fw-500 mb-8">Quality Products</li>
-                                    <li class="fw-500 mb-8">Affordability</li>
-                                    <li class="fw-500 mb-8">Excellent Customer Service</li>
-                                    <li class="fw-500 mb-8">Innovation</li>
-                                    <li class="fw-500">Sustainability:</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-block">
-                    <div class="row align-items-center row-gap-4">
-                        <div class="col-xl-6 col-lg-7 order-sm-1 order-2">
-                            <div class="about-content">
-                                <h3 class="mb-24">Our Mission and Values</h3>
-                                <p class="light-gray mb-24">
-                                    We offer a wide range of electronic accessories designed
-                                    to meet your every need. Whether you're looking for the
-                                    latest wireless headphones, fast charging cables,
-                                    durable cases, or innovative gadgets, we have something
-                                    for everyone.
-                                </p>
-                                <ul>
-                                    <li class="fw-500 mb-8">Chargers</li>
-                                    <li class="fw-500 mb-8">headphones & Earphones</li>
-                                    <li class="fw-500 mb-8">Cables & Connectors</li>
-                                    <li class="fw-500 mb-8">Cases & Covers</li>
-                                    <li class="fw-500">Smart Home Gadgets</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-5 order-sm-2 order-1">
-                            <div class="about-image">
-                                <img src="{{ asset('/') }}website/assets/media/about/about-3.png" alt=""
-                                    class="br-20" />
+                                <img src="{{ asset($about->image) }}" alt="" class="br-20" />
                             </div>
                         </div>
                     </div>

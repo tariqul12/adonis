@@ -207,1510 +207,41 @@
                             All Products
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="laptop-pro-tab" data-bs-toggle="tab" data-bs-target="#laptop-pro"
-                            type="button" role="tab" aria-controls="laptop-pro" aria-selected="false">
-                            Laptop
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="keyboard-pro-tab" data-bs-toggle="tab"
-                            data-bs-target="#keyboard-pro" type="button" role="tab" aria-controls="keyboard-pro"
-                            aria-selected="false">
-                            Keyboard
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="mouse-pro-tab" data-bs-toggle="tab" data-bs-target="#mouse-pro"
-                            type="button" role="tab" aria-controls="mouse-pro" aria-selected="false">
-                            Mouse
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="headphone-pro-tab" data-bs-toggle="tab"
-                            data-bs-target="#headphone-pro" type="button" role="tab" aria-controls="headphone-pro"
-                            aria-selected="false">
-                            Headphone
-                        </button>
-                    </li>
+                    @foreach ($popular_categories as $category)
+                        <li class="nav-item" role="presentation" id="{{ str_replace(' ', '', $category->name) }}-tab">
+                            <button class="nav-link" data-id="{{ $category->id }}"
+                                data-name="{{ str_replace(' ', '', $category->name) }}" data-bs-toggle="tab"
+                                data-bs-target="#{{ str_replace(' ', '', $category->name) }}" type="button"
+                                role="tab" aria-controls="{{ str_replace(' ', '', $category->name) }}"
+                                aria-selected="false">
+                                {{ $category->name }}
+                            </button>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="tab-content" id="myProductContent">
-                <div class="tab-pane fa de show active" id="all-product" role="tabpanel"
+                <!-- All Products Tab Content -->
+                <div class="tab-pane fade show active" id="all-product" role="tabpanel"
                     aria-labelledby="all-product-tab">
-                    <div class="row row-gap-3">
-                        @foreach ($popularProducts as $product)
-                            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                                <div class="featured-product-card bg-white br-10">
-                                    <form action="{{ route('cart.add', $product->id) }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name="qty" value="1">
-                                        <input type="hidden" name="size"
-                                            value="{{ $product->productSizes[0]->size->id }}">
-                                        <input type="hidden" name="color"
-                                            value="{{ $product->productColors[0]->color->id }}">
-                                        <div class="image-box mb-16">
-
-                                            <a href="{{ route('product-detail', $product->id) }}"><img
-                                                    src="{{ asset($product->image) }}" class="product-image"
-                                                    height="200" alt="" /></a>
-                                            <div class="side-icons">
-                                                {{-- <ul class="list-unstyled">
-                                                <li>
-                                                    <a href="#">
-                                                        <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                        alt="" />
-                                        </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="btn quick-view-btn"
-                                                data-id="{{ $product->id }}" data-name="{{ $product->name }}"
-                                                data-brand="{{ $product->brand->name ?? 'Unknown' }}"
-                                                data-reviews="02 Reviews"
-                                                data-regular-price="{{ $product->regular_price }}"
-                                                data-selling-price="{{ $product->selling_price }}"
-                                                data-discount="-12%"
-                                                data-description="{{ strlen($product->short_description) > 150 ? substr($product->short_description, 0, 150) . ' ...' : $product->short_description }}"
-                                                data-category={{ $product->category->name ?? 'Unknown' }}
-                                                data-image="{{ asset($product->image) }}" data-bs-toggle="modal"
-                                                data-bs-target="#productQuickView">
-                                                <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                    alt="Quick View" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                                data-bs-target="#comparepopup">
-                                                <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                    alt="" />
-                                            </a>
-                                        </li>
-                                        </ul> --}}
-                                            </div>
-                                        </div>
-                                        <div class="product-desc">
-                                            <h6 class="product-title mb-8">
-                                                <a
-                                                    href="{{ route('product-detail', $product->id) }}">{{ strlen($product->name) > 10 ? substr($product->name, 0, 14) . ' ...' : $product->name }}</a>
-                                            </h6>
-                                            <div class="text mb-12">
-                                                <p class="light-gray">
-                                                    {{ substr($product->short_description, 0, 30) }}
-                                                </p>
-                                            </div>
-                                            <div class="rating-star mb-16 bg-white">
-                                                <h6>
-                                                    <span class="text-decoration-line-through light-gray">
-                                                        TK:{{ $product->regular_price }}</span>&nbsp;&nbsp;TK:{{ $product->selling_price }}
-                                                </h6>
-                                            </div>
-                                            <button type="submit" class="cus-btn-2 w-100">Add to Cart</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        @endforeach
+                    <div class="row row-gap-3" id="all-products-container">
+                        <!-- All products will be loaded here -->
                     </div>
                 </div>
-                <div class="tab-pane fade" id="laptop-pro" role="tabpanel" aria-labelledby="laptop-pro-tab">
-                    <div class="row row-gap-3">
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
 
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}} --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Radiant View LCD</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Pure Bass Headphones</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/watch.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Supreme Tech Phone</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Aero Pro Joysticks</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Hyper Glide Mouse</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/bag.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">iPad Standard Plus</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
+                @foreach ($popular_categories as $category)
+                    <div class="tab-pane fade" id="{{ str_replace(' ', '', $category->name) }}" role="tabpanel"
+                        aria-labelledby="{{ str_replace(' ', '', $category->name) }}-tab">
+                        <!-- Category products will be loaded here -->
                     </div>
-                </div>
-                <div class="tab-pane fade" id="keyboard-pro" role="tabpanel" aria-labelledby="keyboard-pro-tab">
-                    <div class="row row-gap-3">
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Radiant View LCD</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Pure Bass Headphones</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/watch.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Supreme Tech Phone</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Aero Pro Joysticks</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Hyper Glide Mouse</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/bag.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">iPad Standard Plus</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="mouse-pro" role="tabpanel" aria-labelledby="mouse-pro-tab">
-                    <div class="row row-gap-3">
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Radiant View LCD</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Pure Bass Headphones</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/watch.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Supreme Tech Phone</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Aero Pro Joysticks</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Hyper Glide Mouse</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/bag.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">iPad Standard Plus</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="headphone-pro" role="tabpanel" aria-labelledby="headphone-pro-tab">
-                    <div class="row row-gap-3">
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Radiant View LCD</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Pure Bass Headphones</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/watch.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Supreme Tech Phone</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/13.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Aero Pro Joysticks</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img
-                                            src="{{ asset('/') }}website/assets/media/products/saree.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">Hyper Glide Mouse</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
-                            <div class="featured-product-card bg-white br-10">
-                                <div class="image-box mb-16">
-
-                                    <a href="#"><img src="{{ asset('/') }}website/assets/media/products/bag.png"
-                                            class="product-image" alt="" /></a>
-                                    <div class="side-icons">
-                                        {{-- <ul class="list-unstyled">
-                                            <li>
-                                                <a href="#">
-                                                    <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                    alt="" />
-                                    </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn" data-bs-toggle="modal"
-                                            data-bs-target="#productQuickView">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                            data-bs-target="#comparepopup">
-                                            <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                alt="" />
-                                        </a>
-                                    </li>
-                                    </ul> --}}
-                                    </div>
-                                </div>
-                                <div class="product-desc">
-                                    <h6 class="product-title mb-8">
-                                        <a href="#">iPad Standard Plus</a>
-                                    </h6>
-                                    <div class="text mb-12">
-                                        <p class="light-gray">
-                                            Lorem ipsum dolor sit amet consectetur. Id viverra
-                                            cursus enim risus mattis urnanullam quis magna.
-                                            Ligula maecenas integer diam risus rhoncus at.
-                                            Viverra a consectetur ac lobortis.
-                                        </p>
-                                    </div>
-                                    <div class="rating-star mb-16 bg-white">
-                                        <h5 class="color-sec mb-24">
-                                            ★★★★<span class="light-gray">★</span>&nbsp;&nbsp;<span
-                                                class="text-16 fw-400 dark-black">(80)</span>
-                                        </h5>
-                                        <h6>
-                                            <span class="text-decoration-line-through light-gray">
-                                                $12.00</span>&nbsp;&nbsp;$10.00
-                                        </h6>
-                                    </div>
-                                    <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
+
+
+
+
     <!-- Popular Product End -->
 
     <!-- Inner Banner Start -->
@@ -1872,354 +403,354 @@
 
     <!-- Blog Section Start -->
     <!-- <section class="blog-section bg-lightest-gray py-40">
-                                                <div class="container-fluid">
-                                                    <div class="top-bar mb-16">
-                                                        <h5>Latest Blogs</h5>
-                                                        <div class="slider-arrow">
-                                                            <button class="arrow btn-prev" data-slide="blog-slider">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32"
-                                                                    fill="none">
-                                                                    <path
-                                                                        d="M12.8057 23C12.8057 20 10.0057 16 6.80566 16M6.80566 16C8.639 16 12.8057 15 12.8057 9M6.80566 16H25.8057"
-                                                                        stroke="#1B1918" stroke-width="2"></path>
-                                                                </svg>
-                                                            </button>
-                                                            <button class="arrow btn-next" data-slide="blog-slider">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                                                    fill="none">
-                                                                    <path
-                                                                        d="M19.3545 23C19.3545 20 22.1545 16 25.3545 16M25.3545 16C23.5212 16 19.3545 15 19.3545 9M25.3545 16H6.35449"
-                                                                        stroke="#1B1918" stroke-width="2"></path>
-                                                                </svg>
-                                                            </button>
+                                                    <div class="container-fluid">
+                                                        <div class="top-bar mb-16">
+                                                            <h5>Latest Blogs</h5>
+                                                            <div class="slider-arrow">
+                                                                <button class="arrow btn-prev" data-slide="blog-slider">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32"
+                                                                        fill="none">
+                                                                        <path
+                                                                            d="M12.8057 23C12.8057 20 10.0057 16 6.80566 16M6.80566 16C8.639 16 12.8057 15 12.8057 9M6.80566 16H25.8057"
+                                                                            stroke="#1B1918" stroke-width="2"></path>
+                                                                    </svg>
+                                                                </button>
+                                                                <button class="arrow btn-next" data-slide="blog-slider">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+                                                                        fill="none">
+                                                                        <path
+                                                                            d="M19.3545 23C19.3545 20 22.1545 16 25.3545 16M25.3545 16C23.5212 16 19.3545 15 19.3545 9M25.3545 16H6.35449"
+                                                                            stroke="#1B1918" stroke-width="2"></path>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="blog-slider" data-parent="blog-slider">
+                                                            <a href="#" class="blog-block bg-white">
+                                                                <div class="blog-image">
+                                                                    <img src="{{ asset('/') }}website/assets/media/blogs/blog-1.png" alt="" />
+                                                                </div>
+                                                                <div class="blog-content">
+                                                                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
+                                                                    <h6 class="mb-16 fw-600">
+                                                                        Headphone Heroes: Elevating Your Experience Quality Sound
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-16">
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
+                                                                            <p class="light-gray">
+                                                                                By <span class="color-primary">Emily</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
+                                                                            <p class="light-gray">Comments</p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
+                                                                            <p class="light-gray">Views</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="light-gray mb-32">
+                                                                        Lorem ipsum dolor sit amet consectetur. Vitae vel sit
+                                                                        convallis aliquet amet vestibulum maecenas ac.
+                                                                    </p>
+                                                                    <div class="cus-btn-arrow">
+                                                                        Read More
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                                                            fill="none">
+                                                                            <path
+                                                                                d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                                                                                stroke="#0C0C0D" stroke-width="2" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="blog-block bg-white">
+                                                                <div class="blog-image">
+                                                                    <img src="{{ asset('/') }}website/assets/media/blogs/blog-2.png" alt="" />
+                                                                </div>
+                                                                <div class="blog-content">
+                                                                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
+                                                                    <h6 class="mb-16 fw-600">
+                                                                        Gizmo Galore: Exploring the Coolest Gadgets on the Market
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-16">
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
+                                                                            <p class="light-gray">
+                                                                                By <span class="color-primary">Emily</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
+                                                                            <p class="light-gray">Comments</p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
+                                                                            <p class="light-gray">Views</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="light-gray mb-32">
+                                                                        Lorem ipsum dolor sit amet consectetur. Vitae vel sit
+                                                                        convallis aliquet amet vestibulum maecenas ac.
+                                                                    </p>
+                                                                    <div class="cus-btn-arrow">
+                                                                        Read More
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                                                            fill="none">
+                                                                            <path
+                                                                                d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                                                                                stroke="#0C0C0D" stroke-width="2" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="blog-block bg-white">
+                                                                <div class="blog-image">
+                                                                    <img src="{{ asset('/') }}website/assets/media/blogs/blog-3.png" alt="" />
+                                                                </div>
+                                                                <div class="blog-content">
+                                                                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
+                                                                    <h6 class="mb-16 fw-600">
+                                                                        The 4K Perspective: Gaining Insights into Ultra HD
+                                                                        Entertainment
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-16">
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
+                                                                            <p class="light-gray">
+                                                                                By <span class="color-primary">Emily</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
+                                                                            <p class="light-gray">Comments</p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
+                                                                            <p class="light-gray">Views</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="light-gray mb-32">
+                                                                        Lorem ipsum dolor sit amet consectetur. Vitae vel sit
+                                                                        convallis aliquet amet vestibulum maecenas ac.
+                                                                    </p>
+                                                                    <div class="cus-btn-arrow">
+                                                                        Read More
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                                                            fill="none">
+                                                                            <path
+                                                                                d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                                                                                stroke="#0C0C0D" stroke-width="2" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="blog-block bg-white">
+                                                                <div class="blog-image">
+                                                                    <img src="{{ asset('/') }}website/assets/media/blogs/blog-4.png" alt="" />
+                                                                </div>
+                                                                <div class="blog-content">
+                                                                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
+                                                                    <h6 class="mb-16 fw-600">
+                                                                        Gaming Grasp: Navigating the World of Game Controllers
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-16">
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
+                                                                            <p class="light-gray">
+                                                                                By <span class="color-primary">Emily</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
+                                                                            <p class="light-gray">Comments</p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
+                                                                            <p class="light-gray">Views</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="light-gray mb-32">
+                                                                        Lorem ipsum dolor sit amet consectetur. Vitae vel sit
+                                                                        convallis aliquet amet vestibulum maecenas ac.
+                                                                    </p>
+                                                                    <div class="cus-btn-arrow">
+                                                                        Read More
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                                                            fill="none">
+                                                                            <path
+                                                                                d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                                                                                stroke="#0C0C0D" stroke-width="2" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="blog-block bg-white">
+                                                                <div class="blog-image">
+                                                                    <img src="{{ asset('/') }}website/assets/media/blogs/blog-1.png" alt="" />
+                                                                </div>
+                                                                <div class="blog-content">
+                                                                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
+                                                                    <h6 class="mb-16 fw-600">
+                                                                        Headphone Heroes: Elevating Your Experience Quality Sound
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-16">
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
+                                                                            <p class="light-gray">
+                                                                                By <span class="color-primary">Emily</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
+                                                                            <p class="light-gray">Comments</p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
+                                                                            <p class="light-gray">Views</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="light-gray mb-32">
+                                                                        Lorem ipsum dolor sit amet consectetur. Vitae vel sit
+                                                                        convallis aliquet amet vestibulum maecenas ac.
+                                                                    </p>
+                                                                    <div class="cus-btn-arrow">
+                                                                        Read More
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                                                            fill="none">
+                                                                            <path
+                                                                                d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                                                                                stroke="#0C0C0D" stroke-width="2" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="blog-block bg-white">
+                                                                <div class="blog-image">
+                                                                    <img src="{{ asset('/') }}website/assets/media/blogs/blog-2.png" alt="" />
+                                                                </div>
+                                                                <div class="blog-content">
+                                                                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
+                                                                    <h6 class="mb-16 fw-600">
+                                                                        Gizmo Galore: Exploring the Coolest Gadgets on the Market
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-16">
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
+                                                                            <p class="light-gray">
+                                                                                By <span class="color-primary">Emily</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
+                                                                            <p class="light-gray">Comments</p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
+                                                                            <p class="light-gray">Views</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="light-gray mb-32">
+                                                                        Lorem ipsum dolor sit amet consectetur. Vitae vel sit
+                                                                        convallis aliquet amet vestibulum maecenas ac.
+                                                                    </p>
+                                                                    <div class="cus-btn-arrow">
+                                                                        Read More
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
+                                                                            fill="none">
+                                                                            <path
+                                                                                d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                                                                                stroke="#0C0C0D" stroke-width="2" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="blog-block bg-white">
+                                                                <div class="blog-image">
+                                                                    <img src="{{ asset('/') }}website/assets/media/blogs/blog-3.png" alt="" />
+                                                                </div>
+                                                                <div class="blog-content">
+                                                                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
+                                                                    <h6 class="mb-16 fw-600">
+                                                                        The 4K Perspective: Gaining Insights into Ultra HD
+                                                                        Entertainment
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-16">
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
+                                                                            <p class="light-gray">
+                                                                                By <span class="color-primary">Emily</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
+                                                                            <p class="light-gray">Comments</p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
+                                                                            <p class="light-gray">Views</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="light-gray mb-32">
+                                                                        Lorem ipsum dolor sit amet consectetur. Vitae vel sit
+                                                                        convallis aliquet amet vestibulum maecenas ac.
+                                                                    </p>
+                                                                    <div class="cus-btn-arrow">
+                                                                        Read More
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
+                                                                            viewBox="0 0 20 15" fill="none">
+                                                                            <path
+                                                                                d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                                                                                stroke="#0C0C0D" stroke-width="2" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <a href="#" class="blog-block bg-white">
+                                                                <div class="blog-image">
+                                                                    <img src="{{ asset('/') }}website/assets/media/blogs/blog-4.png" alt="" />
+                                                                </div>
+                                                                <div class="blog-content">
+                                                                    <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
+                                                                    <h6 class="mb-16 fw-600">
+                                                                        Gaming Grasp: Navigating the World of Game Controllers
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center justify-content-between mb-16">
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
+                                                                            <p class="light-gray">
+                                                                                By <span class="color-primary">Emily</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
+                                                                            <p class="light-gray">Comments</p>
+                                                                        </div>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
+                                                                            <p class="light-gray">Views</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="light-gray mb-32">
+                                                                        Lorem ipsum dolor sit amet consectetur. Vitae vel sit
+                                                                        convallis aliquet amet vestibulum maecenas ac.
+                                                                    </p>
+                                                                    <div class="cus-btn-arrow">
+                                                                        Read More
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
+                                                                            viewBox="0 0 20 15" fill="none">
+                                                                            <path
+                                                                                d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
+                                                                                stroke="#0C0C0D" stroke-width="2" />
+                                                                        </svg>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
                                                         </div>
                                                     </div>
-                                                    <div class="blog-slider" data-parent="blog-slider">
-                                                        <a href="#" class="blog-block bg-white">
-                                                            <div class="blog-image">
-                                                                <img src="{{ asset('/') }}website/assets/media/blogs/blog-1.png" alt="" />
-                                                            </div>
-                                                            <div class="blog-content">
-                                                                <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                                                                <h6 class="mb-16 fw-600">
-                                                                    Headphone Heroes: Elevating Your Experience Quality Sound
-                                                                </h6>
-                                                                <div class="d-flex align-items-center justify-content-between mb-16">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
-                                                                        <p class="light-gray">
-                                                                            By <span class="color-primary">Emily</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
-                                                                        <p class="light-gray">Comments</p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
-                                                                        <p class="light-gray">Views</p>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="light-gray mb-32">
-                                                                    Lorem ipsum dolor sit amet consectetur. Vitae vel sit
-                                                                    convallis aliquet amet vestibulum maecenas ac.
-                                                                </p>
-                                                                <div class="cus-btn-arrow">
-                                                                    Read More
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
-                                                                        fill="none">
-                                                                        <path
-                                                                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                                                            stroke="#0C0C0D" stroke-width="2" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="#" class="blog-block bg-white">
-                                                            <div class="blog-image">
-                                                                <img src="{{ asset('/') }}website/assets/media/blogs/blog-2.png" alt="" />
-                                                            </div>
-                                                            <div class="blog-content">
-                                                                <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                                                                <h6 class="mb-16 fw-600">
-                                                                    Gizmo Galore: Exploring the Coolest Gadgets on the Market
-                                                                </h6>
-                                                                <div class="d-flex align-items-center justify-content-between mb-16">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
-                                                                        <p class="light-gray">
-                                                                            By <span class="color-primary">Emily</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
-                                                                        <p class="light-gray">Comments</p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
-                                                                        <p class="light-gray">Views</p>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="light-gray mb-32">
-                                                                    Lorem ipsum dolor sit amet consectetur. Vitae vel sit
-                                                                    convallis aliquet amet vestibulum maecenas ac.
-                                                                </p>
-                                                                <div class="cus-btn-arrow">
-                                                                    Read More
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
-                                                                        fill="none">
-                                                                        <path
-                                                                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                                                            stroke="#0C0C0D" stroke-width="2" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="#" class="blog-block bg-white">
-                                                            <div class="blog-image">
-                                                                <img src="{{ asset('/') }}website/assets/media/blogs/blog-3.png" alt="" />
-                                                            </div>
-                                                            <div class="blog-content">
-                                                                <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                                                                <h6 class="mb-16 fw-600">
-                                                                    The 4K Perspective: Gaining Insights into Ultra HD
-                                                                    Entertainment
-                                                                </h6>
-                                                                <div class="d-flex align-items-center justify-content-between mb-16">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
-                                                                        <p class="light-gray">
-                                                                            By <span class="color-primary">Emily</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
-                                                                        <p class="light-gray">Comments</p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
-                                                                        <p class="light-gray">Views</p>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="light-gray mb-32">
-                                                                    Lorem ipsum dolor sit amet consectetur. Vitae vel sit
-                                                                    convallis aliquet amet vestibulum maecenas ac.
-                                                                </p>
-                                                                <div class="cus-btn-arrow">
-                                                                    Read More
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
-                                                                        fill="none">
-                                                                        <path
-                                                                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                                                            stroke="#0C0C0D" stroke-width="2" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="#" class="blog-block bg-white">
-                                                            <div class="blog-image">
-                                                                <img src="{{ asset('/') }}website/assets/media/blogs/blog-4.png" alt="" />
-                                                            </div>
-                                                            <div class="blog-content">
-                                                                <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                                                                <h6 class="mb-16 fw-600">
-                                                                    Gaming Grasp: Navigating the World of Game Controllers
-                                                                </h6>
-                                                                <div class="d-flex align-items-center justify-content-between mb-16">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
-                                                                        <p class="light-gray">
-                                                                            By <span class="color-primary">Emily</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
-                                                                        <p class="light-gray">Comments</p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
-                                                                        <p class="light-gray">Views</p>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="light-gray mb-32">
-                                                                    Lorem ipsum dolor sit amet consectetur. Vitae vel sit
-                                                                    convallis aliquet amet vestibulum maecenas ac.
-                                                                </p>
-                                                                <div class="cus-btn-arrow">
-                                                                    Read More
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
-                                                                        fill="none">
-                                                                        <path
-                                                                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                                                            stroke="#0C0C0D" stroke-width="2" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="#" class="blog-block bg-white">
-                                                            <div class="blog-image">
-                                                                <img src="{{ asset('/') }}website/assets/media/blogs/blog-1.png" alt="" />
-                                                            </div>
-                                                            <div class="blog-content">
-                                                                <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                                                                <h6 class="mb-16 fw-600">
-                                                                    Headphone Heroes: Elevating Your Experience Quality Sound
-                                                                </h6>
-                                                                <div class="d-flex align-items-center justify-content-between mb-16">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
-                                                                        <p class="light-gray">
-                                                                            By <span class="color-primary">Emily</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
-                                                                        <p class="light-gray">Comments</p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
-                                                                        <p class="light-gray">Views</p>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="light-gray mb-32">
-                                                                    Lorem ipsum dolor sit amet consectetur. Vitae vel sit
-                                                                    convallis aliquet amet vestibulum maecenas ac.
-                                                                </p>
-                                                                <div class="cus-btn-arrow">
-                                                                    Read More
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
-                                                                        fill="none">
-                                                                        <path
-                                                                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                                                            stroke="#0C0C0D" stroke-width="2" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="#" class="blog-block bg-white">
-                                                            <div class="blog-image">
-                                                                <img src="{{ asset('/') }}website/assets/media/blogs/blog-2.png" alt="" />
-                                                            </div>
-                                                            <div class="blog-content">
-                                                                <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                                                                <h6 class="mb-16 fw-600">
-                                                                    Gizmo Galore: Exploring the Coolest Gadgets on the Market
-                                                                </h6>
-                                                                <div class="d-flex align-items-center justify-content-between mb-16">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
-                                                                        <p class="light-gray">
-                                                                            By <span class="color-primary">Emily</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
-                                                                        <p class="light-gray">Comments</p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
-                                                                        <p class="light-gray">Views</p>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="light-gray mb-32">
-                                                                    Lorem ipsum dolor sit amet consectetur. Vitae vel sit
-                                                                    convallis aliquet amet vestibulum maecenas ac.
-                                                                </p>
-                                                                <div class="cus-btn-arrow">
-                                                                    Read More
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15" viewBox="0 0 20 15"
-                                                                        fill="none">
-                                                                        <path
-                                                                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                                                            stroke="#0C0C0D" stroke-width="2" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="#" class="blog-block bg-white">
-                                                            <div class="blog-image">
-                                                                <img src="{{ asset('/') }}website/assets/media/blogs/blog-3.png" alt="" />
-                                                            </div>
-                                                            <div class="blog-content">
-                                                                <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                                                                <h6 class="mb-16 fw-600">
-                                                                    The 4K Perspective: Gaining Insights into Ultra HD
-                                                                    Entertainment
-                                                                </h6>
-                                                                <div class="d-flex align-items-center justify-content-between mb-16">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
-                                                                        <p class="light-gray">
-                                                                            By <span class="color-primary">Emily</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
-                                                                        <p class="light-gray">Comments</p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
-                                                                        <p class="light-gray">Views</p>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="light-gray mb-32">
-                                                                    Lorem ipsum dolor sit amet consectetur. Vitae vel sit
-                                                                    convallis aliquet amet vestibulum maecenas ac.
-                                                                </p>
-                                                                <div class="cus-btn-arrow">
-                                                                    Read More
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
-                                                                        viewBox="0 0 20 15" fill="none">
-                                                                        <path
-                                                                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                                                            stroke="#0C0C0D" stroke-width="2" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                        <a href="#" class="blog-block bg-white">
-                                                            <div class="blog-image">
-                                                                <img src="{{ asset('/') }}website/assets/media/blogs/blog-4.png" alt="" />
-                                                            </div>
-                                                            <div class="blog-content">
-                                                                <p class="mb-16 fw-500 dark-black">24 June, 2024</p>
-                                                                <h6 class="mb-16 fw-600">
-                                                                    Gaming Grasp: Navigating the World of Game Controllers
-                                                                </h6>
-                                                                <div class="d-flex align-items-center justify-content-between mb-16">
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/users/user-1.png" alt="" />
-                                                                        <p class="light-gray">
-                                                                            By <span class="color-primary">Emily</span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-1.png" alt="" />
-                                                                        <p class="light-gray">Comments</p>
-                                                                    </div>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <img src="{{ asset('/') }}website/assets/media/icons/icon-2.png" alt="" />
-                                                                        <p class="light-gray">Views</p>
-                                                                    </div>
-                                                                </div>
-                                                                <p class="light-gray mb-32">
-                                                                    Lorem ipsum dolor sit amet consectetur. Vitae vel sit
-                                                                    convallis aliquet amet vestibulum maecenas ac.
-                                                                </p>
-                                                                <div class="cus-btn-arrow">
-                                                                    Read More
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="15"
-                                                                        viewBox="0 0 20 15" fill="none">
-                                                                        <path
-                                                                            d="M13.3545 14.7476C13.3545 11.7476 16.1545 7.74756 19.3545 7.74756M19.3545 7.74756C17.5212 7.74756 13.3545 6.74756 13.3545 0.747559M19.3545 7.74756H0.354492"
-                                                                            stroke="#0C0C0D" stroke-width="2" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </section> -->
+                                                </section> -->
     <!-- Blog Section End -->
 
     <!-- Inner Banner Start -->
@@ -2252,8 +783,8 @@
                     </ul>
                 </div>
                 <div class="inner-image-2">
-                    <img height="200" width="200"
-                        src="{{ asset('/') }}website/assets/media/images/watch.png" alt="" />
+                    <img height="200" width="200" src="{{ asset('/') }}website/assets/media/images/watch.png"
+                        alt="" />
                 </div>
             </div>
         </div>
@@ -2310,5 +841,89 @@
             </div>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // পণ্য লোড করার ফাংশন
+            function loadProducts(categoryId = null, categoryName = null) {
+                let targetTabId = categoryName ? `#${categoryName}` :
+                '#all-product'; // ক্যাটাগরি নাম অনুযায়ী ট্যাব আইডি সেট করা
+                let productsContainerId = categoryName ? `#${categoryName}` :
+                '#all-products-container'; // পণ্যের কনটেইনার আইডি
+
+                // লোডিং ইনডিকেটর দেখানো
+                $(productsContainerId).html('<div class="text-center">Loading...</div>');
+
+                // AJAX রিকুয়েস্ট পাঠানো
+                $.ajax({
+                    url: "{{ route('popular.products') }}", // লারাভেল রুট
+                    method: 'GET',
+                    data: {
+                        category_id: categoryId
+                    },
+                    success: function(response) {
+                        // ট্যাবের কনটেন্ট মুছে ফেলা এবং নতুন পণ্য যোগ করা
+                        $(productsContainerId).empty(); // পণ্য লোড করার আগে কনটেইনার পরিষ্কার করা
+
+                        if (response.length === 0) {
+                            $(productsContainerId).html(
+                                '<div class="text-center">No products found.</div>');
+                        } else {
+                            response.forEach(function(product) {
+                                const productHTML = `
+                            <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
+                                <div class="featured-product-card bg-white br-10">
+                                    <form action="{{ route('cart.add', '') }}/${product.id}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="qty" value="1">
+                                        <input type="hidden" name="size" value="${product.productSizes[0].size_id}">
+                                        <input type="hidden" name="color" value="${product.productColors[0].color_id}">
+                                        <div class="image-box mb-16">
+                                            <a href="{{ route('product-detail', '') }}/${product.id}">
+                                                <img src="{{ asset('${product.image}') }}" class="product-image" height="200" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="product-desc">
+                                            <h6 class="product-title mb-8">
+                                                <a href="{{ route('product-detail', '') }}/${product.id}">
+                                                    ${product.name.length > 10 ? product.name.substring(0, 14) + ' ...' : product.name}
+                                                </a>
+                                            </h6>
+                                            <div class="text mb-12">
+                                                <p class="light-gray">${product.short_description.substring(0, 30)}</p>
+                                            </div>
+                                            <div class="rating-star mb-16 bg-white">
+                                                <h6><span class="text-decoration-line-through light-gray">
+                                                    TK:${product.regular_price}</span>&nbsp;&nbsp;TK:${product.selling_price}</h6>
+                                            </div>
+                                            <button type="submit" class="cus-btn-2 w-100">Add to Cart</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        `;
+                                $(productsContainerId).append(
+                                productHTML); // পণ্য কনটেইনারে পণ্য অ্যাড করা
+                            });
+                        }
+                    },
+                    error: function() {
+                        $(productsContainerId).html(
+                            '<div class="text-center">Failed to load products.</div>');
+                    }
+                });
+            }
+
+            // পেজ লোডের সময় "All Products" লোড হবে
+            loadProducts();
+
+            // ক্যাটাগরি ট্যাব ক্লিক করা হলে পণ্য লোড হবে
+            $('#myProduct button').on('click', function() {
+                const categoryId = $(this).data('id');
+                const categoryName = $(this).data('name');
+                loadProducts(categoryId, categoryName); // ক্যাটাগরি অনুসারে পণ্য লোড হবে
+            });
+        });
+    </script>
     <!-- Newsletter End -->
 @endsection

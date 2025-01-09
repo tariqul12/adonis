@@ -143,7 +143,7 @@
                             <h6 class="mb-16">Social Media:</h6>
                             <ul class="list-unstyled social-link mb-40">
                                 <li>
-                                    <a href="#">
+                                    <a target="_blank" href="{{ $companyInfo->instagram_link }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             viewBox="0 0 25 25" fill="none">
                                             <path
@@ -153,7 +153,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a target="_blank" href="{{ $companyInfo->facebook_link }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             viewBox="0 0 25 25" fill="none">
                                             <g clip-path="url(#clip0_5950_10656)">
@@ -171,7 +171,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a target="_blank" href="{{ $companyInfo->twitter_link }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             viewBox="0 0 25 25" fill="none">
                                             <g clip-path="url(#clip0_5950_10659)">
@@ -189,7 +189,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a target="_blank" href="{{ $companyInfo->linkedin_link }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             viewBox="0 0 25 25" fill="none">
                                             <g clip-path="url(#clip0_5950_10662)">
