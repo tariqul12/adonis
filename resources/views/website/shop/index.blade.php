@@ -338,6 +338,7 @@ Products Page
                             <div class="col-xxl-3 col-xl-4 col-lg-4 col-md-6">
                                 <div class="featured-product-card bg-white br-10">
                                     <form action="/cart/add/${product.id}" method="post">
+                                     @csrf
                                         <input type="hidden" name="qty" value="1">
                                         <input type="hidden" name="size" value="${product.productSizes[0].size_id}">
                                         <input type="hidden" name="color" value="${product.productColors[0].color_id}">
