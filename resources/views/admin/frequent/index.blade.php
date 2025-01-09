@@ -23,7 +23,7 @@
                             <h3 class="fw-bold text-end">All Frequent Info</h3>
                         </div>
                         <div class="col-5 text-end me-1">
-                            <a href="{{ route('frequents.create') }}" class="btn btn-primary rounded-0">Add New Frequent</a>
+                            <a href="{{ route('frequent.create') }}" class="btn btn-primary rounded-0">Add New Frequent</a>
                         </div>
                     </div>
                 </div>
@@ -44,11 +44,11 @@
                                     <tr class="text-center">
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $frequent->question }}</td>
-                                        <td>{{ $frequent->answare }}</td>
+                                        <td>{{ $frequent->answer }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('frequents.edit', $frequent->id) }}"
+                                            <a href="{{ route('frequent.edit', $frequent->id) }}"
                                                 class="btn btn-primary btn-sm mb-1"><i class="fa fa-edit"></i></a>
-                                            <form action="{{ route('frequents.destroy', $frequent->id) }}" method="post">
+                                            <form action="{{ route('frequent.destroy', $frequent->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" onclick="return confirm('are you sure to delete ?')"

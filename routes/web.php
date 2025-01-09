@@ -174,6 +174,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     //contact Module
     Route::get('contact/index', [ContctController::class, 'index'])->name('contact.index');
 
+    Route::get('contact/newslatter', [ContctController::class, 'newsLatter'])->name('contact.newslatter');
+
     //Admin Order
     Route::get('/admin-order/index', [AdminOrderController::class, 'index'])->name('admin-order.index');
     Route::get('/admin-order/detail/{id}', [AdminOrderController::class, 'detail'])->name('admin-order.detail');

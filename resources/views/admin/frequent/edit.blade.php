@@ -14,7 +14,7 @@
     </div>
     <!-- PAGE-HEADER END -->
     <div class="row justify-content-center">
-        <div class="col-lg-12 shadow">
+        <div class="col-lg-8 shadow">
             <div class="card shadow">
                 <div class="border-bottom py-5">
                     <div class="row">
@@ -22,16 +22,15 @@
                             <h3 class="fw-bold text-end">Edit Frequent Form</h3>
                         </div>
                         <div class="col-5 text-end me-1">
-                            <a href="{{ route('frequents.index') }}" class="btn btn-primary rounded-0">All Frequent</a>
+                            <a href="{{ route('frequent.index') }}" class="btn btn-primary rounded-0">All Frequent</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <p class="text-primary fw-bold fs-5">{{ session('message') }}</p>
-                    <form action="{{ route('frequents.update', $frequent->id) }}" method="POST"
+                    <form action="{{ route('frequent.update', $frequent->id) }}" method="POST"
                         enctype="multipart/form-data" class="form-horizontal">
                         @csrf
-                        @method('PUT')
                         <div class="row mb-4">
                             <label for="question" class="col-md-3 form-label">Frequent question</label>
                             <div class="col-md-9">
@@ -42,8 +41,8 @@
                         <div class="row mb-4">
                             <label for="answare" class="col-md-3 form-label">Frequent answare</label>
                             <div class="col-md-9">
-                                <input class="form-control" id="answare" value="{{ $frequent->answare }}" name="answare"
-                                    placeholder="Frequent question" type="text" />
+                                <input class="form-control" id="answare" value="{{ $frequent->answer }}" name="answer"
+                                    placeholder="Frequent answer" type="text" />
                             </div>
                         </div>
                         <div class="row mb-4">

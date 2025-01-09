@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Frequent;
 use App\Models\Product;
 use App\Models\ProductSize;
 use App\Models\ProductColor;
@@ -175,7 +176,8 @@ class WebsiteController extends Controller
     public function about()
     {
         $about = About::latest()->first();
-        return view('website.about.about', compact('about'));
+        $faqs = Frequent::latest()->get();
+        return view('website.about.about', compact('about', 'faqs'));
     }
 
     public function contact()

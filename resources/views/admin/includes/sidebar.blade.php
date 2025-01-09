@@ -52,7 +52,6 @@
                         <span class="side-menu__label">Order Module</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
                         <li><a href="{{ route('admin-order.index') }}" class="slide-item">Manage Order</a></li>
-                        <li><a href="{{ route('contact.index') }}" class="slide-item">Manage Contact</a></li>
                     </ul>
                 </li>
                 <li>
@@ -162,10 +161,10 @@
                         </svg>
                         <span class="side-menu__label">User Module</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
-                        <li><a href="{{ route('role.create') }}" class="slide-item">Add Role</a>
+                        {{-- <li><a href="{{ route('role.create') }}" class="slide-item">Add Role</a>
                         </li>
                         <li><a href="{{ route('role.index') }}" class="slide-item">Manage Role</a>
-                        </li>
+                        </li> --}}
                         <li><a href="{{ route('user.create') }}" class="slide-item">Add User</a>
                         </li>
                         <li><a href="{{ route('user.index') }}" class="slide-item">Manage User</a>
@@ -200,6 +199,7 @@
                     <ul class="slide-menu">
                         <li><a href="{{ route('company.index') }}" class="slide-item">Manage Company</a></li>
                         <li><a href="{{ route('about.index') }}" class="slide-item">Manage About</a></li>
+                        <li><a href="{{ route('frequent.index') }}" class="slide-item">Manage FAQ</a></li>
                         <li><a href="{{ route('shipping.index') }}" class="slide-item">Manage Shipping Method</a>
                         </li>
                     </ul>
@@ -221,6 +221,26 @@
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                    <h3>Newslatter Settings</h3>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon"
+                            enable-background="new 0 0 24 24" viewBox="0 0 24 24">
+                            <path
+                                d="M21.5,13h-8.0005493C13.2234497,13.0001831,12.9998169,13.223999,13,13.5v8.0005493C13.0001831,21.7765503,13.223999,22.0001831,13.5,22h8.0006104C21.7765503,21.9998169,22.0001831,21.776001,22,21.5v-8.0006104C21.9998169,13.2234497,21.776001,12.9998169,21.5,13z M21,21h-7v-7h7V21z M10.5,2H2.4993896C2.2234497,2.0001831,1.9998169,2.223999,2,2.5v8.0005493C2.0001831,10.7765503,2.223999,11.0001831,2.5,11h8.0006104C10.7765503,10.9998169,11.0001831,10.776001,11,10.5V2.4993896C10.9998169,2.2234497,10.776001,1.9998169,10.5,2z M10,10H3V3h7V10z M10.5,13H2.4993896C2.2234497,13.0001831,1.9998169,13.223999,2,13.5v8.0005493C2.0001831,21.7765503,2.223999,22.0001831,2.5,22h8.0006104C10.7765503,21.9998169,11.0001831,21.776001,11,21.5v-8.0006104C10.9998169,13.2234497,10.776001,12.9998169,10.5,13z M10,21H3v-7h7V21z M21.5,2h-8.0005493C13.2234497,2.0001831,12.9998169,2.223999,13,2.5v8.0005493C13.0001831,10.7765503,13.223999,11.0001831,13.5,11h8.0006104C21.7765503,10.9998169,22.0001831,10.776001,22,10.5V2.4993896C21.9998169,2.2234497,21.776001,1.9998169,21.5,2z M21,10h-7V3h7V10z" />
+                        </svg>
+                        <span class="side-menu__label">Newslatter Module</span><i class="angle fa fa-angle-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li><a href="{{ route('contact.index') }}" class="slide-item">Manage Contact</a></li>
+                        <li><a href="{{ route('contact.newslatter') }}" class="slide-item"> Manage Newslatter</a>
+                        </li>
+                    </ul>
+                </li>
+
 
             </ul>
             <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
