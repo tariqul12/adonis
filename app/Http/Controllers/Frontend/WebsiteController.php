@@ -25,9 +25,43 @@ class WebsiteController extends Controller
         $featureProducts = Product::where(['status' => 1, 'feature_status' => 1])->orderBy('id', 'desc')->limit(4)->get();
         $popularProducts = Product::where(['status' => 1, 'popular_status' => 1])->orderBy('id', 'desc')->limit(6)->get();
         $newarrivalsProducts = Product::where(['status' => 1])->orderBy('id', 'desc')->limit(6)->get();
-        $popular_categories = Category::whereStatus(1)->orderBy('id', 'desc')->limit(4)->get();
+        // $popular_categories = Category::whereStatus(1)->orderBy('id', 'desc')->limit(4)->get();
+        $popular_categories = Category::whereHas('products', function ($query) {
+            $query->where('popular_status', 1);
+        })
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->limit(8)
+            ->get();
+        // dd($popular_categories);
         return view('website.home.index', compact('bannerSlider', 'bannerSides', 'featuredSlider', 'popularSlider', 'footerSlider', 'homeCategory', 'featureProducts', 'popularProducts', 'newarrivalsProducts', 'popular_categories'));
     }
+
+
+    public function popularProducts(Request $request)
+    {
+        $categoryId = $request->input('category_id');
+
+        // জনপ্রিয় পণ্যগুলি ক্যাটাগরি অনুসারে ফিল্টার করা
+        $productsQuery = Product::where('popular_status', 1);
+
+        if ($categoryId) {
+            $productsQuery->where('category_id', $categoryId);
+        }
+
+        $products = $productsQuery->get();
+
+        // প্রতিটি পণ্যের জন্য সাইজ এবং রঙ লোড করা
+        foreach ($products as $product) {
+            $product->productSizes = ProductSize::where('product_id', $product->id)->get();
+            $product->productColors = ProductColor::where('product_id', $product->id)->get();
+        }
+
+        return response()->json($products);
+    }
+
+
+
 
     public function category($id)
     {

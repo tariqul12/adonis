@@ -38,6 +38,9 @@ Route::get('/ajax-search', [WebsiteController::class, 'ajaxSearch'])->name('ajax
 Route::get('/product-category/{id}', [WebsiteController::class, 'category'])->name('category');
 Route::get('/product-sub-category/{id}', [WebsiteController::class, 'subCategory'])->name('sub-category');
 Route::get('/product-detail/{id}', [WebsiteController::class, 'product'])->name('product-detail');
+// Popular Products 
+Route::get('/popular-products', [WebsiteController::class, 'popularProducts'])->name('popular.products');
+
 
 // Product Filter
 Route::get('/fetch-products', [WebsiteController::class, 'fetchProducts'])->name('fetch-products');
