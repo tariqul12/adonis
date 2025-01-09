@@ -281,43 +281,11 @@
     <!-- Brand Slider Start -->
     <div class="brand-sec bg-white mt-40 mb-80">
         <div class="brand-slider">
-
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-1.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-2.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-3.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-4.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-5.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-6.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-1.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-2.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-3.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-4.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-5.png" alt="" />
-            </div>
-            <div class="brand-block">
-                <img src="{{ asset('/') }}website/assets/media/icons/logo-6.png" alt="" />
-            </div>
+            @foreach ($brands as $brand)
+                <div class="brand-block">
+                    <img src="{{ asset($brand->image) }}" alt="" />
+                </div>
+            @endforeach
         </div>
     </div>
     <!-- Brand Slider End -->

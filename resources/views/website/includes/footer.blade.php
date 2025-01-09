@@ -101,77 +101,57 @@
                      </div>
                      <div>
                          <p class="light-gray mb-4p">Call us 24/7</p>
-                         <h5 class="color-primary">+8801 123 456 789</h5>
+                         <h5 class="color-primary">{{ $companyInfo->contact_phone }}</h5>
                      </div>
                  </a>
              </div>
              <div class="footer-link-block">
-                 <h6 class="fw-600 mb-24">Find It Fast</h6>
+                 <h6 class="fw-600 mb-24">Category</h6>
                  <ul class="list-unstyled m-0">
-                     <li class="mb-8">
-                         <a href="#" class="light-gray">Laptop & Computer</a>
-                     </li>
-                     <li class="mb-8">
-                         <a href="#" class="light-gray">Camera & Photo</a>
-                     </li>
-                     <li class="mb-8">
-                         <a href="#" class="light-gray">Smartphone & Tablet</a>
-                     </li>
-                     <li class="mb-8">
-                         <a href="#" class="light-gray">TV & Audio</a>
-                     </li>
-                     <li class="mb-8">
-                         <a href="#" class="light-gray">Home & Electronic</a>
-                     </li>
-                     <li class="mb-8">
-                         <a href="#" class="light-gray">Headphone & Speakers</a>
-                     </li>
+                     @foreach ($footer_categories as $footer_category)
+                         <li class="mb-8">
+                             <a href="{{ route('category', ['id' => $footer_category->id]) }}"
+                                 class="light-gray">{{ $footer_category->name }}</a>
+                         </li>
+                     @endforeach
                  </ul>
              </div>
              <div class="footer-link-block">
                  <h6 class="fw-600 mb-24">Quick Link</h6>
                  <ul class="list-unstyled m-0">
                      <li class="mb-8">
-                         <a href="index.html" class="light-gray">Home Page</a>
+                         <a href="{{ route('home') }}" class="light-gray">Home Page</a>
                      </li>
                      <li class="mb-8">
-                         <a href="about.html" class="light-gray">About Us</a>
+                         <a href="{{ route('about') }}" class="light-gray">About Us</a>
                      </li>
                      <li class="mb-8">
-                         <a href="shop-grid-1.html" class="light-gray">Shop Now</a>
+                         <a href="{{ route('shop') }}" class="light-gray">Shop Now</a>
                      </li>
                      <li class="mb-8">
-                         <a href="register.html" class="light-gray">Signup</a>
+                         <a href="{{ route('customer.login') }}" class="light-gray">Login</a>
                      </li>
-                     <li class="mb-8">
-                         <a href="register.html" class="light-gray">Login</a>
-                     </li>
-                     <li class="mb-8">
-                         <a href="contact.html" class="light-gray">Privacy Policy</a>
-                     </li>
+
+
                  </ul>
              </div>
              <div class="footer-link-block">
                  <h6 class="fw-600 mb-24">Customer Care</h6>
                  <ul class="list-unstyled m-0">
                      <li class="mb-8">
-                         <a href="register.html" class="light-gray">My Account</a>
+                         <a href="{{ route('customer.dashboard') }}" class="light-gray">My Account</a>
                      </li>
                      <li class="mb-8">
-                         <a href="tracking.html" class="light-gray">Track Your Order</a>
+                         <a href="#" class="light-gray">Track Your Order</a>
+                     </li>
+
+                     <li class="mb-8">
+                         <a href="{{ route('about') }}" class="light-gray">FAQs</a>
                      </li>
                      <li class="mb-8">
-                         <a href="shop-grid-3.html" class="light-gray">Customer Service</a>
+                         <a href="{{ route('customer.register') }}" class="light-gray">Signup</a>
                      </li>
-                     <li class="mb-8">
-                         <a href="blog-grid.html" class="light-gray">Blogs</a>
-                     </li>
-                     <li class="mb-8">
-                         <a href="about.html" class="light-gray">FAQs</a>
-                     </li>
-                     <li class="mb-8">
-                         <a href="coming-soon.html" class="light-gray">Coming Soon</a>
-                     </li>
+
                  </ul>
              </div>
              <div class="footer-link-block">
@@ -182,8 +162,7 @@
                                  <i class="fa-regular fa-location-dot"></i>
                              </div>
                              <p class="light-gray">
-                                 Uttara Rajuk Zonal Office Building , 1st Floor,
-                                 Room-214, Sector-06, Uttara, Dhaka, Bangladesh
+                                 {{ $companyInfo->company_address }}
                              </p>
                          </a>
                      </li>
@@ -192,29 +171,29 @@
                              <div class="img-box">
                                  <i class="fa-regular fa-envelope"></i>
                              </div>
-                             <p class="color-primary">wholesaleclub2024@gmail.com</p>
+                             <p class="color-primary">{{ $companyInfo->contact_email }}</p>
                          </a>
                      </li>
                  </ul>
                  <p class="fw-500 mb-16">Follow Us!</p>
                  <ul class="list-unstyled social-link">
                      <li>
-                         <a href="#">
+                         <a target="_blank" href="{{ $companyInfo->instagram_link }}">
                              <i class="fa-brands fa-instagram"></i>
                          </a>
                      </li>
                      <li>
-                         <a href="#">
+                         <a target="_blank" href="{{ $companyInfo->facebook_link }}">
                              <i class="fa-brands fa-facebook-f"></i>
                          </a>
                      </li>
                      <li>
-                         <a href="#">
+                         <a target="_blank" href="{{ $companyInfo->twitter_link }}">
                              <i class="fa-brands fa-x-twitter"></i>
                          </a>
                      </li>
                      <li>
-                         <a href="#">
+                         <a target="_blank" href="{{ $companyInfo->linkedin_link }}">
                              <i class="fa-brands fa-linkedin-in"></i>
                          </a>
                      </li>
@@ -236,16 +215,11 @@
                      <img src="{{ asset('/') }}website/assets/media/icons/card-1.png" alt="" />
                  </div>
                  <div class="card-block">
-                     <img src="{{ asset('/') }}website/assets/media/icons/card-2.png" alt="" />
-                 </div>
-                 <div class="card-block">
-                     <img src="{{ asset('/') }}website/assets/media/icons/card-3.png" alt="" />
-                 </div>
-                 <div class="card-block">
                      <img src="{{ asset('/') }}website/assets/media/icons/card-4.png" alt="" />
                  </div>
                  <div class="card-block">
-                     <img src="{{ asset('/') }}website/assets/media/icons/card-5.png" alt="" />
+                     <img width="30px" src="{{ asset('/') }}website/assets/media/icons/sslcsommerz1.png"
+                         alt="" />
                  </div>
              </div>
          </div>

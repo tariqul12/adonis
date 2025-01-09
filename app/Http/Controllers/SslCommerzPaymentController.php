@@ -83,7 +83,10 @@ class SslCommerzPaymentController extends Controller
                 'note' => $request->note,
                 'payment_method' => $request->payment_method,
                 'transaction_id' => $post_data['tran_id'],
-                'currency' => $post_data['currency']
+                'currency' => $post_data['currency'],
+                'payment_amount' =>  $post_data['total_amount'],
+                'payment_date' => date('Y-m-d'),
+                'created_at' =>  date('Y-m-d H:i:s'),
             ]);
 
         $orderId = Order::orderBy('id', 'desc')->first()->id;

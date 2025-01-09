@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Frequent;
@@ -29,6 +30,7 @@ class WebsiteController extends Controller
         $popularProducts = Product::where(['status' => 1, 'popular_status' => 1])->orderBy('id', 'desc')->limit(6)->get();
         $newarrivalsProducts = Product::where(['status' => 1])->orderBy('id', 'desc')->limit(6)->get();
         // $popular_categories = Category::whereStatus(1)->orderBy('id', 'desc')->limit(4)->get();
+        $brands = Brand::where('status', 1)->get();
         $popular_categories = Category::whereHas('products', function ($query) {
             $query->where('popular_status', 1);
         })
@@ -37,7 +39,7 @@ class WebsiteController extends Controller
             ->limit(8)
             ->get();
         // dd($popular_categories);
-        return view('website.home.index', compact('bannerSlider', 'bannerSides', 'featuredSlider', 'popularSlider', 'footerSlider', 'homeCategory', 'featureProducts', 'popularProducts', 'newarrivalsProducts', 'popular_categories'));
+        return view('website.home.index', compact('bannerSlider', 'bannerSides', 'featuredSlider', 'popularSlider', 'footerSlider', 'homeCategory', 'featureProducts', 'popularProducts', 'newarrivalsProducts', 'popular_categories', 'brands'));
     }
 
 
@@ -52,7 +54,7 @@ class WebsiteController extends Controller
             $productsQuery->where('category_id', $categoryId);
         }
 
-        $products = $productsQuery->get();
+        $products = $productsQuery->latest()->get();
 
         // প্রতিটি পণ্যের জন্য সাইজ এবং রঙ লোড করা
         foreach ($products as $product) {
@@ -93,9 +95,7 @@ class WebsiteController extends Controller
         // $productImg = [$product->image]; // Assuming $product->image is a string, or handle appropriately
         $related_products = Product::where('category_id', $product->category_id)->limit(6)->get();
 
-        foreach ($product->productImages as $item) {
-            $productImg[] = $item->image;
-        }
+        $productImg = $product->productImages->take(4)->pluck('image')->toArray();
         // dd($productImg);
 
         return view('website.product.index', compact('product', 'related_products', 'productImg'));
@@ -177,7 +177,8 @@ class WebsiteController extends Controller
     {
         $about = About::latest()->first();
         $faqs = Frequent::latest()->get();
-        return view('website.about.about', compact('about', 'faqs'));
+        $brands = Brand::where('status', 1)->get();
+        return view('website.about.about', compact('about', 'faqs', 'brands'));
     }
 
     public function contact()

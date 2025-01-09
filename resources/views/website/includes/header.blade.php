@@ -1,4 +1,88 @@
   <!-- Header Menu Start -->
+  <style>
+      /* Adjust container width */
+      .input-field {
+          position: relative;
+          width: 550px !important;
+          /* Adjust as needed */
+      }
+
+      @media screen {
+          .input-field {
+              width: 300px !important;
+              /* Adjust as needed */
+          }
+      }
+
+      /* Dropdown styling */
+      .dropdown-content {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: #fff;
+          border: 1px solid #ddd;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+          z-index: 10;
+          max-height: 400px;
+          /* Adjust height */
+          overflow-y: auto;
+      }
+
+      ul#results-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+      }
+
+      /* Individual result styling */
+      .result-item {
+          display: flex;
+          align-items: center;
+          /* Center image and text vertically */
+          padding: 10px 15px;
+          /* Add spacing around items */
+          border-bottom: 1px solid #f0f0f0;
+          transition: background-color 0.3s;
+      }
+
+      .result-item:hover {
+          background-color: #f9f9f9;
+      }
+
+      .result-img {
+          width: 100px;
+          /* Larger image width */
+          height: 100px;
+          /* Larger image height */
+          object-fit: cover;
+          margin-right: 10px;
+          /* Reduce spacing between image and text */
+          border-radius: 6px;
+          border: 1px solid #ddd;
+      }
+
+      .result-details {
+          margin-left: 25px;
+      }
+
+      .result-title {
+          font-size: 16px;
+          /* Slightly larger font */
+          font-weight: 500;
+          margin: 0 0 5px 0;
+          color: #333;
+          line-height: 1.4;
+          /* Improved readability */
+      }
+
+      .result-price {
+          font-size: 14px;
+          /* Larger price font */
+          color: #555;
+          margin: 0;
+      }
+  </style>
   <header>
       <div class="header-section">
           <div class="header-top bg-color-primary">
@@ -55,55 +139,58 @@
                               </svg>
                               <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
                                   @foreach ($categories as $category)
-                                  <li class="item dark-gray"><a
-                                          href="{{ route('category', ['id' => $category->id]) }}">{{ $category->name }}</a>
-                                  </li>
+                                      <li class="item dark-gray"><a
+                                              href="{{ route('category', ['id' => $category->id]) }}">{{ $category->name }}</a>
+                                      </li>
                                   @endforeach
                               </ul>
                           </div>
                       </div>
                       <div class="vr-line vr-line-2"></div>
                       <form action="#" method="post">
-                          <div class="input-field">
+                          <div class="input-field search-container">
                               <input type="text" name="search" id="searchInput" class="form-control"
                                   placeholder="Search for products..." />
-                              <button type="submit" class="cus-btn">Search</button>
+                              <!-- <button type="submit" class="cus-btn">Search</button> -->
+                              <div id="search-results" class="dropdown-content" style="display: none;">
+                                  <ul id="results-list"></ul>
+                              </div>
                           </div>
                       </form>
                   </div>
                   <div class="header-buttons">
                       @if (Session::has('customer_id'))
-                      <a href="{{ route('customer.dashboard') }}"
-                          class="button-block align-items-sm-unset align-items-end">
-                          <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
-                              class="user" />
-                          <div>
-                              <p>{{ Session('customer_name') }}</p>
-                              <h6>Account</h6>
-                          </div>
-                      </a>
+                          <a href="{{ route('customer.dashboard') }}"
+                              class="button-block align-items-sm-unset align-items-end">
+                              <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
+                                  class="user" />
+                              <div>
+                                  <p>{{ Session('customer_name') }}</p>
+                                  <h6>Account</h6>
+                              </div>
+                          </a>
                       @else
-                      <a href="{{ route('customer.login') }}"
-                          class="button-block align-items-sm-unset align-items-end">
-                          <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
-                              class="user" />
-                          <div>
-                              <p>Login</p>
-                              <h6>Account</h6>
-                          </div>
-                      </a>
+                          <a href="{{ route('customer.login') }}"
+                              class="button-block align-items-sm-unset align-items-end">
+                              <img src="{{ asset('/') }}website/assets/media/users/user-3.png" alt=""
+                                  class="user" />
+                              <div>
+                                  <p>Login</p>
+                                  <h6>Account</h6>
+                              </div>
+                          </a>
                       @endif
-                      <a href="#" class="button-block d-sm-flex wishlist-button">
+                      {{-- <a href="#" class="button-block d-sm-flex wishlist-button">
                           <i class="fa-regular fa-heart" style="font-size: 24px;"></i>
                           <span class="badge">2</span>
-                      </a>
+                      </a> --}}
                       <a href="#" class="button-block d-sm-flex cart-button">
                           <i class="fa-regular fa-cart-shopping" style="font-size: 24px;"></i>
                           <span class="badge">{{ count(Cart::content()) }}</span>
                       </a>
                   </div>
               </div>
-              <div class="mixin-container d-xl-none d-flex">
+              <!-- <div class="mixin-container d-xl-none d-flex">
                   <div class="drop-container">
                       <div class="wrapper-dropdown" id="dropdown4">
                           <span class="selected-display black fw-500" id="destination4">All Categories</span>
@@ -114,20 +201,20 @@
                           </svg>
                           <ul class="topbar-dropdown bg-lightest-gray box-shadow-1">
                               @foreach ($categories as $category)
-                              <li class="item dark-black"><a
+<li class="item dark-black"><a
                                       href="{{ route('category', ['id' => $category->id]) }}">{{ $category->name }}</a>
                               </li>
-                              @endforeach
+@endforeach
                           </ul>
                       </div>
-                  </div>
-                  <div class="vr-line vr-line-2"></div>
+                  </div> -->
+              <!-- <div class="vr-line vr-line-2"></div>
                   <div class="input-field">
                       <input type="text" name="search" id="searchInput2" class="form-control"
                           placeholder="Search for products..." />
                       <button type="submit" class="cus-btn">Search</button>
-                  </div>
-              </div>
+                  </div> -->
+              <!-- </div> -->
 
               <div class="header-bottom-area">
                   <nav class="navigation d-flex align-items-center justify-content-between">
@@ -142,22 +229,22 @@
                                   </span>
                                   <span class="all-category-list list-unstyled">
                                       @foreach ($categories as $category)
-                                      <span class="all-category-list-item position-relative">
-                                          <a href="{{ route('category', $category->id) }}"
-                                              class="all-category-list-link">
-                                              {{ $category->name }}
-                                          </a>
-                                          @if ($category->subCategories && $category->subCategories->count())
-                                          <span class="dropdown-menu">
-                                              @foreach ($category->subCategories as $subCategory)
-                                              <a href="{{ route('sub-category', $subCategory->id) }}"
-                                                  class="dropdown-item">
-                                                  {{ $subCategory->name }}
+                                          <span class="all-category-list-item position-relative">
+                                              <a href="{{ route('category', $category->id) }}"
+                                                  class="all-category-list-link">
+                                                  {{ $category->name }}
                                               </a>
-                                              @endforeach
+                                              @if ($category->subCategories && $category->subCategories->count())
+                                                  <span class="dropdown-menu">
+                                                      @foreach ($category->subCategories as $subCategory)
+                                                          <a href="{{ route('sub-category', $subCategory->id) }}"
+                                                              class="dropdown-item">
+                                                              {{ $subCategory->name }}
+                                                          </a>
+                                                      @endforeach
+                                                  </span>
+                                              @endif
                                           </span>
-                                          @endif
-                                      </span>
                                       @endforeach
                                   </span>
                               </label>

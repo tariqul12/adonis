@@ -262,7 +262,7 @@
                                                 <span class="h6 fw-500 dark-black">{{ $shipping->title }}</span>
                                                 <span class="light-gray d-block">Delivery</span>
                                             </span>
-                                            <span class="fw-500 dark-black">${{ $shipping->cost }}</span>
+                                            <span class="fw-500 dark-black">TK:{{ $shipping->cost }}</span>
                                         </span>
                                     </label>
                                 @endforeach

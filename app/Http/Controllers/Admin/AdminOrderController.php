@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Courier;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\ShippingAddress;
 use Illuminate\Http\Request;
 //use Barryvdh\DomPDF\Facade\Pdf;
 use PDF;
+use DB;
 
 class AdminOrderController extends Controller
 {
@@ -16,7 +18,14 @@ class AdminOrderController extends Controller
 
     public function index()
     {
-        return view('admin.order.index', ['orders' => Order::latest()->get()]);
+        $orders = DB::table('orders')
+            ->leftJoin('shipping_addresses', 'orders.id', '=', 'shipping_addresses.order_id')
+            ->select('orders.*', 'shipping_addresses.first_name', 'shipping_addresses.last_name', 'shipping_addresses.address', 'shipping_addresses.city', 'shipping_addresses.mobile')
+            ->orderBy('orders.created_at', 'desc')
+            ->get();
+
+        // dd($orders->toArray());
+        return view('admin.order.index', ['orders' => $orders]);
     }
 
     public function detail($id)
@@ -85,5 +94,4 @@ class AdminOrderController extends Controller
         }
         return back()->with('message', 'Order info delete successfully.');
     }
-
 }
