@@ -15,7 +15,7 @@
     </div>
     <!-- PAGE-HEADER END -->
     <div class="row justify-content-center">
-        <div class="col-lg-12 shadow">
+        <div class="col-lg-8 shadow">
             <div class="card shadow rounded-0">
 
                 <div class="border-bottom py-5">
@@ -24,14 +24,14 @@
                             <h3 class="fw-bold text-end">Add Frequent Form</h3>
                         </div>
                         <div class="col-5 text-end me-1">
-                            <a href="{{ route('frequents.index') }}" class="btn btn-primary rounded-0">All Frequent</a>
+                            <a href="{{ route('frequent.index') }}" class="btn btn-primary rounded-0">All Frequent</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-body">
                     <p class="text-primary fw-bold fs-5">{{ session('message') }}</p>
-                    <form action="{{ route('frequents.store') }}" method="POST" enctype="multipart/form-data"
+                    <form action="{{ route('frequent.store') }}" method="POST" enctype="multipart/form-data"
                         class="form-horizontal">
                         @csrf
                         <div class="row mb-4">
@@ -44,14 +44,14 @@
                         <div class="row mb-4">
                             <label for="answare" class="col-md-3 form-label">Frequent answare</label>
                             <div class="col-md-9">
-                                <input class="form-control" id="answare" name="answare" placeholder="Frequent question"
+                                <input class="form-control" id="answare" name="answer" placeholder="Frequent answare"
                                     type="text" />
                             </div>
                         </div>
                         <div class="row mb-4">
                             <label for="radio" class="col-md-3 form-label"></label>
                             <div class="col-md-9">
-                                <button class="btn btn-primary rounded-0" type="submit">Add New Frequent</button>
+                                <button class="btn btn-primary rounded-0 w-100" type="submit">Add New Frequent</button>
                             </div>
                         </div>
 

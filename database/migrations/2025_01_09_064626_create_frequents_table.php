@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('frequents', function (Blueprint $table) {
             $table->id();
+            $table->text('question')->nullable();
+            $table->text('answer')->nullable();
             $table->timestamps();
         });
     }

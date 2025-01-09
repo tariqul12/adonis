@@ -29,10 +29,10 @@ class FrequentController extends Controller
     {
 
         $frequent = new Frequent();
+        $frequent->answer = $request->answer;
         $frequent->question = $request->question;
-        $frequent->answare = $request->answare;
         $frequent->save();
-        return redirect()->back()->with('success', 'Team saved successfully!');
+        return redirect()->back()->with('message', 'frequent saved successfully!');
     }
 
 
@@ -52,10 +52,10 @@ class FrequentController extends Controller
     {
         $frequent = Frequent::findOrFail($id);
         $frequent->question = $request->question;
-        $frequent->answare = $request->answare;
+        $frequent->answer = $request->answer;
         $frequent->save();
 
-        return redirect('frequents')->with('message', 'Frequent edit successfully');
+        return redirect('/frequent/index')->with('message', 'Frequent edit successfully');
     }
 
     /**

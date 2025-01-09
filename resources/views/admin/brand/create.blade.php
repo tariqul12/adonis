@@ -43,6 +43,7 @@
                         <div class="row mb-4">
                             <label for="image" class="col-md-3 form-label">Brand Image</label>
                             <div class="col-md-9">
+                                <p class="text-primary">Recommended Image Size: 143px X 25px</p>
                                 <input class="dropify" data-height="200" name="image" id="image" type="file">
                                 <span class="text-danger">{{ $errors->has('image') ? $errors->first('image') : '' }}</span>
                             </div>
