@@ -230,7 +230,9 @@ Popular Ecommerce Website in Bangladesh.
             @foreach ($popular_categories as $category)
             <div class="tab-pane fade" id="{{ str_replace(' ', '', $category->name) }}" role="tabpanel"
                 aria-labelledby="{{ str_replace(' ', '', $category->name) }}-tab">
-                <!-- Category products will be loaded here -->
+                <div class="row row-gap-3" id="{{ str_replace(' ', '', $category->name) }}-container">
+                    <!-- All products will be loaded here -->
+                </div>
             </div>
             @endforeach
         </div>
@@ -845,10 +847,11 @@ Popular Ecommerce Website in Bangladesh.
         // পণ্য লোড করার ফাংশন
         function loadProducts(categoryId = null, categoryName = null) {
             let targetTabId = categoryName ? `#${categoryName}` : '#all-product'; // ক্যাটাগরি নাম অনুযায়ী ট্যাব আইডি সেট করা
-            let productsContainerId = categoryName ? `#${categoryName}` : '#all-products-container'; // পণ্যের কনটেইনার আইডি
+            let productsContainerId = categoryName ? `#${categoryName}-container` : '#all-products-container'; // পণ্যের কনটেইনার আইডি
 
             // লোডিং ইনডিকেটর দেখানো
             $(productsContainerId).html('<div class="text-center">Loading...</div>');
+
 
             // AJAX রিকুয়েস্ট পাঠানো
             $.ajax({
