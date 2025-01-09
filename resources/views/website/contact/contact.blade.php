@@ -25,7 +25,8 @@
                 <div class="row row-gap-4">
                     <div class="col-xl-6 col-lg-6">
                         <div class="form-container">
-                            <form action="https://uiparadox.co.uk/templates/gadgetize/contact.html" method="post"
+                            <form action="{{ route('contact.store') }}" method="post">
+                                @csrf
                                 class="contact-form">
                                 <h3 class="mb-12">Customer Support</h3>
                                 <p class="light-gray mb-24">
@@ -35,7 +36,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-block mb-16">
-                                            <input type="text" name="name" id="firstName" class="form-control"
+                                            <input type="text" name="first_name" id="firstName" class="form-control"
                                                 required placeholder="First Name" />
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 20 20" fill="none">
@@ -50,7 +51,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-block mb-16">
-                                            <input type="text" name="lastname" id="lastName" class="form-control"
+                                            <input type="text" name="last_name" id="lastName" class="form-control"
                                                 required placeholder="Last Name" />
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 20 20" fill="none">
@@ -66,6 +67,18 @@
                                     <div class="col-md-12">
                                         <div class="input-block mb-16">
                                             <input type="email" name="email" id="e-mail" class="form-control"
+                                                required placeholder="Your Email" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 20 20" fill="none">
+                                                <path
+                                                    d="M18.2422 2.96875H1.75781C0.786602 2.96875 0 3.76023 0 4.72656V15.2734C0 16.2455 0.792383 17.0312 1.75781 17.0312H18.2422C19.2053 17.0312 20 16.2488 20 15.2734V4.72656C20 3.76195 19.2165 2.96875 18.2422 2.96875ZM17.996 4.14062C17.6369 4.49785 11.4564 10.6458 11.243 10.8581C10.9109 11.1901 10.4695 11.3729 10 11.3729C9.53047 11.3729 9.08906 11.1901 8.75594 10.857C8.61242 10.7142 2.50012 4.63414 2.00398 4.14062H17.996ZM1.17188 15.0349V4.96582L6.23586 10.0031L1.17188 15.0349ZM2.00473 15.8594L7.06672 10.8296L7.9284 11.6867C8.48176 12.2401 9.21746 12.5448 10 12.5448C10.7825 12.5448 11.5182 12.2401 12.0705 11.6878L12.9333 10.8296L17.9953 15.8594H2.00473ZM18.8281 15.0349L13.7641 10.0031L18.8281 4.96582V15.0349Z"
+                                                    fill="#141516" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="input-block mb-16">
+                                            <input type="number" name="mobile" id="mobile" class="form-control"
                                                 required placeholder="Your Email" />
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 20 20" fill="none">

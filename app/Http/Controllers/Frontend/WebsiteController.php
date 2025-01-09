@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\ProductSize;
 use App\Models\ProductColor;
 use App\Models\Slider;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use function Monolog\alert;
 
@@ -24,7 +25,8 @@ class WebsiteController extends Controller
         $featureProducts = Product::where(['status' => 1, 'feature_status' => 1])->orderBy('id', 'desc')->limit(4)->get();
         $popularProducts = Product::where(['status' => 1, 'popular_status' => 1])->orderBy('id', 'desc')->limit(6)->get();
         $newarrivalsProducts = Product::where(['status' => 1])->orderBy('id', 'desc')->limit(6)->get();
-        return view('website.home.index', compact('bannerSlider', 'bannerSides', 'featuredSlider', 'popularSlider', 'footerSlider', 'homeCategory', 'featureProducts', 'popularProducts', 'newarrivalsProducts'));
+        $popular_categories = Category::whereStatus(1)->orderBy('id', 'desc')->limit(4)->get();
+        return view('website.home.index', compact('bannerSlider', 'bannerSides', 'featuredSlider', 'popularSlider', 'footerSlider', 'homeCategory', 'featureProducts', 'popularProducts', 'newarrivalsProducts', 'popular_categories'));
     }
 
     public function category($id)
@@ -142,5 +144,18 @@ class WebsiteController extends Controller
     public function contact()
     {
         return view('website.contact.contact');
+    }
+
+    public function subscribe(Request $request)
+    {
+        $subscriber = new Subscriber();
+        if ($request->email) {
+            $subscriber->email = $request->email;
+        }
+        if ($request->mobile) {
+            $subscriber->mobile = $request->mobile;
+        }
+        $subscriber->save();
+        return back()->with('message', 'Subscribe Successfully');
     }
 }

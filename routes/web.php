@@ -42,6 +42,9 @@ Route::get('/product-detail/{id}', [WebsiteController::class, 'product'])->name(
 // Product Filter
 Route::get('/fetch-products', [WebsiteController::class, 'fetchProducts'])->name('fetch-products');
 
+//subscribe 
+Route::post('/subscribe', [WebsiteController::class, 'subscribe'])->name('subscribe');
+
 //Cart
 Route::get('/cart/index', [CartController::class, 'index'])->name('cart.index'); //cart product list showing
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
