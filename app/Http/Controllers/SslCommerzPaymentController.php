@@ -7,6 +7,7 @@ use App\Models\OrderDetail;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Product;
 use Session;
 use Cart;
 use App\Models\ShippingAddress;
@@ -100,6 +101,12 @@ class SslCommerzPaymentController extends Controller
             $orderDetail->product_color_id = $item->options->color;
             $orderDetail->product_size_id  = $item->options->size;
             $orderDetail->save();
+
+            $product = Product::where('id', $item->id)->first();
+            $product->stock_amount = $product->stock_amount - $item->qty;
+            $product->sales_count = $product->sales_count + $item->qty;
+            $product->save();
+
             Cart::remove($item->rowId);
         }
 

@@ -36,7 +36,12 @@ class CartController extends Controller
             ],
         ]);
 
-        return redirect()->route('cart.index')->with('message', 'Cart product info added successfully');
+        if ($request->action == 'buyNow') {
+            return redirect()->route('checkout')->with('message', 'Cart product info added successfully');
+        } else {
+
+            return redirect()->route('cart.index')->with('message', 'Cart product info added successfully');
+        }
     }
 
     public function updateQuantity(Request $request, $rowId)

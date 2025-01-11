@@ -51,7 +51,11 @@
                         </svg>
                         <span class="side-menu__label">Order Module</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
-                        <li><a href="{{ route('admin-order.index') }}" class="slide-item">Manage Order</a></li>
+                        <li><a href="{{ route('admin-order.index') }}" class="slide-item">All Order</a></li>
+                        <li><a href="#" class="slide-item">Pendding</a></li>
+                        <li><a href="#" class="slide-item">Processing</a></li>
+                        <li><a href="#" class="slide-item">Completed</a></li>
+                        <li><a href="#" class="slide-item">Cancelled</a></li>
                     </ul>
                 </li>
                 <li>
@@ -131,6 +135,8 @@
                         </li> --}}
                         <li><a href="{{ route('product.index') }}" class="slide-item">Product</a>
                         </li>
+                        <li><a href="{{ route('products.stock') }}" class="slide-item">Product Stock</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -181,7 +187,7 @@
                         <span class="side-menu__label">Customer Module</span><i class="angle fa fa-angle-right"></i>
                     </a>
                     <ul class="slide-menu">
-                        <li><a href="#" class="slide-item">Manage Customer</a></li>
+                        <li><a href="{{ route('customer.index') }}" class="slide-item">Manage Customer</a></li>
                     </ul>
                 </li>
                 <li>

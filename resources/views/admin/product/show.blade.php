@@ -97,7 +97,7 @@
                                 <div class="row">
                                     <label for="">Stock:</label>
                                     <div class="col-md-3">
-                                        <input type="number" class="form-control" value="{{ $product->stock_amount }}">
+                                        <input type="number" readonly class="form-control" value="{{ $product->stock_amount }}">
                                     </div>
                                 </div>
                             </div>
@@ -122,8 +122,6 @@
                         <div class="col-md-12">
                             <div class="mt-4 mb-4">
                                 <h3>{{ $product->name }}</h3>
-                                <h5 class="mb-3 mt-2">Description</h5>
-                                <p>{!! $product->long_description !!}</p>
                             </div>
                             <div class="panel panel-primary">
                                 <div class="tab-menu-heading border-bottom-0">
@@ -379,6 +377,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <h5 class="mb-3 mt-2">Description</h5>
+                            <p>{!! $product->long_description !!}</p>
                         </div>
                     </div>
                 </div>

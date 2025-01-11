@@ -53,55 +53,70 @@
                             <form action="{{ route('cart.add', $product->id) }}" method="post">
                                 @csrf
 
-                                <div class="d-flex align-items-center gap-24 mb-24">
-                                    <h6>Size:</h6>
-                                    <div class="drop-container bg-lightest-gray p-8-12 br-5">
-
-                                        <select id="productSizes" class="custom-select" name="size">
-                                            @foreach ($product->productSizes as $size)
-                                                <option value="{{ $size->size->id }}">{{ $size->size->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center gap-24 mb-24">
+                                            <h6>Size:</h6>
+                                            <div class="drop-container bg-lightest-gray p-8-12 br-5">
+        
+                                                <select id="productSizes" class="custom-select" name="size">
+                                                    @foreach ($product->productSizes as $size)
+                                                        <option value="{{ $size->size->id }}">{{ $size->size->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+        
+                                            </div>
+                                        </div>
+                                        <div class="content-block mb-24">
+                                            <h6 class="mb-24">Color:</h6>
+                                            <div class="product-color">
+                                                <ul class="unstyled list">
+                                                    @foreach ($product->ProductColors as $key => $color)
+                                                        <li>
+                                                            <label for="muhRadio{{ $key }}"
+                                                                class="d-flex align-items-center h-21 light-black font-sec fw-500">
+                                                                <input type="radio" id="muhRadio{{ $key }}"
+                                                                    name="color" class="radio-1"
+                                                                    style="background-color: {{ $color->color->code }}"
+                                                                    value="{{ $color->color->id }}"
+                                                                    @if ($key == '0') checked @endif>
+                                                            </label>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+        
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="content-block mb-24">
-                                    <h6 class="mb-24">Color:</h6>
-                                    <div class="product-color">
-                                        <ul class="unstyled list">
-                                            @foreach ($product->ProductColors as $key => $color)
-                                                <li>
-                                                    <label for="muhRadio{{ $key }}"
-                                                        class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                        <input type="radio" id="muhRadio{{ $key }}"
-                                                            name="color" class="radio-1"
-                                                            style="background-color: {{ $color->color->code }}"
-                                                            value="{{ $color->color->id }}"
-                                                            @if ($key == '0') checked @endif>
-                                                    </label>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                    <div class="col-md-6">
+                                        @if($product->stock_amount < 1)
+                                        <p class="text-center" style="background-color: #c20707; color: #ffff;  font-size: 20px; padding: 5px; border-radius: 5px;">
+                                            out of stock
+                                        </p>
+                                        @endif
                                     </div>
-
                                 </div>
                                 <div class="hr-line mb-24"></div>
                                 <div class="function-bar mb-16">
                                     <div class="quantity quantity-wrap">
                                         <div class="input-area quantity-wrap">
                                             <input class="decrement" type="button" value="-">
-                                            <input type="text" name="qty" value="1" maxlength="2"
-                                                size="1" class="number">
+                                            <input type="text" id="qty" name="qty" value="1"
+                                                maxlength="2" size="1" class="number">
                                             <input class="increment" type="button" value="+">
                                         </div>
                                     </div>
                                     <div class="cart-btn w-100">
+                                        @if($product->stock_amount < 1)
+                                        <button disabled class="cus-btn-2 w-100">ADD TO CART</button>
+                                        @else
                                         <button type="submit" class="cus-btn-2 w-100">ADD TO CART</button>
+                                        @endif
                                     </div>
                                     <div class="side-icons">
                                         <ul class="list-unstyled m-0">
-                                            <li>
+                                            {{-- <li>
                                                 <a href="wishlist.html">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="22"
                                                         viewBox="0 0 24 22" fill="none">
@@ -110,8 +125,8 @@
                                                             fill="#141516" />
                                                     </svg>
                                                 </a>
-                                            </li>
-                                            <li>
+                                            </li> --}}
+                                            {{-- <li>
                                                 <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
                                                     data-bs-target="#comparepopup">
                                                     <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
@@ -135,12 +150,18 @@
                                                         </defs>
                                                     </svg>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 </div>
                             </form>
-                            <a href="checkout.html" class="cus-btn-3 w-100 mb-24">Buy Now</a>
+                            @if($product->stock_amount < 1)
+                            <button disabled  data-id="{{ $product->id }}"
+                                class="cus-btn-3 w-100 mb-24">Buy Now</button>
+                                @else
+                            <a href="#" id="buyNow" data-id="{{ $product->id }}"
+                                class="cus-btn-3 w-100 mb-24">Buy Now</a>
+                                @endif
                             <div class="hr-line mb-24"></div>
                             <div class="d-flex align-items-center gap-16 mb-16">
                                 <h6>Category:</h6>
@@ -464,5 +485,40 @@
             </div>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#buyNow").click(function() {
+                // Get values for size, color, qty, and id
+                const size = $("#productSizes option:selected").val(); // Product size
+                const color = $("input[name='color']:checked").val(); // Selected color
+                const qty = $("#qty").val(); // Quantity input value
+                const id = $("#buyNow").data("id"); // Product ID, from the button's data-id attribute
+                const action = "buyNow"; // Action, if required
+
+                // Perform the AJAX request
+                $.ajax({
+                    url: "/cart/add/" + id, // Your route for adding the item
+                    method: "POST",
+                    data: {
+                        id: id,
+                        size: size,
+                        color: color,
+                        qty: qty,
+                        action: action,
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(data) {
+                        // Redirect to cart page, as the backend will handle the response
+                        window.location.href =
+                        "/checkout/index"; // Update the URL as per your cart route
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText); // Log any error response from the server
+                    }
+                });
+            });
+        });
+    </script>
     <!-- Recommended Product End -->
 @endsection

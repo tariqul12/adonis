@@ -7,6 +7,7 @@ use App\Http\Controllers\SslCommerzPaymentController;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use App\Models\Shipping;
 use App\Models\ShippingAddress;
 use Illuminate\Http\Request;
@@ -70,6 +71,11 @@ class CheckoutController extends Controller
                 $this->orderDetail->product_color_id = $item->options->color;
                 $this->orderDetail->product_size_id  = $item->options->size;
                 $this->orderDetail->save();
+
+                $product = Product::where('id', $item->id)->first();
+                $product->stock_amount = $product->stock_amount - $item->qty;
+                $product->sales_count = $product->sales_count + $item->qty;
+                $product->save();
 
                 Cart::remove($item->rowId); //remove product items from cart
             }

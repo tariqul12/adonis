@@ -1,15 +1,14 @@
 @extends('admin.master')
-
 @section('body')
     <!-- PAGE-HEADER -->
     <div class="page-header">
         <div>
-            <h1 class="page-title">Admin Order Module</h1>
+            <h1 class="page-title">Order Module</h1>
         </div>
         <div class="ms-auto pageheader-btn">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Category</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Manage Admin Order</li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Order</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manage Order</li>
             </ol>
         </div>
     </div>
@@ -20,17 +19,18 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h3 class="card-title">All Order Info</h3>
+                    <h3 class="card-title">File Export</h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
+                    <div class="table-responsive export-table">
+                        <table id="file-datatable"
+                            class="table table-bordered text-nowrap key-buttons border-bottom  w-100">
                             <thead>
                                 <tr>
                                     <th class="wd-15p border-bottom-0">SL NO</th>
                                     <th class="wd-15p border-bottom-0">Order ID</th>
                                     <th class="wd-15p border-bottom-0">Order Date</th>
-                                    {{-- <th class="wd-20p border-bottom-0">Customer Info</th> --}}
+                                    <th class="wd-20p border-bottom-0">Customer Info</th>
                                     <th class="wd-20p border-bottom-0">Shipping Info</th>
                                     <th class="wd-15p border-bottom-0">Order Total</th>
                                     <th class="wd-10p border-bottom-0">Order Status</th>
@@ -45,14 +45,18 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $order->id }}</td>
                                         <td>{{ $order->order_date }}</td>
-                                        {{-- <td>
+                                        <td>
                                             Name: {{ $order->customer->name }} <br />
                                             Mobile: {{ $order->customer->mobile }} <br />
-                                        </td> --}}
+                                        </td>
+
                                         <td>
-                                            Name: {{ $order->first_name }} {{ $order->last_name }} <br />
-                                            Mobile: {{ $order->mobile }} <br />
-                                            address: {{ $order->address }},{{ $order->city }} <br />
+                                            Name: {{ @$order->shippingAddress->first_name }}
+                                            {{ @$order->shippingAddress->last_name }} <br />
+                                            Mobile: {{ @$order->shippingAddress->mobile }} <br />
+                                            address:
+                                            {{ @$order->shippingAddress->address }},{{ @$order->shippingAddress->city }}
+                                            <br />
                                         </td>
                                         <td>{{ $order->order_total }}</td>
                                         <td>{{ $order->order_status }}</td>

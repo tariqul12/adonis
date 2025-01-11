@@ -164,7 +164,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-4">
-                                    <label for="stock_amount" class=" form-label">Stock Amount</label>
+                                    <label for="stock_amount" class=" form-label">Stock Qty</label>
                                     <div class="col-md-9">
                                         <input class="form-control" name="stock_amount"
                                             value="{{ $product->stock_amount }}" placeholder="Stock Amount"

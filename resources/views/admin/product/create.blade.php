@@ -173,7 +173,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-4">
-                                    <label for="stock_amount" class=" form-label">Stock Amount</label>
+                                    <label for="stock_amount" class=" form-label">Stock Qty</label>
                                     <div class="">
                                         <input class="form-control" name="stock_amount" placeholder="Stock Amount"
                                             id="stock_amount" type="number" />

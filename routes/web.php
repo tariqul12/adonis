@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Aboutcontroller;
+use App\Http\Controllers\Admin\AdminCustomerController;
 use App\Http\Middleware\CustomerMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\Admin\ContctController;
 use App\Http\Controllers\Admin\FrequentController;
+use App\Http\Controllers\StockController;
 
 //Website Route list
 Route::get('/', [WebsiteController::class, 'index'])->name('home');
@@ -176,6 +178,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     Route::get('contact/newslatter', [ContctController::class, 'newsLatter'])->name('contact.newslatter');
 
+    Route::get('/products/stock', [StockController::class, 'index'])->name('products.stock');
+
     //Admin Order
     Route::get('/admin-order/index', [AdminOrderController::class, 'index'])->name('admin-order.index');
     Route::get('/admin-order/detail/{id}', [AdminOrderController::class, 'detail'])->name('admin-order.detail');
@@ -200,6 +204,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::get('/shipping/edit/{id}', [ShippingController::class, 'edit'])->name('shipping.edit');
     Route::post('/shipping/update/{id}', [ShippingController::class, 'update'])->name('shipping.update');
     Route::get('/shipping/destroy/{id}', [ShippingController::class, 'destroy'])->name('shipping.destroy');
+
+    //Customer (Normal)
+    Route::get('/customer/index', [AdminCustomerController::class, 'index'])->name('customer.index');
+    Route::get('/customer/create', [AdminCustomerController::class, 'create'])->name('customer.create');
+    Route::post('/customer/store', [AdminCustomerController::class, 'store'])->name('customer.store');
+    Route::get('/customer/edit/{id}', [AdminCustomerController::class, 'edit'])->name('customer.edit');
+    Route::post('/customer/update/{id}', [AdminCustomerController::class, 'update'])->name('customer.update');
+    Route::get('/customer/destroy/{id}', [AdminCustomerController::class, 'destroy'])->name('customer.destroy');
 
     //Courier (Resource)
     Route::resource('courier', CourierController::class);

@@ -1,7 +1,6 @@
 @extends('admin.master')
 
 @section('body')
-
     <!-- PAGE-HEADER -->
     <div class="page-header">
         <div>
@@ -25,24 +24,24 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{route('admin-order.update', ['id'=>$order->id])}}" method="POST">
+                    <form action="{{ route('admin-order.update', ['id' => $order->id]) }}" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <label class="col-md-3">Order Total</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" readonly value="{{$order->order_total}}">
+                                <input type="text" class="form-control" readonly value="{{ $order->order_total }}">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-md-3">Customer Info</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" readonly value="{{$order->customer->name}}">
+                                <input type="text" class="form-control" readonly value="{{ $order->customer->name }}">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <label class="col-md-3">Delivery Address</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" name="delivery_address">{{$order->delivery_address}}</textarea>
+                                <textarea class="form-control" name="delivery_address">{{ $order->shippingAddress->address . ' ' . $order->shippingAddress->city . ' ' . $order->shippingAddress->state . ' ' . $order->shippingAddress->country }}</textarea>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -52,6 +51,7 @@
                                     <option value="">-- Select Order Status --</option>
                                     <option value="Pending" @selected($order->order_status == 'Pending')>Pending</option>
                                     <option value="Processing" @selected($order->order_status == 'Processing')>Processing</option>
+                                    <option value="Refund" @selected($order->order_status == 'refund')>refund</option>
                                     <option value="Complete" @selected($order->order_status == 'Complete')>Complete</option>
                                     <option value="Cancel" @selected($order->order_status == 'Cancel')>Cancel</option>
                                 </select>
@@ -62,8 +62,9 @@
                             <div class="col-md-9">
                                 <select class="form-control" name="courier_id">
                                     <option value="">-- Select Courier --</option>
-                                    @foreach($couriers as $courier)
-                                        <option value="{{$courier->id}}" @selected($order->courier_id == $courier->id)>{{$courier->name}}</option>
+                                    @foreach ($couriers as $courier)
+                                        <option value="{{ $courier->id }}" @selected($order->courier_id == $courier->id)>
+                                            {{ $courier->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -71,7 +72,7 @@
                         <div class="row mb-3">
                             <label class="col-md-3"></label>
                             <div class="col-md-9">
-                                <input type="submit" class="btn btn-success" value="Update Order Info"/>
+                                <input type="submit" class="btn btn-success" value="Update Order Info" />
                             </div>
                         </div>
                     </form>
@@ -81,6 +82,4 @@
         </div>
     </div>
     <!-- End Row -->
-
-
 @endsection
