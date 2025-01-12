@@ -58,14 +58,14 @@
                                         <div class="d-flex align-items-center gap-24 mb-24">
                                             <h6>Size:</h6>
                                             <div class="drop-container bg-lightest-gray p-8-12 br-5">
-        
+
                                                 <select id="productSizes" class="custom-select" name="size">
                                                     @foreach ($product->productSizes as $size)
                                                         <option value="{{ $size->size->id }}">{{ $size->size->name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
-        
+
                                             </div>
                                         </div>
                                         <div class="content-block mb-24">
@@ -86,14 +86,14 @@
                                                     @endforeach
                                                 </ul>
                                             </div>
-        
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        @if($product->stock_amount < 1)
-                                        <p class="text-center" style="background-color: #c20707; color: #ffff;  font-size: 20px; padding: 5px; border-radius: 5px;">
-                                            out of stock
-                                        </p>
+                                        @if ($product->stock_amount < 1)
+                                            <p class="text-center"
+                                                style="background-color: #c20707; color: #ffff;  font-size: 20px; padding: 5px; border-radius: 5px;">
+                                                out of stock
+                                            </p>
                                         @endif
                                     </div>
                                 </div>
@@ -101,17 +101,19 @@
                                 <div class="function-bar mb-16">
                                     <div class="quantity quantity-wrap">
                                         <div class="input-area quantity-wrap">
-                                            <input class="decrement" type="button" value="-">
+                                            <input id="decrement" type="button" value="-" />
                                             <input type="text" id="qty" name="qty" value="1"
-                                                maxlength="2" size="1" class="number">
-                                            <input class="increment" type="button" value="+">
+                                                maxlength="2" size="1" class="number" />
+                                            <input id="increment" type="button" value="+" />
                                         </div>
                                     </div>
                                     <div class="cart-btn w-100">
-                                        @if($product->stock_amount < 1)
-                                        <button disabled class="cus-btn-2 w-100">ADD TO CART</button>
+                                        <input type="hidden" name="" id="stock_amount"
+                                            value="{{ $product->stock_amount }}">
+                                        @if ($product->stock_amount < 1)
+                                            <button disabled class="cus-btn-2 w-100">ADD TO CART</button>
                                         @else
-                                        <button type="submit" class="cus-btn-2 w-100">ADD TO CART</button>
+                                            <button type="submit" class="cus-btn-2 w-100">ADD TO CART</button>
                                         @endif
                                     </div>
                                     <div class="side-icons">
@@ -155,13 +157,13 @@
                                     </div>
                                 </div>
                             </form>
-                            @if($product->stock_amount < 1)
-                            <button disabled  data-id="{{ $product->id }}"
-                                class="cus-btn-3 w-100 mb-24">Buy Now</button>
-                                @else
-                            <a href="#" id="buyNow" data-id="{{ $product->id }}"
-                                class="cus-btn-3 w-100 mb-24">Buy Now</a>
-                                @endif
+                            @if ($product->stock_amount < 1)
+                                <button disabled data-id="{{ $product->id }}" class="cus-btn-3 w-100 mb-24">Buy
+                                    Now</button>
+                            @else
+                                <a href="#" id="buyNow" data-id="{{ $product->id }}"
+                                    class="cus-btn-3 w-100 mb-24">Buy Now</a>
+                            @endif
                             <div class="hr-line mb-24"></div>
                             <div class="d-flex align-items-center gap-16 mb-16">
                                 <h6>Category:</h6>
@@ -424,41 +426,27 @@
                     <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6">
                         <div class="featured-product-card bg-white br-10">
                             <div class="image-box mb-16">
-
-                                <a href="{{ route('product-detail', $product->id) }}"><img
-                                        src="{{ asset($product->image) }}" height="200" alt="" /></a>
-                                <div class="side-icons">
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="#">
-                                                <img src="{{ asset('/') }}website/assets/media/icons/heart.png"
-                                                    alt="" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="btn quick-view-btn" data-id="{{ $product->id }}"
-                                                data-name="{{ $product->name }}"
-                                                data-brand="{{ $product->brand->name ?? 'Unknown' }}"
-                                                data-reviews="02 Reviews"
-                                                data-regular-price="{{ $product->regular_price }}"
-                                                data-selling-price="{{ $product->selling_price }}" data-discount="-12%"
-                                                data-description="{{ strlen($product->short_description) > 150 ? substr($product->short_description, 0, 150) . ' ...' : $product->short_description }}"
-                                                data-category={{ $product->category->name ?? 'Unknown' }}
-                                                data-image="{{ asset($product->image) }}" data-bs-toggle="modal"
-                                                data-bs-target="#productQuickView">
-                                                <img src="{{ asset('/') }}website/assets/media/icons/eye.png"
-                                                    alt="Quick View" />
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="zui-wrapper-button" data-bs-toggle="modal"
-                                                data-bs-target="#comparepopup">
-                                                <img src="{{ asset('/') }}website/assets/media/icons/compare.png"
-                                                    alt="" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <form action="{{ route('cart.add', $product->id) }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="qty" value="1">
+                                    <input type="hidden" name="size"
+                                        value="{{ $product->productSizes[0]->size->id }}">
+                                    <input type="hidden" name="color"
+                                        value="{{ $product->productColors[0]->color->id }}">
+                                    <a href="{{ route('product-detail', $product->id) }}"><img
+                                            src="{{ asset($product->image) }}" height="200" alt="" /></a>
+                                    <div class="side-icons">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                @if ($product->stock_amount < 1)
+                                                    <p class="text-center"
+                                                        style="background-color: #c20707; color: #ffff;  font-size: 20px; padding: 5px; border-radius: 5px;">
+                                                        out of stock
+                                                    </p>
+                                                @endif
+                                            </li>
+                                        </ul>
+                                    </div>
                             </div>
                             <div class="product-desc">
                                 <h6 class="product-title mb-8">
@@ -476,8 +464,13 @@
                                             ${{ $product->regular_price }}</span>&nbsp;&nbsp;${{ $product->selling_price }}
                                     </h6>
                                 </div>
-                                <a href="#" class="cus-btn-2 w-100">Add to Cart</a>
+                                @if ($product->stock_amount < 1)
+                                    <button disabled class="cus-btn-2 w-100">Add to Cart</button>
+                                @else
+                                    <button type="submit" class="cus-btn-2 w-100">Add to Cart</button>
+                                @endif
                             </div>
+                            </form>
                         </div>
                     </div>
                 @endforeach
@@ -511,12 +504,64 @@
                     success: function(data) {
                         // Redirect to cart page, as the backend will handle the response
                         window.location.href =
-                        "/checkout/index"; // Update the URL as per your cart route
+                            "/checkout/index"; // Update the URL as per your cart route
                     },
                     error: function(xhr, status, error) {
                         console.log(xhr.responseText); // Log any error response from the server
                     }
                 });
+            });
+        });
+        $(document).ready(function() {
+            // Replace this with the actual stock amount from your backend
+            const stockAmount = $("#stock_amount").val(); // Example: stock amount is 10
+            // Handle increment button
+            $('#increment').click(function() {
+                const qtyInput = $('#qty');
+                let currentValue = parseInt(qtyInput.val());
+
+                if (isNaN(currentValue) || currentValue < 1) {
+                    currentValue = 1; // Default value if input is invalid
+                }
+
+                if (currentValue >= stockAmount) {
+                    // alert(`stock limit you can not select more than items.`);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Sorry',
+                        text: 'Stock limit you can not select more than items.'
+                    });
+                } else {
+                    qtyInput.val(currentValue + 1);
+                }
+            });
+
+            // Handle decrement button
+            $('#decrement').click(function() {
+                const qtyInput = $('#qty');
+                let currentValue = parseInt(qtyInput.val());
+
+                if (isNaN(currentValue) || currentValue <= 1) {
+                    currentValue = 1; // Minimum value is 1
+                } else {
+                    qtyInput.val(currentValue - 1);
+                }
+            });
+
+            // Prevent manually entering values greater than stock amount
+            $('#qty').on('input', function() {
+                let currentValue = parseInt($(this).val());
+
+                if (isNaN(currentValue) || currentValue < 1) {
+                    $(this).val(1); // Default to 1 if input is invalid
+                } else if (currentValue > stockAmount) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Sorry',
+                        text: 'Stock limit you can not select more than items.'
+                    });
+                    $(this).val(stockAmount); // Reset to stock amount
+                }
             });
         });
     </script>

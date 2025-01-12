@@ -54,7 +54,7 @@ class WebsiteController extends Controller
             $productsQuery->where('category_id', $categoryId);
         }
 
-        $products = $productsQuery->latest()->get();
+        $products = $productsQuery->latest()->limit(12)->get();
 
         // প্রতিটি পণ্যের জন্য সাইজ এবং রঙ লোড করা
         foreach ($products as $product) {
@@ -130,7 +130,7 @@ class WebsiteController extends Controller
 
         // Filter by categories if category IDs are provided
         if (!empty($categoryIds)) {
-            $query->whereIn('category_id', $categoryIds);
+            $query->whereIn('category_id', $categoryIds)->where('status', 1);
         }
 
         // Filter by search query if provided
@@ -145,7 +145,7 @@ class WebsiteController extends Controller
         }
 
         // Fetch the products based on the filters
-        $products = $query->paginate(12);
+        $products = $query->where('status', 1)->paginate(12);
 
         // Add product sizes and colors to each product
         foreach ($products as $product) {

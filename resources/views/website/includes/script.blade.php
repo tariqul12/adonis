@@ -9,7 +9,7 @@
  <script src="{{ asset('/') }}website/assets/js/vendor/picker.date.js"></script>
  <script src="{{ asset('/') }}website/assets/js/date.js"></script>
  <script src="{{ asset('/') }}website/assets/js/app.js"></script>
-
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
  <script>
      $(document).ready(function() {
          $('#searchInput').on('keyup', function() { // #product-search = product name input field it
@@ -41,7 +41,8 @@
                                     </a>
                                 `);
                              });
-                             $('#search-results').show(); // Show the dropdown with results // #search-results =div above of ul and it contains the result
+                             $('#search-results')
+                                 .show(); // Show the dropdown with results // #search-results =div above of ul and it contains the result
                          } else {
                              resultsList.append('<li>No products found</li>');
                              $('#search-results').show();
@@ -55,7 +56,8 @@
 
          // Hide the search results if clicking outside the search box or dropdown
          $(document).click(function(e) {
-             if (!$(e.target).closest('.search-container').length) { // .search-container = main full search container
+             if (!$(e.target).closest('.search-container')
+                 .length) { // .search-container = main full search container
                  $('#search-results').hide();
              }
          });

@@ -24,7 +24,26 @@ class AdminOrderController extends Controller
         $orders = Order::latest()->get();
         return view('admin.order.index', compact('orders'));
     }
-
+    public function pending()
+    {
+        $orders = Order::where('order_status', 'Pending')->latest()->get();
+        return view('admin.order.index', compact('orders'));
+    }
+    public function processing()
+    {
+        $orders = Order::where('order_status', 'Processing')->latest()->get();
+        return view('admin.order.index', compact('orders'));
+    }
+    public function complete()
+    {
+        $orders = Order::where('order_status', 'Complete')->latest()->get();
+        return view('admin.order.index', compact('orders'));
+    }
+    public function cancel()
+    {
+        $orders = Order::where('order_status', 'Cancel')->latest()->get();
+        return view('admin.order.index', compact('orders'));
+    }
     public function detail($id)
     {
         return view('admin.order.detail', ['order' => Order::find($id)]);
@@ -53,18 +72,17 @@ class AdminOrderController extends Controller
             $this->order->payment_status   = $request->order_status;
             $this->order->delivery_address = $request->delivery_address;
             $this->order->courier_id       = $request->courier_id;
-        }
-        //  elseif ($request->order_status == "Refund") {
-        //     $this->order->order_status    = $request->order_status;
-        //     $this->order->delivery_status = $request->order_status;
-        //     $this->order->payment_status  = $request->order_status;
-        //     $orderDetail = OrderDetail::where('order_id', $this->order->id)->get();
-        //     foreach ($orderDetail as $orderDetail) {
-        //         $product = Product::where('id', $orderDetail->product_id)->first()->stock_amount += $orderDetail->product_qty;
-        //         $product->save();
-        //     }
-        // }
-        elseif ($request->order_status == "Complete") {
+        } elseif ($request->order_status == "Refund") {
+            $this->order->order_status    = $request->order_status;
+            $this->order->delivery_status = $request->order_status;
+            $this->order->payment_status  = $request->order_status;
+            $orderDetail = OrderDetail::where('order_id', $this->order->id)->get();
+            foreach ($orderDetail as $orderDetail) {
+                $product = Product::where('id', $orderDetail->product_id)->first();
+                $product->stock_amount += $orderDetail->product_qty;
+                $product->save();
+            }
+        } elseif ($request->order_status == "Complete") {
             $this->order->order_status       = $request->order_status;
             $this->order->delivery_status    = $request->order_status;
             $this->order->payment_status     = $request->order_status;

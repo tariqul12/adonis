@@ -52,10 +52,10 @@
                         <span class="side-menu__label">Order Module</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu">
                         <li><a href="{{ route('admin-order.index') }}" class="slide-item">All Order</a></li>
-                        <li><a href="#" class="slide-item">Pendding</a></li>
-                        <li><a href="#" class="slide-item">Processing</a></li>
-                        <li><a href="#" class="slide-item">Completed</a></li>
-                        <li><a href="#" class="slide-item">Cancelled</a></li>
+                        <li><a href="{{ route('admin-order.pending') }}" class="slide-item">Pending</a></li>
+                        <li><a href="{{ route('admin-order.processing') }}" class="slide-item">Processing</a></li>
+                        <li><a href="{{ route('admin-order.complete') }}" class="slide-item">Completed</a></li>
+                        <li><a href="{{ route('admin-order.cancel') }}" class="slide-item">Cancelled</a></li>
                     </ul>
                 </li>
                 <li>

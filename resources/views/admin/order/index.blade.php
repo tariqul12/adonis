@@ -28,14 +28,14 @@
                             <thead>
                                 <tr>
                                     <th class="wd-15p border-bottom-0">SL NO</th>
-                                    <th class="wd-15p border-bottom-0">Order ID</th>
-                                    <th class="wd-15p border-bottom-0">Order Date</th>
+                                    <th class="wd-15p border-bottom-0">Order <br> ID</th>
+                                    <th class="wd-15p border-bottom-0">Order <br> Date</th>
                                     <th class="wd-20p border-bottom-0">Customer Info</th>
                                     <th class="wd-20p border-bottom-0">Shipping Info</th>
-                                    <th class="wd-15p border-bottom-0">Order Total</th>
-                                    <th class="wd-10p border-bottom-0">Order Status</th>
-                                    <th class="wd-10p border-bottom-0">Payment Status</th>
-                                    <th class="wd-10p border-bottom-0">Delivery Status</th>
+                                    <th class="wd-15p border-bottom-0">Order <br> Total</th>
+                                    <th class="wd-10p border-bottom-0">Order <br> Status</th>
+                                    <th class="wd-10p border-bottom-0">Payment <br> Status</th>
+                                    <th class="wd-10p border-bottom-0">Delivery <br> Status</th>
                                     <th class="wd-25p border-bottom-0">Action</th>
                                 </tr>
                             </thead>
@@ -43,7 +43,7 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $order->id }}</td>
+                                        <td>OrderID:#00{{ $order->id }}</td>
                                         <td>{{ $order->order_date }}</td>
                                         <td>
                                             Name: {{ $order->customer->name }} <br />
@@ -55,7 +55,7 @@
                                             {{ @$order->shippingAddress->last_name }} <br />
                                             Mobile: {{ @$order->shippingAddress->mobile }} <br />
                                             address:
-                                            {{ @$order->shippingAddress->address }},{{ @$order->shippingAddress->city }}
+                                            {{ @$order->shippingAddress->address }}</br>{{ @$order->shippingAddress->city }}
                                             <br />
                                         </td>
                                         <td>{{ $order->order_total }}</td>

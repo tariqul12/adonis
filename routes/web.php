@@ -182,6 +182,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     //Admin Order
     Route::get('/admin-order/index', [AdminOrderController::class, 'index'])->name('admin-order.index');
+    Route::get('/admin-order/pending', [AdminOrderController::class, 'pending'])->name('admin-order.pending');
+    Route::get('/admin-order/processing', [AdminOrderController::class, 'processing'])->name('admin-order.processing');
+    Route::get('/admin-order/complete', [AdminOrderController::class, 'complete'])->name('admin-order.complete');
+    Route::get('/admin-order/cancel', [AdminOrderController::class, 'cancel'])->name('admin-order.cancel');
     Route::get('/admin-order/detail/{id}', [AdminOrderController::class, 'detail'])->name('admin-order.detail');
     Route::get('/admin-order/edit/{id}', [AdminOrderController::class, 'edit'])->name('admin-order.edit');
     Route::post('/admin-order/update/{id}', [AdminOrderController::class, 'update'])->name('admin-order.update');

@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="{{ asset('/') }}website/assets/css/vendor/classic.css">
 <link rel="stylesheet" href="{{ asset('/') }}website/assets/css/vendor/classic.date.css">
 <link rel="stylesheet" href="{{ asset('/') }}website/assets/css/app.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
 <style>
     .all-category-list-item {
         display: inline-block;
