@@ -203,7 +203,7 @@
                             <div class="text-muted fs-13">Total Sales
                                 <span class="p-2 br-5 text-success"><i class="fe fe-arrow-up-right"></i></span>
                             </div>
-                            <h3 class="fw-semibold">{{ $totalPaymentAmount }}</h3>
+                            <h3 class="fw-semibold">TK:{{ $totalPaymentAmount }} TAKA</h3>
                             <div><span class="text-success fs-13 me-1">32%</span>Increase Since last Year</div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@
                                     <p><a href="{{ route('product.show', $item->id) }}">
                                             <img height="50" width="50" src="{{ asset($item->image) }}"
                                                 alt="" class="rounded-circle me-2">
-                                            {{ $item->name }}
+                                            {{ Str::limit($item->name, 30) }}
                                         </a>
                                     </p>
                                 </div>

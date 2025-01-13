@@ -349,9 +349,9 @@
                             </div>
                             <div class="hr-line mb-16"></div>
                             <div class="d-flex align-items-center justify-content-between mb-16">
-                                <h6>Tax Amount (5%)</h6>
+                                <h6>Tax Amount (2%)</h6>
                                 @php
-                                    $tax = ($sum * 5) / 100;
+                                    $tax = ($sum * 2) / 100;
                                 @endphp
                                 <h6 class="light-gray">${{ $tax }}</h6>
                             </div>
