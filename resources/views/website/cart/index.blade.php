@@ -14,9 +14,10 @@
     <section class="title-banner" style="background-image: url({{ asset($pageTitleBanner->image) }});">
         <div class="container-fluid">
             <div class="banner-wrapper">
-                {{-- <img src="{{ asset('/') }}website/assets/media/banner/left-image.png" alt="" class="banner-image1"> --}}
+                <img src="{{ asset('/') }}website/assets/media/banner/left-image.png" alt="" class="banner-image1">
                 <h1 class="dark-black fw-600">Shopping Cart</h1>
-                {{-- <img src="{{ asset('/') }}website/assets/media/banner/right-image.png" alt="" class="banner-image2"> --}}
+                <img src="{{ asset('/') }}website/assets/media/banner/right-image.png" alt=""
+                    class="banner-image2">
             </div>
         </div>
     </section>
@@ -37,7 +38,7 @@
                                     <th>Products</th>
                                     <th>Price</th>
                                     <!-- <th>Color</th>
-                                                    <th>Size</th> -->
+                                                        <th>Size</th> -->
 
                                     <th>Quantity</th>
                                     <th>Subtotal</th>
@@ -72,32 +73,32 @@
                                         <td>
                                             <p class="fw-500"> TK:{{ $product->price }}</p>
                                             <!-- </td>
-                                                    <td>
-                                                        <div class="product-color">
-                                                            <ul class="unstyled list">
-                                                                @php
-                                                                    $pdcolor = Product::find($product->id);
-                                                                @endphp
+                                                        <td>
+                                                            <div class="product-color">
+                                                                <ul class="unstyled list">
+                                                                    @php
+                                                                        $pdcolor = Product::find($product->id);
+                                                                    @endphp
 
-                                                                @if ($pdcolor)
+                                                                    @if ($pdcolor)
     @foreach ($pdcolor->ProductColors as $key => $color)
     @if ($color->color->id == $product->options->color)
     @php
         $color = Color::find($color->color->id);
     @endphp
-                                                                <p style="height: 50px; width: 50px; background-color: {{ $color->code }}" class="color-box"></p>
+                                                                    <p style="height: 50px; width: 50px; background-color: {{ $color->code }}" class="color-box"></p>
     @endif
     @endforeach
 @else
     <p>No colors available for this product.</p>
     @endif
-                                                            </ul>
-                                                        </div>
+                                                                </ul>
+                                                            </div>
 
-                                                    </td>
-                                                    <td>
-                                                        <p>fkjdgdfkl</p>
-                                                    </td> -->
+                                                        </td>
+                                                        <td>
+                                                            <p>fkjdgdfkl</p>
+                                                        </td> -->
 
                                         <td>
                                             <div class="quantity-controller quantity-wrap">
@@ -135,8 +136,8 @@
                                         </div>
                                         <h6 class="mb-24">{{ $product->name }}</h6>
                                         <!-- <form action="{{ route('cart.update', ['rowId' => $product->rowId]) }}"
-                                                        method="post">
-                                                        @csrf -->
+                                                            method="post">
+                                                            @csrf -->
                                         <ul class="unstyled detail">
                                             <li>
                                                 <h6 class="">Price</h6>
@@ -157,8 +158,8 @@
                                                 <h6 class="">{{ $product->price * $product->qty }}</h6>
                                             </li>
                                             <!-- <li>
-                                                                <button type="submit" class="cus-btn active-btn">Update Cart</button>
-                                                            </li> -->
+                                                                    <button type="submit" class="cus-btn active-btn">Update Cart</button>
+                                                                </li> -->
                                             <!-- </form> -->
                                         </ul>
                                     </div>
@@ -169,13 +170,13 @@
 
                     <!-- Cart Actions: Continue Shopping & Coupon -->
                     <!-- <div class="table-bottom-row bg-white">
-                                        <a href="{{ route('shop') }}" class="cus-btn">Continue Shopping</a>
-                                        <form action="#" method="post" class="contact-form d-flex align-items-center gap-16">
-                                            <input type="number" class="form-control" placeholder="Coupon Code" name="code"
-                                                id="cpCode">
-                                            <button type="submit" class="cus-btn">Apply Now</button>
-                                        </form>
-                                    </div> -->
+                                            <a href="{{ route('shop') }}" class="cus-btn">Continue Shopping</a>
+                                            <form action="#" method="post" class="contact-form d-flex align-items-center gap-16">
+                                                <input type="number" class="form-control" placeholder="Coupon Code" name="code"
+                                                    id="cpCode">
+                                                <button type="submit" class="cus-btn">Apply Now</button>
+                                            </form>
+                                        </div> -->
                 </div>
 
                 <!-- Cart Total Section -->
@@ -191,9 +192,9 @@
                             </div>
                             <div class="hr-line mb-16"></div>
                             <!-- <div class="title-price mb-16">
-                                                <h6>Standard Delivery</h6>
-                                                <h6 class="light-gray">TK:{{ $shipping_amount = 100 }}</h6>
-                                            </div> -->
+                                                    <h6>Standard Delivery</h6>
+                                                    <h6 class="light-gray">TK:{{ $shipping_amount = 100 }}</h6>
+                                                </div> -->
                             <div class="hr-line mb-16"></div>
                             <div class="title-price mb-16">
                                 <h6>Tax Amount (2%)</h6>
@@ -203,9 +204,9 @@
                                 <h6 class="light-gray">TK: {{ $tax }}</h6>
                             </div>
                             <!-- <div class="title-price mb-16">
-                                                <h6>Coupon Discount</h6>
-                                                <h6 class="light-gray">$-5.00</h6>
-                                            </div> -->
+                                                    <h6>Coupon Discount</h6>
+                                                    <h6 class="light-gray">$-5.00</h6>
+                                                </div> -->
                             <div class="hr-line mb-80"></div>
                             <div class="hr-line mb-16"></div>
                             <div class="title-price mb-16">

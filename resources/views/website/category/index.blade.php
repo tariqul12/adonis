@@ -7,13 +7,13 @@
 @section('body')
     <!-- Title Banner Start -->
     <section class="title-banner" style="background-image: url({{ asset($pageTitleBanner->image) }});">
-        <h1 class="dark-black fw-600">Category</h1>
-        {{-- <div class="container-fluid">
+        <div class="container-fluid">
             <div class="banner-wrapper">
                 <img src="{{ asset('/') }}website/assets/media/images/bag.png" alt="" class="banner-image1">
-    <img src="{{ asset('/') }}website/assets/media/images/saree-2.png" alt="" class="banner-image2">
-    </div>
-    </div> --}}
+                <h1 class="dark-black fw-600">Category</h1>
+                <img src="{{ asset('/') }}website/assets/media/images/saree-2.png" alt="" class="banner-image2">
+            </div>
+        </div>
     </section>
     <!-- Title Banner End -->
 

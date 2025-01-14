@@ -111,8 +111,18 @@ class WebsiteController extends Controller
     //ajax search
     public function ajaxSearch()
     {
-        $search   = $_GET['query'];
-        $products = Product::where('name', 'like', '%' . $search . '%')->latest()->get();
+        $search = $_GET['query'];
+        // Fetch products matching the search query
+        $products = Product::where('name', 'like', '%' . $search . '%')
+            ->latest()
+            ->get()
+            ->map(function ($product) {
+                // Generate the full image URL
+                $product->image = asset($product->image);
+                return $product;
+            });
+
+        // Return the response as JSON
         return response()->json($products);
     }
     public function fetchProducts(Request $request)
