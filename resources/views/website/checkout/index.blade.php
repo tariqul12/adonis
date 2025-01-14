@@ -280,7 +280,7 @@
                                     <label class="plan basic-plan" for="bank">
                                         <input type="radio" name="payment_method" value="ssl_commerz" id="bank">
                                         <span class="plan-content content-2">
-                                            <img width="60px"
+                                            <img width="40px"
                                                 src="{{ asset('/') }}website/assets/media/icons/sslcsommerz1.png"
                                                 alt="">
                                             <span class="plan-details">

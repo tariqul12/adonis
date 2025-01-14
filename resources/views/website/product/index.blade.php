@@ -161,7 +161,7 @@
                                 <button disabled data-id="{{ $product->id }}" class="cus-btn-3 w-100 mb-24">Buy
                                     Now</button>
                             @else
-                                <a href="#" id="buyNow" data-id="{{ $product->id }}"
+                                <a href="javascript:void(0);" id="buyNow" data-id="{{ $product->id }}"
                                     class="cus-btn-3 w-100 mb-24">Buy Now</a>
                             @endif
                             <div class="hr-line mb-24"></div>

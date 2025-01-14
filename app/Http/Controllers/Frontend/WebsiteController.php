@@ -14,7 +14,6 @@ use App\Models\ProductColor;
 use App\Models\Slider;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
-use function Monolog\alert;
 
 class WebsiteController extends Controller
 {
@@ -71,14 +70,14 @@ class WebsiteController extends Controller
     public function category($id)
     {
 
-        $products = Product::where('category_id', $id)->latest()->get();
+        $products = Product::where('status', 1)->where('category_id', $id)->latest()->paginate(12);
         $featureProducts = Product::where(['status' => 1, 'feature_status' => 1])->orderBy('id', 'desc')->limit(4)->get();
         return view('website.category.index', compact('products', 'featureProducts'));
     }
 
     public function subCategory($id)
     {
-        $products = Product::where('sub_category_id', $id)->latest()->get();
+        $products = Product::where('status', 1)->where('sub_category_id', $id)->latest()->get();
         $featureProducts = Product::where(['status' => 1, 'feature_status' => 1])->orderBy('id', 'desc')->limit(4)->get();
         return view('website.category.index', compact('products', 'featureProducts'));
     }
@@ -93,7 +92,7 @@ class WebsiteController extends Controller
         }
 
         // $productImg = [$product->image]; // Assuming $product->image is a string, or handle appropriately
-        $related_products = Product::where('category_id', $product->category_id)->limit(6)->get();
+        $related_products = Product::where('status', 1)->where('category_id', $product->category_id)->limit(6)->get();
 
         $productImg = $product->productImages->take(4)->pluck('image')->toArray();
         // dd($productImg);
@@ -103,7 +102,7 @@ class WebsiteController extends Controller
 
     public function shop()
     {
-        $products = Product::where('status', 1)->get();
+        $products = Product::where('status', 1)->orderBy('id', 'desc')->get();
         $featureProducts = Product::where(['status' => 1, 'feature_status' => 1])->orderBy('id', 'desc')->limit(4)->get();
 
         return view('website.shop.index', compact('products', 'featureProducts'));
@@ -130,7 +129,7 @@ class WebsiteController extends Controller
 
         // Filter by categories if category IDs are provided
         if (!empty($categoryIds)) {
-            $query->whereIn('category_id', $categoryIds)->where('status', 1);
+            $query->whereIn('category_id', $categoryIds)->where('status', 1)->orderBy('id', 'desc');
         }
 
         // Filter by search query if provided
@@ -145,7 +144,7 @@ class WebsiteController extends Controller
         }
 
         // Fetch the products based on the filters
-        $products = $query->where('status', 1)->paginate(12);
+        $products = $query->where('status', 1)->orderBy('id', 'desc')->paginate(12);
 
         // Add product sizes and colors to each product
         foreach ($products as $product) {

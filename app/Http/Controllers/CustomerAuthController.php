@@ -26,7 +26,12 @@ class CustomerAuthController extends Controller
                 'mobile' => 'required|string|unique:customers,mobile|max:15'
             ]
         );
-        $this->customer = Customer::newCustomer($request);
+        $this->customer = new Customer();
+        $this->customer->name = $request->name;
+        $this->customer->email = $request->email;
+        $this->customer->password = bcrypt($request->password);
+        $this->customer->mobile = $request->mobile;
+        $this->customer->save();
         Session::put('customer_id', $this->customer->id);
         Session::put('customer_name', $this->customer->name);
 

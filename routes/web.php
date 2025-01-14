@@ -67,7 +67,7 @@ Route::get('/cart/remove/{rowId}', [CartController::class, 'remove'])->name('car
 
 //Customer Auth
 Route::get('/customer/register', [CustomerAuthController::class, 'register'])->name('customer.register');
-Route::post('/customer/store', [CustomerAuthController::class, 'newCustomer'])->name('customer.store');
+Route::post('/customers/store', [CustomerAuthController::class, 'newCustomer'])->name('customers.store');
 Route::get('/customer/login', [CustomerAuthController::class, 'login'])->name('customer.login');
 Route::post('/customer/login', [CustomerAuthController::class, 'loginCheck'])->name('customer.login');
 Route::get('/customer/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');

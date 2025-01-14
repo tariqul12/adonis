@@ -21,15 +21,8 @@
     <section class="featured-product-sec py-40 bg-lightest-gray">
         <div class="container-fluid">
             <div class="row row-gap-3">
-                <div class="col-xl-3">
+                <div class="col-xl-3 d-none d-xl-block">
                     <div class="sidebar bg-white">
-                        <!-- <form action="#" class="mb-24">
-                                                                                                                                                            <input type="text" name="search" id="searchBar" class="form-control"
-                                                                                                                                                                placeholder="Search Here...">
-                                                                                                                                                            <button>
-                                                                                                                                                                <i class="fa-light fa-magnifying-glass"></i>
-                                                                                                                                                            </button>
-                                                                                                                                                        </form> -->
                         <div class="category-block box-1 mb-24">
                             <div class="title mb-24" data-count="1">
                                 <h6>Product Categories</h6>
@@ -67,104 +60,6 @@
                                 </ul>
                             </div>
                         </div>
-
-
-                        <!-- <div class="hr-line mb-24"> </div>
-                                                                                                                                                        <div class="category-block box-2 mb-24">
-                                                                                                                                                            <div class="title mb-32" data-count="2">
-                                                                                                                                                                <h6>Filter By Price</h6>
-                                                                                                                                                                <span>
-                                                                                                                                                                    <i class="far fa-horizontal-rule"></i>
-                                                                                                                                                                </span>
-                                                                                                                                                            </div>
-                                                                                                                                                            <div class="content-block">
-                                                                                                                                                                <div class="wrapper">
-                                                                                                                                                                    <div class="price-input mb-24">
-                                                                                                                                                                        <div class="field">
-                                                                                                                                                                            <div class="fw-500 mb-4p">Low</div>
-                                                                                                                                                                            <input type="number" class="input-min" value="2500">
-                                                                                                                                                                        </div>
-                                                                                                                                                                        <div class="field">
-                                                                                                                                                                            <div class="fw-500 mb-4p">High</div>
-                                                                                                                                                                            <input type="number" class="input-max" value="7500">
-                                                                                                                                                                        </div>
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="slider">
-                                                                                                                                                                        <div class="progress"></div>
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="range-input">
-                                                                                                                                                                        <input type="range" class="range-min" min="0" max="10000" value="2500"
-                                                                                                                                                                            step="100">
-                                                                                                                                                                        <input type="range" class="range-max" min="0" max="10000" value="7500"
-                                                                                                                                                                            step="100">
-                                                                                                                                                                    </div>
-                                                                                                                                                                </div>
-                                                                                                                                                            </div>
-                                                                                                                                                        </div>
-                                                                                                                                                        <div class="hr-line mb-24"></div>
-                                                                                                                                                        <div class="category-block box-4 mb-24">
-                                                                                                                                                            <div class="title mb-32" data-count="4">
-                                                                                                                                                                <h6>Filter By Colors</h6>
-                                                                                                                                                                <span>
-                                                                                                                                                                    <i class="far fa-horizontal-rule"></i>
-                                                                                                                                                                </span>
-                                                                                                                                                            </div>
-                                                                                                                                                            <div class="content-block">
-                                                                                                                                                                <div class="product-color">
-                                                                                                                                                                    <ul class="unstyled list">
-                                                                                                                                                                        <li>
-                                                                                                                                                                            <label for="muhRadio9"
-                                                                                                                                                                                class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                                                                                                                                                <input type="radio" id="muhRadio9" name="muhRadio" class="radio-1"
-                                                                                                                                                                                    value="muhRadio1">
-                                                                                                                                                                            </label>
-                                                                                                                                                                        </li>
-                                                                                                                                                                        <li>
-                                                                                                                                                                            <label for="muhRadio8"
-                                                                                                                                                                                class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                                                                                                                                                <input type="radio" id="muhRadio8" name="muhRadio" class="radio-2"
-                                                                                                                                                                                    value="muhRadio2">
-                                                                                                                                                                            </label>
-                                                                                                                                                                        </li>
-                                                                                                                                                                        <li>
-                                                                                                                                                                            <label for="muhRadio7"
-                                                                                                                                                                                class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                                                                                                                                                <input type="radio" id="muhRadio7" name="muhRadio" class="radio-3"
-                                                                                                                                                                                    value="muhRadio3">
-                                                                                                                                                                            </label>
-                                                                                                                                                                        </li>
-                                                                                                                                                                        <li>
-                                                                                                                                                                            <label for="muhRadio1"
-                                                                                                                                                                                class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                                                                                                                                                <input type="radio" id="muhRadio1" name="muhRadio" class="radio-4"
-                                                                                                                                                                                    value="muhRadio1">
-                                                                                                                                                                            </label>
-                                                                                                                                                                        </li>
-                                                                                                                                                                        <li>
-                                                                                                                                                                            <label for="muhRadio2"
-                                                                                                                                                                                class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                                                                                                                                                <input type="radio" id="muhRadio2" name="muhRadio" class="radio-5"
-                                                                                                                                                                                    value="muhRadio2">
-                                                                                                                                                                            </label>
-                                                                                                                                                                        </li>
-                                                                                                                                                                        <li>
-                                                                                                                                                                            <label for="muhRadio3"
-                                                                                                                                                                                class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                                                                                                                                                <input type="radio" id="muhRadio3" name="muhRadio" class="radio-6"
-                                                                                                                                                                                    value="muhRadio3">
-                                                                                                                                                                            </label>
-                                                                                                                                                                        </li>
-                                                                                                                                                                        <li>
-                                                                                                                                                                            <label for="muhRadio4"
-                                                                                                                                                                                class="d-flex align-items-center h-21 light-black font-sec fw-500">
-                                                                                                                                                                                <input type="radio" id="muhRadio4" name="muhRadio" class="radio-7"
-                                                                                                                                                                                    value="muhRadio4">
-                                                                                                                                                                            </label>
-                                                                                                                                                                        </li>
-                                                                                                                                                                    </ul>
-                                                                                                                                                                </div>
-                                                                                                                                                            </div>
-                                                                                                                                                        </div> -->
                         <div class="hr-line mb-24"></div>
                         <div class="category-block box-7 mb-24">
                             <div class="title mb-24" data-count="7">
@@ -263,21 +158,7 @@
                             @endforeach
                         </div>
                         <div class="pagination pt-40">
-                            <ul id="border-pagination">
-                                <li><a href="#" class="active">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li>
-                                    <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="32"
-                                            viewBox="0 0 33 32" fill="none">
-                                            <path
-                                                d="M20.1953 22.9995C20.1953 19.9995 22.9953 15.9995 26.1953 15.9995M26.1953 15.9995C24.362 15.9995 20.1953 14.9995 20.1953 8.99951M26.1953 15.9995H7.19531"
-                                                stroke="#282525" stroke-width="2" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
+                            {{ $products->links('vendor.pagination.custom-pagination') }}
                         </div>
                     </div>
                 @else

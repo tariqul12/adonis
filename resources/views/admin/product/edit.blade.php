@@ -235,6 +235,7 @@
                                 <div class="row mb-4">
                                     <label for="image" class=" form-label">Product Image</label>
                                     <div class="">
+                                        <p class="text-primary">Recommended Image Size: 242px X 242px</p>
                                         <input class="dropify" data-height="200" name="image" id="image"
                                             type="file" />
                                         <img src="{{ asset($product->image) }}" alt="" width="200"

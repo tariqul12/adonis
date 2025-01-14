@@ -55,6 +55,7 @@
                         <div class="row mb-4">
                             <label for="image" class="col-md-3 form-label">Sub Category Image</label>
                             <div class="col-md-9">
+                                <p class="text-primary">Recommended Image Size: 94px X 94px</p>
                                 <input class="dropify" data-height="200" name="image" id="image" type="file">
                                 <img src="{{ asset($sub_category->image) }}" alt="" height="100">
                             </div>

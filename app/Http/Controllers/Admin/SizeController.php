@@ -40,7 +40,6 @@ class SizeController extends Controller
     }
     public function update(Request $request, $id)
     {
-
         $size = Size::find($id);
         $size->name        = $request->name;
         $size->code        = $request->code;

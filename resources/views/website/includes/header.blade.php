@@ -87,40 +87,24 @@
       <div class="header-section">
           <div class="header-top bg-color-primary">
               <div class="header-start d-lg-block d-none">
-
-                  <a href="{{ route('contact') }}"
-                      class="top-bar-links d-sm-flex d-none text-dark align-items-center gap-2">
-                      <i class="fa-solid fa-location-dot"></i>
-                      <div>
-
-                          <p class="fw-500 text-dark">{{ $companyInfo->company_address }}</p>
-                      </div>
-                  </a>
+                  <p class="fw-500 dark">Welcome to Worldwide Adonis</p>
               </div>
               <div class="header-end">
-                  <i class="fas fa-envelope"></i>
-                  <p class="fw-500 dark">{{ $companyInfo->contact_email }}</p>
-                  <a href="#" class="top-bar-links d-flex align-items-center text-dark gap-2">
-                      <i class="fas fa-phone-alt"></i>
-                      <p class="fw-500 text-dark">{{ $companyInfo->contact_phone }}</p>
-                  </a>
-                  <!-- <div class="vr-line d-sm-block d-none"></div> -->
-                  {{-- <div class="drop-container">
-                      <div class="wrapper-dropdown text-dark" id="dropdown">
-                          <span class="selected-display" id="destination">English</span>
-                          <svg id="drp-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                              xmlns="http://www.w3.org/2000/svg" class="arrow transition-all ml-auto rotate-180">
-                              <path d="M7 14.5l5-5 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                  stroke-linejoin="round"></path>
-                          </svg>
-                          <ul class="topbar-dropdown bg-lightest-gray">
-                              <li class="item dark-black">English</li>
-                              <li class="item dark-black">Spanish</li>
-                              <li class="item dark-black">Italian</li>
-                              <li class="item dark-black">Arabic</li>
-                          </ul>
+                  <a href="contact.html" class="top-bar-links d-sm-flex d-none text-dark align-items-center gap-2">
+                      <i class="fa-solid fa-phone"></i>
+                      <div>
+                          <p class="fw-500 text-dark">{{ $companyInfo->contact_phone }}</p>
                       </div>
-                  </div> --}}
+                  </a>
+                  <a href="#" class="top-bar-links d-flex align-items-center text-dark gap-2">
+                      <i class="fa-solid fa-truck-fast"></i>
+                      <p class="fw-500 text-dark">Order Tracking</p>
+                  </a>
+                  <div class="d-sm-block d-none">
+                      <a href="{{ route('about') }}"><span class="fw-500 top-bar-links text-dark">FAQs</span></a>
+                  </div>
+                  <!-- <div class="vr-line d-sm-block d-none"></div> -->
+
               </div>
           </div>
           <div class="container-fluid">
